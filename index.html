@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="el" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>THE REGULARS — Performance & Websites, Αθήνα</title>
+<meta name="description" content="Ανεξάρτητο digital agency στην Αθήνα. Performance advertising και websites σαν ένα σύστημα. Δεν κυνηγάμε την πρώτη πώληση — χτίζουμε τη δεύτερη, την τρίτη και τη δέκατη.">
+<meta name="theme-color" content="#0B0A09">
+<meta property="og:title" content="THE REGULARS">
+<meta property="og:description" content="Φτιάχνουμε θαμώνες. Performance advertising και websites σαν ένα σύστημα.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230B0A09'/><circle cx='50' cy='50' r='26' fill='none' stroke='%23FF6A3D' stroke-width='8'/><circle cx='50' cy='50' r='8' fill='%23FFC46B'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&family=Literata:ital,opsz,wght@1,7..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<!-- ═══ scroll-driven sci-fi field ═══ -->
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<a class="skip" href="#main" data-en="Skip to content">Στο περιεχόμενο</a>
+
+<!-- ═══ nav ═══ -->
+<header class="nav" id="nav">
+  <div class="nav__bar">
+    <a class="brand" href="#top" aria-label="THE REGULARS">
+      <span class="brand__mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand__type">THE&nbsp;REGULARS</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Κύρια πλοήγηση">
+      <a href="#system" data-en="The system">Το σύστημα</a>
+      <a href="#services" data-en="What we do">Τι κάνουμε</a>
+      <a href="#math" data-en="The math">Τα μαθηματικά</a>
+      <a href="#process" data-en="How we work">Πώς δουλεύουμε</a>
+      <a href="#us" data-en="Us">Εμείς</a>
+    </nav>
+
+    <div class="nav__tools">
+      <button class="chip" id="lang" type="button" aria-label="Language / Γλώσσα"><span>EN</span></button>
+      <button class="chip" id="theme" type="button" aria-label="Theme"><span class="theme-ico" aria-hidden="true"></span></button>
+      <a class="btn btn--sm" href="#contact" data-en="Let’s talk">Ας μιλήσουμε</a>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </div>
+  <div class="nav__progress"><span id="progress"></span></div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ═══ hero ═══ -->
+<section class="hero" data-scene="0">
+  <div class="wrap hero__grid">
+    <p class="eyebrow reveal" data-en="Independent digital agency · Athens · est. 2026">Ανεξάρτητο digital agency · Αθήνα · από το 2026</p>
+
+    <h1 class="hero__h1">
+      <span class="line reveal" data-en="We make">Φτιάχνουμε</span>
+      <span class="line reveal accent" data-en="regulars.">θαμώνες.</span>
+    </h1>
+
+    <p class="lede reveal" data-en="Performance advertising and websites, built as one system. We don’t chase the first sale — we build the second, the third and the tenth.">
+      Performance advertising και websites, σαν ένα σύστημα. Δεν κυνηγάμε την πρώτη πώληση — χτίζουμε τη δεύτερη, την τρίτη και τη δέκατη.
+    </p>
+
+    <div class="hero__cta reveal">
+      <a class="btn btn--primary magnet" href="#contact" data-en="Let’s talk">Ας μιλήσουμε</a>
+      <a class="btn btn--ghost magnet" href="#math" data-en="See the math">Δες τα μαθηματικά</a>
+    </div>
+
+    <figure class="define reveal">
+      <figcaption class="define__word"><span>regular</span> <em data-en="/ˈrɛɡjʊlə/ noun">ο θαμώνας, ουσ.</em></figcaption>
+      <p data-en="The one who walks in, gets called by name, and never has to look at the menu.">
+        Αυτός που μπαίνει, τον ξέρουν με το όνομά του και δεν χρειάζεται να κοιτάξει μενού.
+      </p>
+    </figure>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span data-en="scroll">σκρολάρετε</span><i></i>
+  </div>
+</section>
+
+<!-- ═══ marquee ═══ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span data-en="Relationship, not transaction">Σχέση, όχι συναλλαγή</span><b>●</b>
+    <span data-en="Repeat rate beats first-order ROAS">Repeat rate πάνω από ROAS πρώτης αγοράς</span><b>●</b>
+    <span data-en="Reports you can actually read">Reports που διαβάζονται</span><b>●</b>
+    <span data-en="Ads and site are one thing">Τα ads και το site είναι ένα πράγμα</span><b>●</b>
+    <span data-en="No promises we can’t hold up">Καμία υπόσχεση χωρίς στήριξη</span><b>●</b>
+    <span data-en="Relationship, not transaction">Σχέση, όχι συναλλαγή</span><b>●</b>
+    <span data-en="Repeat rate beats first-order ROAS">Repeat rate πάνω από ROAS πρώτης αγοράς</span><b>●</b>
+    <span data-en="Reports you can actually read">Reports που διαβάζονται</span><b>●</b>
+    <span data-en="Ads and site are one thing">Τα ads και το site είναι ένα πράγμα</span><b>●</b>
+    <span data-en="No promises we can’t hold up">Καμία υπόσχεση χωρίς στήριξη</span><b>●</b>
+  </div>
+</div>
+
+<!-- ═══ two directions ═══ -->
+<section class="section" id="name" data-scene="1">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="01 — The name">01 — Το όνομα</p>
+      <h2 data-en="It works in two directions. On purpose.">Δουλεύει προς δύο κατευθύνσεις. Επίτηδες.</h2>
+    </header>
+
+    <div class="duo">
+      <article class="card reveal">
+        <p class="card__no">I.</p>
+        <h3 data-en="What we are to you">Τι είμαστε για εσάς</h3>
+        <p data-en="Not an external vendor that shows up for the monthly review. A daily presence — people who know your business from the inside, who know that August is dead and that your supplier is late again.">
+          Όχι εξωτερικός προμηθευτής που εμφανίζεται στο μηνιαίο review. Καθημερινή παρουσία — άνθρωποι που ξέρουν τη δουλειά σας από μέσα, που ξέρουν ότι ο Αύγουστος είναι νεκρός και ότι ο προμηθευτής άργησε πάλι.
+        </p>
+      </article>
+
+      <article class="card reveal">
+        <p class="card__no">II.</p>
+        <h3 data-en="What we build for you">Τι φτιάχνουμε για εσάς</h3>
+        <p data-en="Regulars. The first buyer almost always costs you money — the profit lives in the second and third purchase. An agency called The Regulars is telling you what it measures.">
+          Θαμώνες. Ο πρώτος αγοραστής σχεδόν πάντα βγαίνει ζημιά — τα χρήματα είναι στη δεύτερη και την τρίτη αγορά. Ένα agency που λέγεται The Regulars σας λέει από την αρχή τι μετράει.
+        </p>
+      </article>
+    </div>
+
+    <div class="enemy reveal">
+      <p class="tag" data-en="What we’re against">Ο εχθρός</p>
+      <ul>
+        <li>
+          <strong data-en="Overselling.">Η υπερπώληση.</strong>
+          <span data-en="Promises with nothing behind them. Reports built to impress instead of inform. Clients who never understood what they were paying for.">Υποσχέσεις χωρίς στήριξη. Reports φτιαγμένα να εντυπωσιάζουν αντί να ενημερώνουν. Πελάτες που δεν καταλάβαιναν τι πλήρωναν.</span>
+        </li>
+        <li>
+          <strong data-en="Acquisition at any cost.">Το acquisition πάση θυσία.</strong>
+          <span data-en="Agencies that show you first-purchase ROAS and stay very quiet about the fact that the customer never came back.">Agencies που δείχνουν ROAS πρώτης αγοράς και αποσιωπούν ότι ο πελάτης δεν ξαναγύρισε ποτέ.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ system ═══ -->
+<section class="section" id="system" data-scene="2">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="02 — The system">02 — Το σύστημα</p>
+      <h2 data-en="360, with performance and the website at the centre.">360, με επίκεντρο performance και website.</h2>
+      <p class="s-head__sub" data-en="Not a service menu. The ads and the site are one machine — everything else exists to keep it running. Tap a step.">
+        Δεν είναι μενού υπηρεσιών. Τα ads και το site είναι μία μηχανή — τα υπόλοιπα υπάρχουν για να τη στηρίζουν. Πατήστε ένα βήμα.
+      </p>
+    </header>
+
+    <div class="loop reveal">
+      <div class="loop__viz">
+        <svg viewBox="0 0 420 420" role="img" aria-label="Loop diagram">
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="var(--ember)"/><stop offset="1" stop-color="var(--gold)"/>
+            </linearGradient>
+          </defs>
+          <circle class="loop__ring" cx="210" cy="210" r="150"/>
+          <circle class="loop__flow" cx="210" cy="210" r="150"/>
+          <g class="loop__nodes"></g>
+          <text class="loop__center" x="210" y="205" text-anchor="middle">LTV</text>
+          <text class="loop__center loop__center--sm" x="210" y="232" text-anchor="middle" data-en="the loop that pays">ο κύκλος που πληρώνει</text>
+        </svg>
+      </div>
+      <ol class="loop__list" id="loopList"></ol>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ services ═══ -->
+<section class="section" id="services" data-scene="2">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="03 — What we do">03 — Τι κάνουμε</p>
+      <h2 data-en="Four things. In this order.">Τέσσερα πράγματα. Με αυτή τη σειρά.</h2>
+    </header>
+
+    <div class="acc" id="acc">
+      <article class="acc__item is-open reveal">
+        <button class="acc__head" type="button" aria-expanded="true">
+          <span class="acc__no">01</span>
+          <span class="acc__title" data-en="Performance advertising">Performance advertising</span>
+          <span class="acc__weight" data-en="core">πυρήνας</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__body"><div>
+          <p data-en="Meta, Google, retargeting, tracking, measurement. Campaigns built so that we can tell what worked — server-side tracking, clean events, and a number you can defend in front of your accountant.">
+            Meta, Google, retargeting, tracking, μέτρηση. Καμπάνιες στημένες έτσι ώστε να ξέρουμε τι δούλεψε — server-side tracking, καθαρά events και ένα νούμερο που αντέχει μπροστά στον λογιστή σας.
+          </p>
+          <ul class="pills">
+            <li>Meta Ads</li><li>Google Ads</li><li>Retargeting</li><li>GA4 / Server-side</li><li>Feed &amp; Shopping</li><li data-en="Incrementality">Incrementality</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="acc__item reveal">
+        <button class="acc__head" type="button" aria-expanded="false">
+          <span class="acc__no">02</span>
+          <span class="acc__title" data-en="Websites & e-shops">Websites &amp; e-shops</span>
+          <span class="acc__weight" data-en="core">πυρήνας</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__body"><div>
+          <p data-en="Design and development of the place the traffic lands. Fast, measurable, built to convert twice — once now and once when they come back.">
+            Σχεδιασμός και ανάπτυξη του σημείου όπου προσγειώνεται η επισκεψιμότητα. Γρήγορα, μετρήσιμα, φτιαγμένα να μετατρέπουν δύο φορές — μία τώρα και μία όταν επιστρέψουν.
+          </p>
+          <ul class="pills">
+            <li>Shopify</li><li>WooCommerce</li><li>Headless</li><li>UX / UI</li><li>CRO</li><li>Core Web Vitals</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="acc__item reveal">
+        <button class="acc__head" type="button" aria-expanded="false">
+          <span class="acc__no">03</span>
+          <span class="acc__title" data-en="Social media management">Social media management</span>
+          <span class="acc__weight" data-en="support">υποστήριξη</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__body"><div>
+          <p data-en="The voice between purchases. Content that keeps you in the room when nobody is ready to buy yet — and feeds the ads with what already works.">
+            Η φωνή ανάμεσα στις αγορές. Περιεχόμενο που σας κρατάει στο κάδρο όταν κανείς δεν είναι ακόμα έτοιμος να αγοράσει — και τροφοδοτεί τα ads με ό,τι ήδη δουλεύει.
+          </p>
+          <ul class="pills">
+            <li data-en="Content plan">Πλάνο περιεχομένου</li><li data-en="Copy">Κείμενα</li><li>Community</li><li data-en="Organic → paid">Organic → paid</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="acc__item reveal">
+        <button class="acc__head" type="button" aria-expanded="false">
+          <span class="acc__no">04</span>
+          <span class="acc__title" data-en="Design">Design</span>
+          <span class="acc__weight" data-en="support">υποστήριξη</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__body"><div>
+          <p data-en="Everything the above needs to look like it belongs to the same company: creative for ads, product pages, email, packaging inserts.">
+            Ό,τι χρειάζονται τα παραπάνω για να μοιάζουν ότι ανήκουν στην ίδια εταιρεία: creative για ads, σελίδες προϊόντος, email, ένθετα συσκευασίας.
+          </p>
+          <ul class="pills">
+            <li>Ad creative</li><li data-en="Landing pages">Landing pages</li><li>Email</li><li data-en="Brand assets">Brand assets</li>
+          </ul>
+        </div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ math / LTV calculator ═══ -->
+<section class="section section--math" id="math" data-scene="3">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="04 — The math">04 — Τα μαθηματικά</p>
+      <h2 data-en="The first sale is the expensive one.">Η πρώτη πώληση είναι η ακριβή.</h2>
+      <p class="s-head__sub" data-en="Move the sliders with your own numbers. Most agencies show you the first bar. We work for the ones after it.">
+        Κουνήστε τα sliders με τα δικά σας νούμερα. Τα περισσότερα agencies σας δείχνουν την πρώτη μπάρα. Εμείς δουλεύουμε για τις επόμενες.
+      </p>
+    </header>
+
+    <div class="calc reveal">
+      <div class="calc__inputs">
+        <label class="rng">
+          <span class="rng__lab"><b data-en="Average order value">Μέση αξία παραγγελίας</b><output id="oAov">65 €</output></span>
+          <input type="range" id="aov" min="15" max="300" step="5" value="65">
+        </label>
+        <label class="rng">
+          <span class="rng__lab"><b data-en="Gross margin">Μεικτό περιθώριο</b><output id="oMar">45%</output></span>
+          <input type="range" id="mar" min="10" max="80" step="1" value="45">
+        </label>
+        <label class="rng">
+          <span class="rng__lab"><b data-en="Cost per new customer (CAC)">Κόστος νέου πελάτη (CAC)</b><output id="oCac">32 €</output></span>
+          <input type="range" id="cac" min="5" max="150" step="1" value="32">
+        </label>
+        <label class="rng">
+          <span class="rng__lab"><b data-en="Orders per customer / year">Παραγγελίες ανά πελάτη / έτος</b><output id="oOrd">1.0</output></span>
+          <input type="range" id="ord" min="1" max="6" step="0.1" value="1">
+        </label>
+        <p class="calc__hint" data-en="Drag “orders per customer” past 1. That gap is the whole business.">
+          Σύρετε τις «παραγγελίες ανά πελάτη» πάνω από το 1. Αυτή η διαφορά είναι όλη η δουλειά.
+        </p>
+      </div>
+
+      <div class="calc__out">
+        <div class="calc__stats">
+          <div class="stat">
+            <p class="stat__lab" data-en="Profit, first order">Κέρδος, 1η παραγγελία</p>
+            <p class="stat__val" id="vFirst">—</p>
+          </div>
+          <div class="stat stat--hero">
+            <p class="stat__lab" data-en="Profit, 12 months">Κέρδος, 12 μήνες</p>
+            <p class="stat__val" id="vYear">—</p>
+          </div>
+          <div class="stat">
+            <p class="stat__lab" data-en="Breaks even at order">Βγαίνει στα ίσια στην</p>
+            <p class="stat__val" id="vBreak">—</p>
+          </div>
+        </div>
+        <div class="bars" id="bars" aria-hidden="true"></div>
+        <p class="calc__note" id="calcNote"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ process ═══ -->
+<section class="section" id="process" data-scene="4">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="05 — How we work">05 — Πώς δουλεύουμε</p>
+      <h2 data-en="Boring on purpose.">Βαρετά, επίτηδες.</h2>
+    </header>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step__no">01</span>
+        <h3 data-en="We get inside">Μπαίνουμε μέσα</h3>
+        <p data-en="Two weeks of your data, your margins, your returns, your warehouse. If we don’t understand how you make money, we can’t spend your money.">
+          Δύο εβδομάδες με τα δεδομένα σας, τα περιθώριά σας, τις επιστροφές, την αποθήκη. Αν δεν καταλάβουμε πώς βγάζετε λεφτά, δεν μπορούμε να τα ξοδέψουμε.
+        </p>
+      </li>
+      <li class="step reveal">
+        <span class="step__no">02</span>
+        <h3 data-en="We fix the measurement">Φτιάχνουμε τη μέτρηση</h3>
+        <p data-en="Tracking, events, attribution, a dashboard with the four numbers that matter. Before a single euro goes into ads.">
+          Tracking, events, attribution, ένα dashboard με τα τέσσερα νούμερα που μετράνε. Πριν μπει ένα ευρώ σε ads.
+        </p>
+      </li>
+      <li class="step reveal">
+        <span class="step__no">03</span>
+        <h3 data-en="We run and we learn">Τρέχουμε και μαθαίνουμε</h3>
+        <p data-en="Weekly, not monthly. You get a short call and a report in plain language — what we tried, what worked, what we killed and why.">
+          Εβδομαδιαία, όχι μηνιαία. Παίρνετε ένα σύντομο call και ένα report σε καθημερινή γλώσσα — τι δοκιμάσαμε, τι δούλεψε, τι κόψαμε και γιατί.
+        </p>
+      </li>
+      <li class="step reveal">
+        <span class="step__no">04</span>
+        <h3 data-en="We build the return">Χτίζουμε την επιστροφή</h3>
+        <p data-en="Second-purchase flows, retargeting that isn’t stalking, site changes for people who already know you. This is where the margin is.">
+          Flows δεύτερης αγοράς, retargeting που δεν είναι παρακολούθηση, αλλαγές στο site για ανθρώπους που σας ξέρουν ήδη. Εδώ είναι το περιθώριο.
+        </p>
+      </li>
+    </ol>
+
+    <div class="nots reveal">
+      <p class="tag" data-en="Things we don’t do">Τι δεν κάνουμε</p>
+      <ul>
+        <li data-en="Reports designed to impress you">Reports φτιαγμένα να σας εντυπωσιάσουν</li>
+        <li data-en="12-month lock-in for a service that has to prove itself monthly">Δεσμεύσεις 12 μηνών για δουλειά που κρίνεται κάθε μήνα</li>
+        <li data-en="ROAS numbers with the returns quietly left out">Νούμερα ROAS με τις επιστροφές διακριτικά εκτός</li>
+        <li data-en="Twenty clients per person">Είκοσι πελάτες ανά άτομο</li>
+        <li data-en="Words like “synergy”, unless we’re joking">Λέξεις όπως «συνέργεια», εκτός αν αστειευόμαστε</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ us ═══ -->
+<section class="section" id="us" data-scene="4">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="06 — Us">06 — Εμείς</p>
+      <h2 data-en="Two people. Both of them on your account.">Δύο άνθρωποι. Και οι δύο στον λογαριασμό σας.</h2>
+    </header>
+
+    <div class="duo">
+      <!-- Όνομα ιδρυτή #1 μπαίνει στο <h3> -->
+      <article class="card card--person reveal">
+        <p class="card__no">01</p>
+        <h3 data-en="Performance & data">Performance &amp; δεδομένα</h3>
+        <p data-en="Came out of an agency and left because of exactly what’s written above. Spends the day inside ad accounts and spreadsheets, and will tell you when spending more is the wrong move.">
+          Ήρθε από agency και έφυγε ακριβώς για ό,τι γράφεται πιο πάνω. Περνάει τη μέρα μέσα σε ad accounts και spreadsheets, και θα σας πει πότε το «βάλε παραπάνω budget» είναι λάθος κίνηση.
+        </p>
+      </article>
+      <article class="card card--person reveal">
+        <p class="card__no">02</p>
+        <h3 data-en="Web & product">Web &amp; product</h3>
+        <p data-en="Designs and builds the thing the traffic lands on. Believes half of what people call a “creative problem” is a load-time problem.">
+          Σχεδιάζει και φτιάχνει αυτό στο οποίο προσγειώνεται η επισκεψιμότητα. Πιστεύει ότι το μισό από αυτά που λέμε «πρόβλημα creative» είναι πρόβλημα ταχύτητας.
+        </p>
+      </article>
+    </div>
+
+    <blockquote class="quote reveal">
+      <p data-en="“We’d rather have ten clients who stay than fifty who tried us.”">«Προτιμάμε δέκα πελάτες που μένουν από πενήντα που μας δοκίμασαν.»</p>
+    </blockquote>
+
+    <div class="faq reveal">
+      <details>
+        <summary data-en="How much does it cost?">Πόσο κοστίζει;</summary>
+        <p data-en="Monthly retainer based on scope, plus a one-off for the website when there is one. We give you the number in the first call — no “it depends” for three weeks.">Μηνιαίο retainer ανάλογα με το scope, συν εφάπαξ για το website όταν υπάρχει. Το νούμερο σας το λέμε στο πρώτο call — όχι «εξαρτάται» για τρεις εβδομάδες.</p>
+      </details>
+      <details>
+        <summary data-en="Do you sign long contracts?">Υπογράφετε μακροχρόνια συμβόλαια;</summary>
+        <p data-en="Three months to set things up properly, monthly after that. If we’re good, you’ll stay because you want to.">Τρεις μήνες για να στηθεί σωστά, μηνιαία μετά. Αν είμαστε καλοί, θα μείνετε επειδή το θέλετε.</p>
+      </details>
+      <details>
+        <summary data-en="We already have an agency. Why change?">Έχουμε ήδη agency. Γιατί να αλλάξουμε;</summary>
+        <p data-en="Ask them what your repeat rate is and how it moved this quarter. If the answer comes fast and with numbers, stay where you are.">Ρωτήστε τους πόσο είναι το repeat rate σας και πώς κινήθηκε αυτό το τρίμηνο. Αν η απάντηση έρθει γρήγορα και με νούμερα, μείνετε εκεί που είστε.</p>
+      </details>
+      <details>
+        <summary data-en="Are you too small for us?">Είστε πολύ μικροί για εμάς;</summary>
+        <p data-en="We’re two, and that’s the point: you talk to the people doing the work. We say no to accounts we can’t serve properly — that’s the honest version of scale.">Είμαστε δύο, και αυτό είναι το ζητούμενο: μιλάτε με τους ανθρώπους που κάνουν τη δουλειά. Λέμε όχι σε λογαριασμούς που δεν μπορούμε να εξυπηρετήσουμε σωστά — αυτή είναι η ειλικρινής εκδοχή της κλίμακας.</p>
+      </details>
+      <details>
+        <summary data-en="Do you work with businesses that have a physical store?">Δουλεύετε με επιχειρήσεις με φυσικό κατάστημα;</summary>
+        <p data-en="Yes — often the best case. You already have regulars offline; we take that behaviour online instead of inventing it from scratch.">Ναι — συχνά είναι η καλύτερη περίπτωση. Έχετε ήδη θαμώνες εκτός διαδικτύου· παίρνουμε αυτή τη συμπεριφορά online αντί να την εφεύρουμε από την αρχή.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ contact ═══ -->
+<section class="section section--contact" id="contact" data-scene="4">
+  <div class="wrap">
+    <div class="cta reveal">
+      <p class="tag" data-en="07 — Let’s talk">07 — Ας μιλήσουμε</p>
+      <h2 data-en="Tell us what you sell.">Πείτε μας τι πουλάτε.</h2>
+      <p class="s-head__sub" data-en="Thirty minutes, no deck. We’ll tell you straight whether we’re the right people for it.">
+        Τριάντα λεπτά, χωρίς παρουσίαση. Θα σας πούμε ευθέως αν είμαστε οι σωστοί άνθρωποι.
+      </p>
+
+      <form class="form" id="form" novalidate>
+        <div class="f">
+          <input id="fName" name="name" required autocomplete="name" placeholder=" ">
+          <label for="fName" data-en="Your name">Το όνομά σας</label>
+        </div>
+        <div class="f">
+          <input id="fMail" name="email" type="email" required autocomplete="email" placeholder=" ">
+          <label for="fMail" data-en="Email">Email</label>
+        </div>
+        <div class="f">
+          <input id="fSite" name="site" placeholder=" ">
+          <label for="fSite" data-en="Website (if there is one)">Website (αν υπάρχει)</label>
+        </div>
+        <div class="f f--sel">
+          <select id="fBud" name="budget">
+            <option value="&lt;1.5k" data-en="Monthly ad budget: under €1.5k">Μηνιαίο budget ads: έως 1.5k €</option>
+            <option value="1.5-5k" selected>1.5k – 5k €</option>
+            <option value="5-15k">5k – 15k €</option>
+            <option value="15k+">15k € +</option>
+            <option value="website" data-en="Website only">Μόνο website</option>
+          </select>
+          <label for="fBud" data-en="Budget">Budget</label>
+        </div>
+        <div class="f f--full">
+          <textarea id="fMsg" name="message" rows="3" placeholder=" "></textarea>
+          <label for="fMsg" data-en="What are you selling, and what’s stuck?">Τι πουλάτε και τι έχει κολλήσει;</label>
+        </div>
+        <button class="btn btn--primary magnet" type="submit" data-en="Send it">Στείλτε το</button>
+        <p class="form__msg" id="formMsg" role="status"></p>
+      </form>
+
+      <p class="direct">
+        <a href="mailto:hello@theregulars.gr">hello@theregulars.gr</a>
+        <span aria-hidden="true">·</span>
+        <a href="tel:+302100000000">+30 210 000 0000</a>
+        <span aria-hidden="true">·</span>
+        <span data-en="Athens, Greece">Αθήνα</span>
+      </p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <span class="brand brand--sm"><span class="brand__mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand__type">THE&nbsp;REGULARS</span></span>
+    <p data-en="© 2026 The Regulars — independent digital agency, Athens.">© 2026 The Regulars — ανεξάρτητο digital agency, Αθήνα.</p>
+    <p class="foot__sig" data-en="Built to be read, not to impress.">Φτιαγμένο για να διαβάζεται, όχι να εντυπωσιάζει.</p>
+  </div>
+</footer>
+
+<script src="assets/js/field.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
