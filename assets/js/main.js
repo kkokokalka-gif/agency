@@ -8,8 +8,14 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(pointer: fine)').matches;
 
+  /* storage can throw in embedded / private contexts — never let it break the page */
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch { /* ignore */ } }
+  };
+
   /* ── language ─────────────────────────────── */
-  let lang = localStorage.getItem('reg-lang') || 'el';
+  let lang = store.get('reg-lang') || 'el';
 
   function applyLang() {
     $$('[data-en]').forEach(el => {
@@ -18,7 +24,7 @@
     });
     document.documentElement.lang = lang;
     $('#lang span').textContent = lang === 'en' ? 'ΕΛ' : 'EN';
-    localStorage.setItem('reg-lang', lang);
+    store.set('reg-lang', lang);
     document.title = lang === 'en'
       ? 'THE REGULARS — Performance & Websites, Athens'
       : 'THE REGULARS — Performance & Websites, Αθήνα';
@@ -33,14 +39,14 @@
   });
 
   /* ── theme ────────────────────────────────── */
-  const savedTheme = localStorage.getItem('reg-theme');
+  const savedTheme = store.get('reg-theme');
   if (savedTheme) document.documentElement.dataset.theme = savedTheme;
   $('#theme').addEventListener('click', () => {
     const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
     document.documentElement.dataset.theme = next;
-    localStorage.setItem('reg-theme', next);
+    store.set('reg-theme', next);
     document.querySelector('meta[name=theme-color]')
-      .setAttribute('content', next === 'light' ? '#F4EEE4' : '#0B0A09');
+      ?.setAttribute('content', next === 'light' ? '#F4EEE4' : '#0B0A09');
     window.REGField?.refresh();
   });
 
