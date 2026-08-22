@@ -1,0 +1,1237 @@
+<meta charset="utf-8">
+<title>The Regulars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════
+   THE REGULARS · site stylesheet
+   Surface breathes · ink anchors · blue carries · neon sparks
+   Balance 60 / 30 / 10. One neon element per viewport.
+   ══════════════════════════════════════════════════════════ */
+
+:root{
+  /* brand tokens (do not invent others) */
+  --surface:#F6FBFD;
+  --ink:#12131C;
+  --blue:#1924E6;
+  --neon:#D5FA33;
+  --lime:#5A7302;
+
+  /* ground-dependent roles, default = surface */
+  --ground:var(--surface);
+  --on:var(--ink);
+  --muted:rgb(20 23 43 / .62);
+  --line:rgb(20 23 43 / .14);
+  --card:#fff;
+  --accent:var(--blue);
+  --spark:var(--lime);
+  --dots:25 36 230;      /* matrix dot colour, rgb triplet */
+  --dot-a:.12;
+
+  --display:"Inter",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"Space Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --data:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --wrap:1240px;
+  --pad:clamp(20px,5vw,72px);
+  --r:6px;
+  --rbox:26%;
+  --fast:140ms;
+  --ease:cubic-bezier(.2,.7,.3,1);
+}
+:root[data-ground="ink"]{
+  --ground:var(--ink); --on:var(--surface);
+  --muted:rgb(246 251 253 / .68);
+  --line:rgb(246 251 253 / .18);
+  --card:#181926;
+  --accent:var(--neon);
+  --spark:var(--neon);
+  --dots:246 251 253; --dot-a:.10;
+}
+:root[data-ground="blue"]{
+  --ground:var(--blue); --on:var(--surface);
+  --muted:rgb(246 251 253 / .8);
+  --line:rgb(246 251 253 / .28);
+  --card:#1620C7;
+  --accent:var(--neon);
+  --spark:var(--neon);
+  --dots:246 251 253; --dot-a:.12;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--on);
+  font:400 clamp(15px,1vw,16.5px)/1.65 var(--mono);
+  overflow-x:hidden;
+  transition:background .34s linear,color .34s linear;
+}
+h1,h2,h3{font-family:var(--display);font-weight:900;letter-spacing:-.01em;line-height:.98;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--blue);text-decoration:none;transition:color var(--fast) var(--ease)}
+a:hover{color:var(--lime)}
+:root[data-ground="ink"] a,:root[data-ground="blue"] a{color:var(--neon)}
+:root[data-ground="ink"] a:hover,:root[data-ground="blue"] a:hover{color:var(--surface)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:2px}
+:root[data-ground="ink"] :focus-visible,:root[data-ground="blue"] :focus-visible{outline-color:var(--neon)}
+::selection{background:var(--neon);color:var(--ink)}
+
+#matrix{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.nav,main,.foot{position:relative;z-index:1}
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
+.skip{position:fixed;left:-999px;top:8px;z-index:99;background:var(--blue);color:var(--surface);padding:10px 16px}
+.skip:focus{left:8px}
+
+/* ── the mark ─────────────────────────────── */
+.lockup{display:inline-flex;align-items:center;gap:12px;color:inherit}
+.lockup:hover{color:inherit}
+.lockup__box{
+  width:44px;height:44px;border-radius:var(--rbox);background:var(--blue);
+  display:grid;place-items:center;flex:none;transition:background var(--fast) var(--ease)
+}
+:root[data-ground="blue"] .lockup__box{background:var(--surface)}
+.mark{width:22px;height:auto;fill:var(--surface)}
+:root[data-ground="blue"] .mark{fill:var(--blue)}
+.mark__dot{fill:var(--neon)}
+:root[data-ground="blue"] .mark__dot{fill:var(--blue)}
+.lockup__type{display:grid;line-height:.8}
+.lockup__the{display:flex;justify-content:space-between;width:38px;font:800 10px/1 var(--display);color:var(--muted)}
+.lockup__word{font:900 22px/.82 var(--display);letter-spacing:-.005em;margin-top:4px;white-space:nowrap;display:flex;align-items:flex-end}
+.lockup__word b{width:.15em;height:.15em;border-radius:.045em;background:var(--spark);margin-left:.09em;margin-bottom:.02em;display:inline-block}
+.lockup--sm .lockup__box{width:38px;height:38px}
+.lockup--sm .lockup__word{font-size:18px}
+.lockup--sm .lockup__the{width:31px;font-size:9px}
+
+/* assemble / chase loops on the nav mark */
+.mark rect{transform-box:fill-box;transform-origin:center}
+.lockup:hover .mark rect,.lockup.is-busy .mark rect{animation:chase 2.6s linear infinite}
+.mark rect:nth-child(1){animation-delay:0s}.mark rect:nth-child(2){animation-delay:.216s}
+.mark rect:nth-child(3){animation-delay:.433s}.mark rect:nth-child(4){animation-delay:.65s}
+.mark rect:nth-child(5){animation-delay:.866s}.mark rect:nth-child(6){animation-delay:1.08s}
+.mark rect:nth-child(7){animation-delay:1.3s}.mark rect:nth-child(8){animation-delay:1.51s}
+.mark rect:nth-child(9){animation-delay:1.73s}.mark rect:nth-child(10){animation-delay:1.94s}
+.mark rect:nth-child(11){animation-delay:2.16s}.mark rect:nth-child(12){animation-delay:2.38s}
+@keyframes chase{0%,88%{opacity:.42}92%,96%{opacity:1}100%{opacity:.42}}
+@keyframes assemble{0%{opacity:0;transform:scale(.2)}60%{opacity:1;transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
+
+/* ── nav ──────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:40;background:color-mix(in srgb,var(--ground) 86%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s,background .34s linear}
+.nav.is-stuck{border-bottom-color:var(--line)}
+.nav__in{max-width:var(--wrap);margin-inline:auto;padding:14px var(--pad);display:flex;align-items:center;gap:28px}
+.nav__links{display:flex;gap:30px;margin-inline:auto;font:700 13px/1 var(--mono);letter-spacing:.04em}
+.nav__links a{color:var(--on);position:relative;padding:6px 0;opacity:.72}
+.nav__links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;transition:transform var(--fast) var(--ease)}
+.nav__links a:hover{opacity:1;color:var(--on)}
+.nav__links a:hover::after,.nav__links a.is-on::after{transform:scaleX(1)}
+.nav__links a.is-on{opacity:1}
+.nav__end{display:flex;align-items:center;gap:12px;flex:none}
+.burger{display:none;width:40px;height:40px;border:1px solid var(--line);background:transparent;border-radius:var(--r);position:relative;cursor:pointer}
+.burger i{position:absolute;left:11px;right:11px;height:2px;background:var(--on);transition:var(--fast) var(--ease)}
+.burger i:nth-child(1){top:15px}.burger i:nth-child(2){bottom:15px}
+.burger[aria-expanded="true"] i:nth-child(1){top:19px;transform:rotate(45deg)}
+.burger[aria-expanded="true"] i:nth-child(2){bottom:19px;transform:rotate(-45deg)}
+
+/* ── buttons ──────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:var(--r);
+  font:700 13.5px/1 var(--mono);letter-spacing:.03em;border:2px solid transparent;cursor:pointer;
+  transition:background var(--fast) var(--ease),color var(--fast) var(--ease),border-color var(--fast) var(--ease),transform var(--fast) var(--ease)}
+.btn--pri{background:var(--blue);color:var(--surface);border-color:var(--blue)}
+.btn--pri:hover{background:var(--ink);border-color:var(--ink);color:var(--surface);transform:translateY(-2px)}
+:root[data-ground="ink"] .btn--pri:hover,:root[data-ground="blue"] .btn--pri:hover{background:var(--surface);border-color:var(--surface);color:var(--ink)}
+.btn--ghost{border-color:var(--line);color:var(--on)}
+.btn--ghost:hover{border-color:var(--on);color:var(--on);transform:translateY(-2px)}
+:root[data-ground="blue"] .btn--pri{background:var(--surface);border-color:var(--surface);color:var(--blue)}
+:root[data-ground="blue"] .btn--pri:hover{background:var(--neon);border-color:var(--neon);color:var(--ink)}
+.btn--on-blue{background:var(--surface);color:var(--blue);border-color:var(--surface)}
+.btn--on-blue:hover{background:var(--neon);border-color:var(--neon);color:var(--ink);transform:translateY(-2px)}
+
+/* ── type helpers ─────────────────────────── */
+.eyebrow{font:700 12px/1 var(--data);letter-spacing:.28em;text-transform:uppercase;color:var(--accent)}
+.eyebrow--lime{color:var(--lime)}
+.eyebrow--mute{color:var(--muted)}
+.eyebrow a{color:inherit;border-bottom:1px solid currentColor}
+.dot{color:var(--neon)}
+.dot--lime{color:var(--lime)}
+.lede{font:400 clamp(17px,1.45vw,21px)/1.55 var(--mono);color:var(--muted);max-width:62ch}
+.sub{color:var(--muted);max-width:60ch;font-size:clamp(15.5px,1.15vw,17.5px)}
+.note{font-size:14px;color:var(--muted);margin-top:26px}
+
+/* ── sections ─────────────────────────────── */
+.sect{padding:clamp(76px,9vw,132px) 0}
+.sect .eyebrow{margin-bottom:18px}
+.sect h2{font-size:clamp(30px,4.6vw,60px);text-transform:uppercase;margin-bottom:16px}
+.page-head{padding:clamp(120px,14vw,190px) 0 clamp(56px,7vw,86px)}
+.page-head h1{font-size:clamp(34px,6vw,78px);text-transform:uppercase;margin:18px 0 22px;max-width:16ch}
+.page-head .lede{max-width:52ch}
+
+/* ── hero ─────────────────────────────────── */
+.hero{min-height:100svh;display:flex;align-items:center;padding:120px 0 90px;position:relative}
+.hero h1{font-size:clamp(40px,7vw,104px);max-width:15ch;text-transform:uppercase;margin:20px 0 26px}
+.hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero__scroll{position:absolute;left:var(--pad);bottom:30px;display:flex;align-items:center;gap:14px;
+  font:700 11px/1 var(--data);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.hero__scroll i{width:64px;height:2px;background:var(--line);position:relative;overflow:hidden}
+.hero__scroll i::after{content:"";position:absolute;inset:0;background:var(--neon);transform:translateX(-100%);
+  animation:sweep 2.4s var(--ease) infinite}
+@keyframes sweep{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+
+/* ── proof bar ────────────────────────────── */
+.proof{padding:0 0 clamp(70px,9vw,120px)}
+.proof__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:1px solid var(--line);padding-top:34px}
+.stat__n,.kpi__n{font:800 clamp(38px,5vw,64px)/1 var(--data);font-variant-numeric:tabular-nums;color:var(--accent)}
+.stat__l,.kpi__l{font-size:14.5px;color:var(--muted);margin-top:10px;max-width:24ch}
+
+/* ── cards ────────────────────────────────── */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
+.card{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:var(--r);
+  padding:34px 32px;display:grid;gap:12px;align-content:start;transition:transform var(--fast) var(--ease),border-color var(--fast)}
+.card:hover{transform:translateY(-3px);border-left-color:var(--ink)}
+.card__k{font:700 12px/1 var(--data);letter-spacing:.2em;color:var(--muted)}
+.card h3{font-size:28px}
+.card p{color:var(--muted)}
+.tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 0;padding:0}
+.tags li{font:400 12px/1 var(--mono);border:1px solid var(--line);border-radius:var(--r);padding:7px 10px;color:var(--muted)}
+
+/* ── house rules ──────────────────────────── */
+.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:44px}
+.rule{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:var(--r);padding:34px 36px}
+.rule h3{font-size:26px;margin-bottom:12px}
+.rule p{color:var(--muted)}
+.rule--ink{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.rule--ink p{color:rgb(246 251 253 / .72)}
+
+/* ── the boring truth ─────────────────────── */
+.truth__switch{display:inline-flex;border:1px solid var(--line);border-radius:var(--r);padding:4px;gap:4px;margin:34px 0 30px}
+.truth__switch button{background:transparent;border:0;border-radius:3px;padding:12px 20px;cursor:pointer;
+  font:700 13px/1 var(--mono);color:var(--muted);transition:var(--fast) var(--ease)}
+.truth__switch button:hover{color:var(--on)}
+.truth__switch button.is-on{background:var(--surface);color:var(--ink)}
+.truth__panel{display:grid;align-items:start;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(24px,3.4vw,54px);
+  border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,2.6vw,36px);background:var(--card)}
+.truth__chart{position:relative;height:clamp(240px,32vh,330px);display:flex;flex-direction:column}
+.truth__chart svg,.truth__chart .bars{position:absolute;inset:0 0 30px;width:100%;height:calc(100% - 30px);
+  transition:opacity .4s var(--ease),transform .5s var(--ease)}
+.truth__chart .is-off{opacity:0;pointer-events:none;transform:translateY(10px)}
+#chartUsual .area{fill:rgb(25 36 230 / .22)}
+#chartUsual .line{fill:none;stroke:var(--blue);stroke-width:3;vector-effect:non-scaling-stroke}
+:root[data-ground="ink"] #chartUsual .area{fill:rgb(246 251 253 / .14)}
+:root[data-ground="ink"] #chartUsual .line{stroke:var(--surface)}
+.bars{display:flex;align-items:flex-end;gap:clamp(4px,.8vw,10px)}
+.bars .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;height:100%}
+.bars .b i{display:block;background:var(--blue);border-radius:2px;transition:height .55s var(--ease)}
+.bars .b i.new{background:rgb(246 251 253 / .15)}
+.bars .b.last i:not(.new){background:var(--neon)}
+.truth__axis{position:absolute;left:0;right:0;bottom:0;display:flex;gap:clamp(4px,.8vw,10px);
+  font:700 10px/1 var(--data);color:var(--muted);letter-spacing:.06em}
+.truth__axis span{flex:1;text-align:center}
+.truth__big{font:800 clamp(52px,7vw,84px)/1 var(--data);color:var(--on);font-variant-numeric:tabular-nums}
+.truth__big span{font-size:.5em}
+.truth__lab{font-size:14.5px;color:var(--on);margin-top:8px;max-width:26ch}
+.truth__note{font-size:14px;color:var(--muted);margin-top:20px;border-top:1px solid var(--line);padding-top:18px}
+.truth__list{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:12px}
+.truth__list li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-top:1px solid var(--line);padding-top:12px;font-size:14px;color:var(--muted)}
+.truth__list b{font:800 22px/1 var(--data);color:var(--on);font-variant-numeric:tabular-nums}
+
+/* ── work tiles ───────────────────────────── */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:46px}
+.tiles--wide{margin-top:0}
+.tile{display:grid;align-content:start;gap:10px;min-height:290px;padding:32px;border:1px solid var(--line);
+  border-radius:var(--r);background:var(--card);color:var(--on);transition:transform var(--fast) var(--ease)}
+a.tile:hover{transform:translateY(-4px)}
+.tile__k{font:700 11px/1 var(--data);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.tile__h{font:900 30px/1 var(--display);text-transform:uppercase;margin-top:6px}
+.tile__m{font-size:14px;color:var(--muted)}
+.tile__n{margin-top:auto;font:800 44px/1 var(--data);display:grid;gap:8px;font-variant-numeric:tabular-nums}
+.tile__n i{font:400 13px/1.4 var(--mono);font-style:normal;color:var(--muted);max-width:26ch}
+.tile--blue{background:var(--blue);border-color:var(--blue);color:var(--surface)}
+.tile--blue .tile__k,.tile--blue .tile__m,.tile--blue .tile__n i{color:rgb(246 251 253 / .72)}
+.tile--blue .tile__n{color:var(--neon)}
+.tile--ink{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.tile--ink .tile__k,.tile--ink .tile__m,.tile--ink .tile__n i{color:rgb(246 251 253 / .6)}
+
+/* ── people ───────────────────────────────── */
+.people{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:44px}
+.person{border-top:2px solid var(--on);padding-top:22px}
+.person h3{font-size:34px}
+.person__r{font:700 12px/1 var(--data);letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin:10px 0 14px}
+.person p{color:var(--muted)}
+
+/* ── voice ────────────────────────────────── */
+.voice{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:64px}
+.voice__col{display:grid;gap:14px;align-content:start}
+.say{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 24px;font-size:16px}
+.say--no{border-style:dashed;color:var(--muted);text-decoration:line-through}
+
+/* ── cta band ─────────────────────────────── */
+.cta{padding:clamp(80px,10vw,140px) 0}
+.cta__in{display:grid;gap:18px;justify-items:start}
+.cta h2{font-size:clamp(30px,5vw,66px);text-transform:uppercase;max-width:18ch}
+.cta .btn{margin-top:14px}
+
+/* ── case study ───────────────────────────── */
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px;border-top:1px solid var(--line);padding-top:30px}
+.case{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:start}
+.case__col{display:grid;gap:34px}
+.case__col p:not(.eyebrow){color:var(--muted);margin-top:12px}
+.case__chart{border:1px solid var(--line);border-radius:var(--r);padding:28px;background:var(--card)}
+.chart{display:flex;align-items:flex-end;gap:8px;height:260px;margin-top:22px}
+.chart .cb{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;height:100%}
+.chart .cb i{display:block;background:var(--blue);border-radius:2px;height:0;transition:height .7s var(--ease)}
+.chart .cb.last i{background:var(--neon)}
+.chart .cb span{font:700 10px/1 var(--data);color:var(--muted);text-align:center}
+
+/* ── services ─────────────────────────────── */
+.svc{display:grid;gap:0}
+.svc__row{display:grid;grid-template-columns:minmax(160px,.3fr) minmax(0,1fr);gap:clamp(20px,3vw,54px);
+  border-top:2px solid var(--on);padding:38px 0}
+.svc__k{display:grid;gap:12px;align-content:start}
+.svc__k span{font:800 14px/1 var(--data);letter-spacing:.2em;color:var(--blue)}
+.svc__k h2{font-size:clamp(26px,2.6vw,34px);text-transform:uppercase;margin:0;overflow-wrap:anywhere}
+.svc__body{display:grid;gap:18px;color:var(--muted);max-width:66ch}
+.svc__how{border-left:3px solid var(--blue);padding-left:18px;color:var(--on)}
+.svc__how b{font-family:var(--data);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:6px}
+.panel{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:clamp(26px,3.4vw,46px)}
+.panel h2{font-size:clamp(24px,3vw,38px);text-transform:uppercase;margin-bottom:26px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.steps li{border-top:1px solid var(--line);padding-top:18px}
+.steps span{font:700 12px/1 var(--data);letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.steps p{color:var(--muted);margin-top:10px;font-size:15px}
+
+/* ── contact ──────────────────────────────── */
+.contact{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(26px,4vw,72px);align-items:start}
+.form{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.f{display:grid;gap:8px}
+.f--full{grid-column:1/-1}
+.f span{font:700 11.5px/1 var(--data);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.f input,.f textarea{width:100%;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:14px 15px;font:400 15.5px/1.5 var(--mono);color:var(--on);transition:border-color var(--fast) var(--ease)}
+.f input:focus,.f textarea:focus{border-color:var(--blue);outline:none}
+.f.is-bad input,.f.is-bad textarea{border-color:#c3261a}
+.form .btn{grid-column:1/-1;justify-self:start}
+.form__msg{grid-column:1/-1;font-size:14px;color:var(--lime);min-height:1.4em}
+.contact__side{border-top:2px solid var(--on);padding-top:24px;display:grid;gap:16px}
+.contact__mail{font:900 clamp(20px,2.2vw,30px)/1.1 var(--display)}
+.contact__mail a{color:var(--accent)}
+.contact__meta{color:var(--muted);font-size:15px}
+.contact__meta--sm{font-size:13.5px;border-top:1px solid var(--line);padding-top:16px}
+
+/* ── footer ───────────────────────────────── */
+.foot{border-top:1px solid var(--line);padding:40px 0}
+.foot__in{display:flex;flex-wrap:wrap;gap:22px 40px;align-items:center;justify-content:space-between}
+.foot__nav{display:flex;gap:22px;font:700 13px/1 var(--mono)}
+.foot__nav a{color:var(--on);opacity:.7}
+.foot__nav a:hover{opacity:1;color:var(--neon)}
+.foot__meta{font-size:13px;color:var(--muted);text-align:right}
+.foot__meta span{color:var(--on)}
+
+/* ── reveal + route transition ────────────── */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.route{animation:routeIn .38s var(--ease) both}
+@keyframes routeIn{from{opacity:0;transform:translateY(12px)}}
+
+/* ── responsive ───────────────────────────── */
+@media (max-width:1040px){
+  .cards,.tiles,.truth__panel,.case,.contact,.steps{grid-template-columns:1fr}
+  .truth__chart{min-height:230px}
+  .form{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .nav__links{position:fixed;inset:70px 0 auto;flex-direction:column;gap:0;margin:0;padding:6px var(--pad) 24px;
+    background:color-mix(in srgb,var(--ground) 97%,transparent);border-bottom:1px solid var(--line);
+    backdrop-filter:blur(14px);transform:translateY(-115%);visibility:hidden;
+    transition:transform .34s var(--ease),visibility .34s;font-size:20px}
+  .nav.is-open .nav__links{transform:none;visibility:visible}
+  .lockup__box{width:38px;height:38px}
+  .lockup__word{font-size:19px}
+  .lockup__the{width:33px;font-size:9px}
+  .nav__links a{padding:16px 0;border-bottom:1px solid var(--line);font-family:var(--display);font-weight:900;
+    text-transform:uppercase;letter-spacing:-.01em;opacity:1}
+  .nav__links a::after{display:none}
+  .burger{display:block}
+  .nav__end .btn{display:none}
+  .rules,.people,.voice,.proof__grid,.kpis{grid-template-columns:1fr}
+  .svc__row{grid-template-columns:1fr;gap:16px}
+  .foot__in{flex-direction:column;align-items:flex-start}
+  .foot__meta{text-align:left}
+  .hero__scroll{display:none}
+  .stat__l,.kpi__l{max-width:none}
+}
+
+/* ── motion off ───────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+}
+
+</style>
+<!-- the dot R, defined once -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <g id="dR">
+      <rect x="0"  y="0"  width="11.2" height="11.2" rx="3.4"/>
+      <rect x="14" y="0"  width="11.2" height="11.2" rx="3.4"/>
+      <rect x="28" y="0"  width="11.2" height="11.2" rx="3.4"/>
+      <rect x="0"  y="14" width="11.2" height="11.2" rx="3.4"/>
+      <rect x="42" y="14" width="11.2" height="11.2" rx="3.4"/>
+      <rect x="0"  y="28" width="11.2" height="11.2" rx="3.4"/>
+      <rect x="14" y="28" width="11.2" height="11.2" rx="3.4"/>
+      <rect x="28" y="28" width="11.2" height="11.2" rx="3.4"/>
+      <rect x="0"  y="42" width="11.2" height="11.2" rx="3.4"/>
+      <rect x="28" y="42" width="11.2" height="11.2" rx="3.4"/>
+      <rect x="0"  y="56" width="11.2" height="11.2" rx="3.4"/>
+    </g>
+  </defs>
+</svg>
+
+<canvas id="matrix" aria-hidden="true"></canvas>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a class="lockup" href="#/" aria-label="The Regulars, home">
+      <span class="lockup__box"><svg class="mark" viewBox="0 0 53.2 67.2" aria-hidden="true"><use href="#dR"/><rect class="mark__dot" x="42" y="56" width="11.2" height="11.2" rx="3.4"/></svg></span>
+      <span class="lockup__type">
+        <span class="lockup__the"><i>T</i><i>H</i><i>E</i></span>
+        <span class="lockup__word">REGULARS<b></b></span>
+      </span>
+    </a>
+
+    <nav class="nav__links" aria-label="Main">
+      <a href="#/work">Work</a>
+      <a href="#/services">Services</a>
+      <a href="#/about">About</a>
+      <a href="#/contact">Contact</a>
+    </nav>
+
+    <div class="nav__end">
+      <a class="btn btn--pri" href="#/contact">Start a conversation</a>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════ HOME ══════════════ -->
+<div class="route" data-route="">
+
+  <section class="hero" data-ground="ink">
+    <div class="wrap">
+      <p class="eyebrow rv">Performance · Web · Social</p>
+      <h1 class="rv">We measure who<br>comes back<span class="dot">.</span></h1>
+      <p class="lede rv">Performance, web and social for brands that live on repeat business. Anyone can buy a first sale. We build the second, and the third.</p>
+      <div class="row rv">
+        <a class="btn btn--pri" href="#/contact">Start a conversation</a>
+        <a class="btn btn--ghost" href="#/services">See how we report</a>
+      </div>
+    </div>
+    <div class="hero__scroll" aria-hidden="true"><span>scroll</span><i></i></div>
+  </section>
+
+  <section class="proof" data-ground="ink">
+    <div class="wrap proof__grid">
+      <div class="stat rv"><p class="stat__n" data-count="41" data-suffix="%">41%</p><p class="stat__l">of client revenue, returning</p></div>
+      <div class="stat rv"><p class="stat__n" data-count="3.1" data-suffix="&times;">3.1&times;</p><p class="stat__l">average LTV : CAC</p></div>
+      <div class="stat rv"><p class="stat__n" data-count="6" data-suffix=" mo">6 mo</p><p class="stat__l">the horizon we measure to</p></div>
+    </div>
+  </section>
+
+  <section class="sect" data-ground="surface" id="what">
+    <div class="wrap">
+      <p class="eyebrow rv">What we do</p>
+      <h2 class="rv">Three services, one job<span class="dot dot--lime">.</span></h2>
+      <p class="sub rv">Bring more of your customers back, and prove it happened.</p>
+      <div class="cards">
+        <article class="card rv">
+          <p class="card__k">01</p>
+          <h3>Performance</h3>
+          <p>Paid media built around repeat purchase, not first-click applause. We buy the customers who return, and we hold budget when the numbers say hold.</p>
+          <ul class="tags"><li>Meta</li><li>Google</li><li>Retention campaigns</li><li>Measurement</li></ul>
+        </article>
+        <article class="card rv">
+          <p class="card__k">02</p>
+          <h3>Web</h3>
+          <p>Sites and shops that make the second order easy. Fast, plain, honest about what a page is for. Built to be measured from day one.</p>
+          <ul class="tags"><li>Shopify</li><li>Headless</li><li>CRO</li><li>Analytics</li></ul>
+        </article>
+        <article class="card rv">
+          <p class="card__k">03</p>
+          <h3>Social</h3>
+          <p>The channel that keeps you in the room between orders. Content your regulars recognise, not content built to chase strangers.</p>
+          <ul class="tags"><li>Content</li><li>Community</li><li>Organic to paid</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" data-ground="surface" id="rules">
+    <div class="wrap">
+      <p class="eyebrow rv">How we work</p>
+      <h2 class="rv">Four house rules</h2>
+      <div class="rules">
+        <div class="rule rv"><h3>Retention over reach</h3><p>A returning customer beats a cheaper click. We optimise for the second order.</p></div>
+        <div class="rule rv"><h3>Plain numbers</h3><p>No vanity metrics, no flattering charts. If it does not move the business, we do not report it.</p></div>
+        <div class="rule rv"><h3>We never oversell</h3><p>We would rather tell you the boring truth than sell you the exciting lie.</p></div>
+        <div class="rule rule--ink rv"><h3>The long game<span class="dot">.</span></h3><p>Brands that live on repeat business need partners who think past the quarter. We stay.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- the interactive centrepiece -->
+  <section class="sect truth" data-ground="ink" id="truth">
+    <div class="wrap">
+      <p class="eyebrow rv">The boring truth</p>
+      <h2 class="rv">Same twelve months.<br>Two reports.</h2>
+      <p class="sub rv">One is designed to keep you happy. The other is designed to be useful. Flip it.</p>
+
+      <div class="truth__switch rv" role="group" aria-label="Report style">
+        <button type="button" class="is-on" data-mode="usual">The usual report</button>
+        <button type="button" data-mode="ours">Our report</button>
+      </div>
+
+      <div class="truth__panel rv" id="truthPanel">
+        <div class="truth__chart">
+          <svg id="chartUsual" viewBox="0 0 620 260" preserveAspectRatio="none" aria-hidden="true">
+            <path class="area" d=""/><path class="line" d=""/>
+          </svg>
+          <div id="chartOurs" class="bars" aria-hidden="true"></div>
+          <div class="truth__axis" id="truthAxis"></div>
+        </div>
+        <div class="truth__read">
+          <div id="readUsual">
+            <p class="truth__big">+131<span>%</span></p>
+            <p class="truth__lab">Revenue, cumulative, since June</p>
+            <p class="truth__note">Every line points up, because cumulative charts always do. It says nothing about whether anyone stayed.</p>
+          </div>
+          <div id="readOurs" hidden>
+            <p class="truth__big">41<span>%</span></p>
+            <p class="truth__lab">of December revenue came from customers who already bought</p>
+            <ul class="truth__list">
+              <li><span>Repeat-order rate</span><b>31%</b></li>
+              <li><span>LTV : CAC</span><b>3.4&times;</b></li>
+              <li><span>New customers, month 12</span><b>-8%</b></li>
+            </ul>
+            <p class="truth__note">Acquisition slowed. We said so, on the call, in month nine. The business still grew, because the base held.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" data-ground="surface" id="work">
+    <div class="wrap">
+      <p class="eyebrow rv">Selected work</p>
+      <h2 class="rv">Small list, on purpose<span class="dot dot--lime">.</span></h2>
+      <div class="tiles">
+        <a class="tile tile--blue rv" href="#/case">
+          <span class="tile__k">Case study</span>
+          <span class="tile__h">Yum Tales Supply</span>
+          <span class="tile__m">Food supply · 12 months</span>
+          <span class="tile__n">44%<i>returning revenue</i></span>
+        </a>
+        <div class="tile tile--ink rv">
+          <span class="tile__k">In progress</span>
+          <span class="tile__h">Household brand, Athens</span>
+          <span class="tile__m">Web rebuild and measurement</span>
+          <span class="tile__n">Q3<i>first report due</i></span>
+        </div>
+        <div class="tile rv">
+          <span class="tile__k">Under wraps</span>
+          <span class="tile__h">DTC skincare</span>
+          <span class="tile__m">Performance, from month one</span>
+          <span class="tile__n">NDA<i>we will publish it when there is something real to publish</i></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" data-ground="surface" id="founders">
+    <div class="wrap">
+      <p class="eyebrow rv">Who you get</p>
+      <h2 class="rv">Two people. Both on your account.</h2>
+      <div class="people">
+        <article class="person rv"><h3>Greg</h3><p class="person__r">Web &amp; social</p><p>Builds the thing the traffic lands on, and the channel that keeps you in the room between orders.</p></article>
+        <article class="person rv"><h3>Kostas</h3><p class="person__r">Performance</p><p>Lives in the ad accounts and the spreadsheets. The one who will tell you to hold the budget.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" data-ground="blue">
+    <div class="wrap cta__in">
+      <h2 class="rv">We would rather tell you the boring truth<span class="dot">.</span></h2>
+      <p class="sub rv">Thirty minutes, no deck. If we are not the right people for it, we will say so.</p>
+      <a class="btn btn--on-blue rv" href="#/contact">Start a conversation</a>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ WORK ══════════════ -->
+<div class="route" data-route="work" hidden>
+  <section class="page-head" data-ground="ink">
+    <div class="wrap">
+      <p class="eyebrow rv">Work</p>
+      <h1 class="rv">Three clients. One of them we can name<span class="dot">.</span></h1>
+      <p class="lede rv">We take on few accounts because the work is monthly, hands on, and measured to six months. This page will grow slowly. That is the point.</p>
+    </div>
+  </section>
+
+  <section class="sect" data-ground="surface">
+    <div class="wrap">
+      <div class="tiles tiles--wide">
+        <a class="tile tile--blue rv" href="#/case">
+          <span class="tile__k">Case study</span>
+          <span class="tile__h">Yum Tales Supply</span>
+          <span class="tile__m">Food supply · Athens · 12 months</span>
+          <span class="tile__n">44%<i>returning revenue</i></span>
+        </a>
+        <div class="tile tile--ink rv">
+          <span class="tile__k">In progress</span>
+          <span class="tile__h">Household brand, Athens</span>
+          <span class="tile__m">Web rebuild and measurement</span>
+          <span class="tile__n">Q3<i>first report due</i></span>
+        </div>
+        <div class="tile rv">
+          <span class="tile__k">Under wraps</span>
+          <span class="tile__h">DTC skincare</span>
+          <span class="tile__m">Performance, from month one</span>
+          <span class="tile__n">NDA<i>we will publish it when there is something real to publish</i></span>
+        </div>
+      </div>
+      <p class="note rv">No logo wall. A logo is not a result.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ CASE ══════════════ -->
+<div class="route" data-route="case" hidden>
+  <section class="page-head" data-ground="ink">
+    <div class="wrap">
+      <p class="eyebrow rv"><a href="#/work" class="back">Work</a> · Case study</p>
+      <h1 class="rv">Yum Tales Supply<span class="dot">.</span></h1>
+      <p class="lede rv">Food supply, Athens. Twelve months of the unglamorous work: fewer promotions, better measurement, and a second order that finally arrived on its own.</p>
+      <div class="kpis">
+        <div class="kpi rv"><p class="kpi__n" data-count="44" data-suffix="%">44%</p><p class="kpi__l">returning revenue</p></div>
+        <div class="kpi rv"><p class="kpi__n" data-count="31" data-suffix="%">31%</p><p class="kpi__l">repeat-order rate</p></div>
+        <div class="kpi rv"><p class="kpi__n" data-count="3.4" data-suffix="&times;">3.4&times;</p><p class="kpi__l">LTV : CAC</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" data-ground="surface">
+    <div class="wrap case">
+      <div class="case__col">
+        <article class="rv"><p class="eyebrow">The problem</p><p>Sales looked healthy and the ad account looked healthy. The customer file did not. Four in five buyers never came back, and every good month needed a discount to make it good.</p></article>
+        <article class="rv"><p class="eyebrow">What we did</p><p>Rebuilt measurement around cohorts instead of campaigns. Cut the two campaigns that bought one-time discount hunters. Rewrote the post-purchase flow around reorder timing, and rebuilt three product pages so a returning customer could reorder in two taps.</p></article>
+        <article class="rv"><p class="eyebrow">What we did not do</p><p>We did not raise the budget for seven months. Twice we recommended spending less. The monthly report said so in one line, at the top.</p></article>
+      </div>
+      <div class="case__chart rv">
+        <p class="eyebrow">Returning revenue, month by month</p>
+        <div class="chart" id="caseChart" aria-hidden="true"></div>
+        <p class="note">Blue is what came back. The last bar is the month the base outgrew acquisition.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" data-ground="blue">
+    <div class="wrap cta__in">
+      <h2 class="rv">Want the same, slowly<span class="dot">.</span></h2>
+      <p class="sub rv">It compounds. It also takes six months before it looks like anything.</p>
+      <a class="btn btn--on-blue rv" href="#/contact">Start a conversation</a>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ SERVICES ══════════════ -->
+<div class="route" data-route="services" hidden>
+  <section class="page-head" data-ground="ink">
+    <div class="wrap">
+      <p class="eyebrow rv">Services</p>
+      <h1 class="rv">What we do, and how we report it<span class="dot">.</span></h1>
+      <p class="lede rv">Three services that share one measurement model. You get the same four numbers every month, in the same order, whether they flatter us or not.</p>
+    </div>
+  </section>
+
+  <section class="sect" data-ground="surface">
+    <div class="wrap svc">
+      <article class="svc__row rv">
+        <div class="svc__k"><span>01</span><h2>Performance</h2></div>
+        <div class="svc__body">
+          <p>Meta and Google, bought against repeat purchase. We split new from returning revenue at the account level, so a good month cannot hide behind a discount. Creative is tested in small, boring increments.</p>
+          <p class="svc__how"><b>How we report it</b> New customers, cost per new customer, returning revenue share, and contribution after ad spend. Four numbers, one page, every month.</p>
+        </div>
+      </article>
+      <article class="svc__row rv">
+        <div class="svc__k"><span>02</span><h2>Web</h2></div>
+        <div class="svc__body">
+          <p>Sites and shops in Shopify or headless, built so the second order takes two taps. Speed, clarity, and a checkout that does not lose people. Measurement is wired in before launch, not after.</p>
+          <p class="svc__how"><b>How we report it</b> Conversion by customer type, reorder rate, page speed on real devices, and what changed since the last release.</p>
+        </div>
+      </article>
+      <article class="svc__row rv">
+        <div class="svc__k"><span>03</span><h2>Social</h2></div>
+        <div class="svc__body">
+          <p>The channel between orders. Content your existing customers recognise, in a voice that sounds like the business rather than a trend. What performs organically becomes paid, not the other way round.</p>
+          <p class="svc__how"><b>How we report it</b> Reach we paid for versus reach we earned, saves and replies, and how much returning revenue arrived through the channel.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sect" data-ground="surface">
+    <div class="wrap">
+      <div class="panel rv">
+        <h2>What a month looks like</h2>
+        <ol class="steps">
+          <li><span>Week 1</span><p>A short call, a one-page report, and the number we got wrong last month.</p></li>
+          <li><span>Weeks 2 &amp; 3</span><p>The work. Tests run small, changes ship, nothing is announced before it is measured.</p></li>
+          <li><span>Week 4</span><p>Cohorts close. We write the plain-numbers page for the month, including what we would hold or cut.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<div class="route" data-route="about" hidden>
+  <section class="page-head" data-ground="ink">
+    <div class="wrap">
+      <p class="eyebrow rv">About</p>
+      <h1 class="rv">Anyone can buy a first sale<span class="dot">.</span></h1>
+      <p class="lede rv">The Regulars started with a frustration: an industry addicted to day-one numbers that flatter and fade. We do the unglamorous work that compounds, retention, repeat orders, the customers who come back on their own. Then we show it in plain numbers, not a flattering chart.</p>
+    </div>
+  </section>
+
+  <section class="sect" data-ground="surface">
+    <div class="wrap">
+      <p class="eyebrow rv">What we believe</p>
+      <h2 class="rv">Four house rules</h2>
+      <div class="rules">
+        <div class="rule rv"><h3>Retention over reach</h3><p>A returning customer beats a cheaper click. We optimise for the second order.</p></div>
+        <div class="rule rv"><h3>Plain numbers</h3><p>No vanity metrics, no flattering charts. If it does not move the business, we do not report it.</p></div>
+        <div class="rule rv"><h3>We never oversell</h3><p>We would rather tell you the boring truth than sell you the exciting lie.</p></div>
+        <div class="rule rule--ink rv"><h3>The long game<span class="dot">.</span></h3><p>Brands that live on repeat business need partners who think past the quarter. We stay.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" data-ground="surface">
+    <div class="wrap">
+      <p class="eyebrow rv">Founders</p>
+      <h2 class="rv">Two people, Athens</h2>
+      <div class="people">
+        <article class="person rv"><h3>Greg</h3><p class="person__r">Web &amp; social</p><p>Builds the site and runs the channel between orders. Believes half of what gets called a creative problem is a load-time problem.</p></article>
+        <article class="person rv"><h3>Kostas</h3><p class="person__r">Performance</p><p>Buys the media and keeps the measurement honest. Came out of a bigger agency and left over exactly the habits described above.</p></article>
+      </div>
+      <div class="voice rv">
+        <div class="voice__col">
+          <p class="eyebrow eyebrow--lime">We say</p>
+          <p class="say">"Here's what came back this month, and what didn't."</p>
+          <p class="say">"We'd hold that budget. Here's why."</p>
+          <p class="say">"Slower, but it compounds."</p>
+        </div>
+        <div class="voice__col">
+          <p class="eyebrow eyebrow--mute">We never say</p>
+          <p class="say say--no">"Let's go viral and disrupt the space!"</p>
+          <p class="say say--no">"Guaranteed 10&times; overnight."</p>
+          <p class="say say--no">"Synergistic growth-hacking ninjas."</p>
+        </div>
+      </div>
+      <p class="note rv">Athens · est. 2026</p>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<div class="route" data-route="contact" hidden>
+  <section class="page-head" data-ground="ink">
+    <div class="wrap">
+      <p class="eyebrow rv">Contact</p>
+      <h1 class="rv">Tell us what you sell<span class="dot">.</span></h1>
+      <p class="lede rv">Thirty minutes, no deck. Bring last month's numbers if you have them. We will tell you plainly whether we are the right people for it.</p>
+    </div>
+  </section>
+
+  <section class="sect" data-ground="surface">
+    <div class="wrap contact">
+      <form class="form rv" id="form" novalidate>
+        <label class="f"><span>Your name</span><input id="fName" name="name" autocomplete="name" required></label>
+        <label class="f"><span>Email</span><input id="fMail" name="email" type="email" autocomplete="email" required></label>
+        <label class="f"><span>Website, if there is one</span><input id="fSite" name="site"></label>
+        <label class="f f--full"><span>What are you selling, and what is stuck?</span><textarea id="fMsg" name="message" rows="4"></textarea></label>
+        <button class="btn btn--pri" type="submit">Send it</button>
+        <p class="form__msg" id="formMsg" role="status"></p>
+      </form>
+      <aside class="contact__side rv">
+        <p class="eyebrow">Direct</p>
+        <p class="contact__mail"><a href="mailto:hello@theregulars.gr">hello@theregulars.gr</a></p>
+        <p class="contact__meta">Athens, Greece<br>Monday to Friday, we answer within one working day.</p>
+        <p class="contact__meta contact__meta--sm">No newsletter, no drip sequence, no follow-up cadence. One reply from one of us.</p>
+      </aside>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer class="foot" data-ground="ink">
+  <div class="wrap foot__in">
+    <a class="lockup lockup--sm" href="#/">
+      <span class="lockup__box"><svg class="mark" viewBox="0 0 53.2 67.2" aria-hidden="true"><use href="#dR"/><rect class="mark__dot" x="42" y="56" width="11.2" height="11.2" rx="3.4"/></svg></span>
+      <span class="lockup__type"><span class="lockup__the"><i>T</i><i>H</i><i>E</i></span><span class="lockup__word">REGULARS<b></b></span></span>
+    </a>
+    <nav class="foot__nav" aria-label="Footer">
+      <a href="#/work">Work</a><a href="#/services">Services</a><a href="#/about">About</a><a href="#/contact">Contact</a>
+    </nav>
+    <p class="foot__meta">hello@theregulars.gr · Athens · est. 2026<br><span>We measure who comes back.</span></p>
+  </div>
+</footer>
+<script>
+/* ═══════════════════════════════════════════════════════════
+   THE REGULARS · the dot matrix
+   The brand's atom is a rounded square, and the mark is an R
+   built from twelve of them. This is that grid, scaled to the
+   whole screen and given something to say: it holds the R,
+   speaks in a waveform, plays back cohorts decaying and
+   holding, and pulses out and back. Scroll picks the state;
+   scroll speed is how loud it talks.
+   ═══════════════════════════════════════════════════════════ */
+(() => {
+  const cvs = document.getElementById('matrix');
+  if (!cvs) return;
+  const ctx = cvs.getContext('2d');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.documentElement;
+
+  /* the twelve dots of the mark, in mark units (pitch 14, dot 11.2) */
+  const R_DOTS = [[0,0],[14,0],[28,0],[0,14],[42,14],[0,28],[14,28],[28,28],[0,42],[28,42],[0,56],[42,56]];
+  const R_W = 53.2, R_H = 67.2, ACCENT = 11;
+
+  let w=0,h=0,dpr=1,cols=0,rows=0,step=0,ox=0,oy=0;
+  let cur=null, tgt=null;                    /* intensity + accent flags */
+  let sprite=null, spriteNeon=null, dotPx=0;
+  let t=0,last=0,raf=0,running=true;
+  let energy=0, prevY=0, progress=0;
+  let col=[246,251,253], colTo=[246,251,253], baseA=.13;
+  const NEON=[213,250,51];
+
+  const ACC_MAX=14;                          /* neon stays rare, by design */
+  const clamp=(v,a,b)=>v<a?a:v>b?b:v;
+  const smooth=x=>x*x*(3-2*x);
+
+  /* ── palette ─────────────────────────────── */
+  function readGround(){
+    const cs=getComputedStyle(root);
+    const trip=cs.getPropertyValue('--dots').trim().split(/[\s,]+/).map(Number);
+    if(trip.length===3 && trip.every(n=>!isNaN(n))) colTo=trip;
+    const a=parseFloat(cs.getPropertyValue('--dot-a'));
+    if(!isNaN(a)) baseA=a;
+  }
+  function makeSprites(){
+    dotPx=Math.max(2,Math.round(step*.34));
+    const mk=(rgb)=>{
+      const c=document.createElement('canvas');
+      const s=dotPx*3; c.width=c.height=s;
+      const x=c.getContext('2d');
+      x.fillStyle=`rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
+      const r=Math.max(1,dotPx*.3);
+      x.beginPath();
+      if(x.roundRect) x.roundRect(dotPx,dotPx,dotPx,dotPx,r);
+      else x.rect(dotPx,dotPx,dotPx,dotPx);
+      x.fill();
+      return c;
+    };
+    sprite=mk(col.map(Math.round));
+    spriteNeon=mk(NEON);
+  }
+
+  /* ── layout ──────────────────────────────── */
+  function resize(){
+    w=innerWidth; h=innerHeight;
+    dpr=Math.min(devicePixelRatio||1,2);
+    cvs.width=Math.round(w*dpr); cvs.height=Math.round(h*dpr);
+    cvs.style.width=w+'px'; cvs.style.height=h+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    step = w<680 ? 22 : w<1200 ? 25 : 28;
+    cols=Math.ceil(w/step)+1; rows=Math.ceil(h/step)+1;
+    ox=(w-(cols-1)*step)/2; oy=(h-(rows-1)*step)/2;
+    cur=new Float32Array(cols*rows);
+    tgt=new Float32Array(cols*rows);
+    makeSprites();
+  }
+
+  /* ── scenes ──────────────────────────────── */
+  /* each writes normalised intensity into tgt, and returns a
+     function(i) telling whether cell i should read as accent  */
+
+  function sceneMark(){
+    /* the mark, drawn on the grid itself: every logo dot becomes a
+       block of cells, so the R lands crisp instead of resampled     */
+    const wide=w>1040;
+    const P=wide?4:3, B=wide?3:2;            /* pitch and block, in cells */
+    const mW=3*P+B, mH=4*P+B;
+    const gx0=Math.round((wide?cols*.82:cols*.5)-mW/2);
+    const gy0=Math.round((wide?rows*.55:rows*.52)-mH/2);
+    const chase=Math.floor((t/0.216)%12);
+    tgt.fill(0); accBuf.fill(0);
+    for(let d=0;d<12;d++){
+      const bx=gx0+(R_DOTS[d][0]/14)*P, by=gy0+(R_DOTS[d][1]/14)*P;
+      const acc=(d===ACCENT||d===chase)?1:0;
+      for(let y=by;y<by+B;y++){
+        if(y<0||y>=rows) continue;
+        for(let x=bx;x<bx+B;x++){
+          if(x<0||x>=cols) continue;
+          const i=y*cols+x;
+          tgt[i]=1; accBuf[i]=acc;
+        }
+      }
+    }
+  }
+
+  function sceneVoice(){
+    /* an equalizer band: the machine talking */
+    const cy=(rows-1)/2;
+    const amp=.10+energy*.5+.10*(.5+.5*Math.sin(t*.85));
+    for(let gx=0;gx<cols;gx++){
+      const u=cols>1?(gx/(cols-1))*2-1:0;
+      const env=Math.exp(-u*u*1.15);
+      const wave=Math.sin(u*6.5-t*2.1)+.5*Math.sin(u*13+t*3.05)+.3*Math.sin(u*23-t*1.6);
+      const band=Math.abs(wave)*amp*env*rows*.9;
+      const crest=Math.abs(wave)>2.35;
+      for(let gy=0;gy<rows;gy++){
+        const i=gy*cols+gx;
+        const d=Math.abs(gy-cy);
+        const v=clamp(1-(d-band)/1.6,0,1);
+        tgt[i]=v;
+        accBuf[i]=(crest && v>.5 && d>band-1.2)?1:0;
+      }
+    }
+  }
+
+  function sceneCohorts(){
+    /* every row is a cohort: bright at acquisition, decaying to
+       the right, with the few who keep coming back holding on  */
+    const drift=t*.55;
+    for(let gy=0;gy<rows;gy++){
+      const seed=Math.sin((gy+Math.floor(drift))*12.9898)*43758.5453;
+      const r=seed-Math.floor(seed);
+      const life=.22+r*.5;
+      for(let gx=0;gx<cols;gx++){
+        const i=gy*cols+gx;
+        const age=cols>1?gx/(cols-1):0;
+        let v=Math.exp(-age/life);
+        const keeper=((gx*7+gy*13)%11===0)&&age>.45;
+        if(keeper) v=Math.max(v,.85);
+        tgt[i]=clamp(v*1.15-.12,0,1);
+        accBuf[i]=(keeper&&((gx*13+gy*7)%53===0)&&age>.8)?1:0;
+      }
+    }
+  }
+
+  function scenePulse(){
+    /* out to the edge and back again */
+    const cx=(cols-1)/2, cy=(rows-1)/2;
+    const maxD=Math.max(cx,cy);
+    const ph=(t*.42)%2;
+    const back=ph>1;
+    const rad=(back?2-ph:ph)*maxD;
+    for(let gy=0;gy<rows;gy++){
+      for(let gx=0;gx<cols;gx++){
+        const i=gy*cols+gx;
+        const d=Math.max(Math.abs(gx-cx),Math.abs(gy-cy));
+        const k=d-rad;
+        const v=Math.exp(-(k*k)/7);
+        tgt[i]=v;
+        accBuf[i]=(back&&v>.72)?1:0;
+      }
+    }
+  }
+
+  const SCENES=[sceneMark,sceneVoice,sceneCohorts,scenePulse,sceneMark];
+  const GAIN=[.80,.46,.30,.42,.80];
+  let accBuf=new Uint8Array(0), accA=new Uint8Array(0), accB=new Uint8Array(0);
+  let bufA=new Float32Array(0), bufB=new Float32Array(0);
+
+  function ensureBufs(){
+    const n=cols*rows;
+    if(bufA.length!==n){
+      bufA=new Float32Array(n); bufB=new Float32Array(n);
+      accA=new Uint8Array(n); accB=new Uint8Array(n); accBuf=new Uint8Array(n);
+    }
+  }
+
+  /* ── frame ───────────────────────────────── */
+  function frame(now){
+    raf=requestAnimationFrame(frame);
+    if(!running) return;
+    const dt=Math.min(.05,(now-last)/1000||.016); last=now; t+=dt;
+
+    /* ground colour eases with the section change */
+    for(let c=0;c<3;c++) col[c]+=(colTo[c]-col[c])*Math.min(1,dt*8);
+    if(Math.abs(col[0]-colTo[0])+Math.abs(col[1]-colTo[1])+Math.abs(col[2]-colTo[2])>1.5) makeSprites();
+
+    const maxScroll=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+    progress=clamp(scrollY/maxScroll,0,1);
+    const dv=Math.abs(scrollY-prevY); prevY=scrollY;
+    const target=clamp(dv/40,0,1);
+    energy+=(target-energy)*(target>energy?.4:.05);
+
+    ensureBufs();
+
+    /* which state, and how much of the next one */
+    const fixed=root.dataset.scene;
+    let i0,i1,bl;
+    if(fixed&&fixed!=='auto'){
+      i0=i1=clamp(+fixed,0,SCENES.length-1); bl=0;
+    }else{
+      const sp=progress*(SCENES.length-1);
+      i0=Math.min(SCENES.length-1,Math.floor(sp));
+      i1=Math.min(SCENES.length-1,i0+1);
+      bl=smooth(sp-i0);
+    }
+
+    SCENES[i0](); bufA.set(tgt); accA.set(accBuf);
+    if(bl>0){ SCENES[i1](); bufB.set(tgt); accB.set(accBuf); }
+    let gain=bl>0?GAIN[i0]+(GAIN[i1]-GAIN[i0])*bl:GAIN[i0];
+    if(w<=1040&&(i0===0||i0===4||i1===0||i1===4)) gain*=.55;
+
+    ctx.clearRect(0,0,w,h);
+    const n=cols*rows;
+    const k=Math.min(1,dt*7);
+    const half=dotPx, sz=dotPx*3;
+    let accents=0;
+
+    for(let i=0;i<n;i++){
+      const want=bl>0?bufA[i]+(bufB[i]-bufA[i])*bl:bufA[i];
+      cur[i]+=(want-cur[i])*k;
+      const v=cur[i];
+      if(v<.02 && baseA<.02) continue;
+      const gx=i%cols, gy=(i/cols)|0;
+      const x=ox+gx*step-half*1.5, y=oy+gy*step-half*1.5;
+      const isAcc = (bl>.5?accB[i]:accA[i]) && v>.4 && accents<ACC_MAX;
+      if(isAcc) accents++;
+      ctx.globalAlpha=clamp(baseA+v*(gain-baseA),0,1);
+      ctx.drawImage(isAcc?spriteNeon:sprite,x,y,sz,sz);
+    }
+    ctx.globalAlpha=1;
+  }
+
+  function still(){
+    ensureBufs();
+    sceneMark();
+    ctx.clearRect(0,0,w,h);
+    const sz=dotPx*3, half=dotPx;
+    for(let i=0;i<cols*rows;i++){
+      const gx=i%cols, gy=(i/cols)|0;
+      ctx.globalAlpha=baseA+tgt[i]*(.9-baseA);
+      ctx.drawImage(accBuf[i]&&tgt[i]>.5?spriteNeon:sprite,ox+gx*step-half*1.5,oy+gy*step-half*1.5,sz,sz);
+    }
+    ctx.globalAlpha=1;
+  }
+
+  /* ── wiring ──────────────────────────────── */
+  let rt;
+  addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{resize();if(reduced)still();},150)},{passive:true});
+  document.addEventListener('visibilitychange',()=>{running=!document.hidden;last=performance.now()});
+  addEventListener('reg:ground',()=>{readGround();if(reduced){makeSprites();still();}});
+
+  window.REGMatrix={ground:()=>readGround()};
+
+  readGround(); col=colTo.slice(); resize();
+  if(reduced){ makeSprites(); still(); }
+  else { last=performance.now(); prevY=scrollY; raf=requestAnimationFrame(frame); }
+})();
+
+</script>
+<script>
+/* ═══════════════════════════════════════════════
+   THE REGULARS · interface
+   ═══════════════════════════════════════════════ */
+(() => {
+  'use strict';
+  const $=(s,r=document)=>r.querySelector(s);
+  const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+  const root=document.documentElement;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* twelve months of a business that is slowly turning into a base */
+  const M=['J','F','M','A','M','J','J','A','S','O','N','D'];
+  const TOTAL=[62,66,70,74,78,84,88,90,92,95,98,104];
+  const SHARE=[.06,.09,.12,.16,.19,.23,.27,.30,.33,.36,.39,.41];
+  const RET=TOTAL.map((v,i)=>v*SHARE[i]);
+  const NEW=TOTAL.map((v,i)=>v-RET[i]);
+
+  /* ── ground: the page takes the colour of the section you are in ── */
+  const grounds=$$('[data-ground]');
+  let ground='';
+  function pickGround(){
+    const probe=innerHeight*.34;
+    let found=grounds[0];
+    for(const el of grounds){
+      if(el.closest('.route')?.hidden) continue;
+      const r=el.getBoundingClientRect();
+      if(r.top<=probe && r.bottom>probe) found=el;
+    }
+    const g=found?.dataset.ground||'surface';
+    if(g!==ground){
+      ground=g;
+      root.dataset.ground=g;
+      $('meta[name=theme-color]')?.setAttribute('content',
+        g==='ink'?'#12131C':g==='blue'?'#1924E6':'#F6FBFD');
+      dispatchEvent(new Event('reg:ground'));
+    }
+  }
+
+  /* ── nav ─────────────────────────────────── */
+  const nav=$('#nav'), burger=$('#burger');
+  burger.addEventListener('click',()=>{
+    const open=nav.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded',String(open));
+  });
+  let ticking=false;
+  addEventListener('scroll',()=>{
+    if(ticking) return; ticking=true;
+    requestAnimationFrame(()=>{ nav.classList.toggle('is-stuck',scrollY>10); pickGround(); ticking=false; });
+  },{passive:true});
+
+  /* ── reveal ──────────────────────────────── */
+  const revObs=new IntersectionObserver((es,o)=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const sibs=[...(e.target.parentElement?.children||[])].filter(n=>n.classList.contains('rv'));
+      e.target.style.transitionDelay=Math.min(Math.max(0,sibs.indexOf(e.target))*70,350)+'ms';
+      e.target.classList.add('in');
+      if(e.target.querySelector?.('[data-count]')||e.target.hasAttribute?.('data-count')) countUp(e.target);
+      if(e.target.id==='caseChart'||e.target.querySelector?.('#caseChart')) drawCase();
+      o.unobserve(e.target);
+    });
+  },{rootMargin:'0px 0px -8% 0px',threshold:.12});
+  function observeReveals(scope){ $$('.rv',scope).forEach(el=>{ el.classList.remove('in'); revObs.observe(el); }); }
+
+  /* ── counters ────────────────────────────── */
+  function countUp(scope){
+    const nodes=scope.hasAttribute?.('data-count')?[scope]:$$('[data-count]',scope);
+    nodes.forEach(n=>{
+      const to=parseFloat(n.dataset.count);
+      const suffix=n.dataset.suffix||'';
+      const dec=(n.dataset.count.split('.')[1]||'').length;
+      if(reduced){ n.innerHTML=to.toFixed(dec)+suffix; return; }
+      const t0=performance.now(), d=900;
+      (function run(now){
+        const k=Math.min(1,(now-t0)/d), e=1-Math.pow(1-k,3);
+        n.innerHTML=(to*e).toFixed(dec)+suffix;
+        if(k<1) requestAnimationFrame(run);
+      })(t0);
+    });
+  }
+
+  /* ── the boring truth ────────────────────── */
+  const usual=$('#chartUsual'), ours=$('#chartOurs'), axis=$('#truthAxis');
+  if(usual&&ours){
+    /* the flattering one: cumulative revenue, which only ever goes up */
+    let cum=0; const pts=TOTAL.map((v,i)=>{ cum+=v; return [i/(TOTAL.length-1)*620, 260-(cum/1001)*236-8]; });
+    const line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+    usual.querySelector('.line').setAttribute('d',line);
+    usual.querySelector('.area').setAttribute('d',line+' L620 260 L0 260 Z');
+
+    /* the useful one: what came back, next to what we had to buy */
+    ours.innerHTML=TOTAL.map((v,i)=>{
+      const last=i===TOTAL.length-1;
+      return `<div class="b${last?' last':''}"><i class="new" style="height:0"></i><i style="height:0"></i></div>`;
+    }).join('');
+    axis.innerHTML=M.map(m=>`<span>${m}</span>`).join('');
+
+    const maxT=Math.max(...TOTAL);
+    const paintBars=()=>$$('.b',ours).forEach((b,i)=>{
+      b.children[0].style.height=(NEW[i]/maxT*100)+'%';
+      b.children[1].style.height=(RET[i]/maxT*100)+'%';
+    });
+
+    let mode='usual';
+    const setMode=(m)=>{
+      mode=m;
+      usual.classList.toggle('is-off',m!=='usual');
+      ours.classList.toggle('is-off',m!=='ours');
+      $('#readUsual').hidden=m!=='usual';
+      $('#readOurs').hidden=m!=='ours';
+      $$('.truth__switch button').forEach(b=>b.classList.toggle('is-on',b.dataset.mode===m));
+      if(m==='ours') requestAnimationFrame(paintBars);
+    };
+    ours.classList.add('is-off');
+    $$('.truth__switch button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+
+    /* flip it once, unprompted, so the point lands even if nobody clicks */
+    const once=new IntersectionObserver((es,o)=>{
+      if(!es[0].isIntersecting||reduced) return;
+      o.disconnect();
+      setTimeout(()=>{ if(mode==='usual') setMode('ours'); },2200);
+    },{threshold:.5});
+    once.observe($('#truthPanel'));
+  }
+
+  /* ── case study chart ────────────────────── */
+  let caseDrawn=false;
+  function drawCase(){
+    const el=$('#caseChart'); if(!el||caseDrawn) return; caseDrawn=true;
+    const max=Math.max(...RET);
+    el.innerHTML=RET.map((v,i)=>{
+      const last=i===RET.length-1;
+      return `<div class="cb${last?' last':''}"><i></i><span>${M[i]}</span></div>`;
+    }).join('');
+    requestAnimationFrame(()=>$$('.cb i',el).forEach((n,i)=>{
+      n.style.transitionDelay=(i*45)+'ms';
+      n.style.height=(RET[i]/max*100)+'%';
+    }));
+  }
+
+  /* ── router ──────────────────────────────── */
+  const routes=$$('.route');
+  const SCENE={'':'auto',work:'2',case:'2',services:'1',about:'0',contact:'3'};
+  function show(name){
+    const target=routes.find(r=>r.dataset.route===name)||routes[0];
+    routes.forEach(r=>{ r.hidden=r!==target; });
+    root.dataset.scene=SCENE[target.dataset.route]??'auto';
+    $$('.nav__links a').forEach(a=>a.classList.toggle('is-on',a.getAttribute('href')==='#/'+target.dataset.route));
+    nav.classList.remove('is-open'); burger.setAttribute('aria-expanded','false');
+    scrollTo({top:0,behavior:'instant'});
+    caseDrawn=false;
+    observeReveals(target);
+    ground=''; pickGround();
+    const lock=$('.nav .lockup');
+    lock.classList.add('is-busy'); setTimeout(()=>lock.classList.remove('is-busy'),1400);
+    document.title=({'':'The Regulars · We measure who comes back',
+      work:'Work · The Regulars', case:'Yum Tales Supply · The Regulars',
+      services:'Services · The Regulars', about:'About · The Regulars',
+      contact:'Contact · The Regulars'})[target.dataset.route];
+  }
+  function fromHash(){
+    const h=location.hash.replace(/^#\/?/,'').replace(/\/$/,'');
+    show(routes.some(r=>r.dataset.route===h)?h:'');
+  }
+  addEventListener('hashchange',fromHash);
+
+  /* ── form ────────────────────────────────── */
+  $('#form')?.addEventListener('submit',e=>{
+    e.preventDefault();
+    const name=$('#fName'), mail=$('#fMail'), out=$('#formMsg');
+    let bad=false;
+    [[name,v=>v.trim().length>1],[mail,v=>/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(v.trim())]]
+      .forEach(([f,ok])=>{ const good=ok(f.value); f.parentElement.classList.toggle('is-bad',!good); if(!good) bad=true; });
+    if(bad){ out.style.color='#c3261a'; out.textContent='We need a name and an email to reply.'; return; }
+    out.style.color=''; out.textContent='Opening your email client. One of us answers within a working day.';
+    const body=[`Name: ${name.value}`,`Email: ${mail.value}`,`Website: ${$('#fSite').value||'-'}`,'',$('#fMsg').value||'-'].join('\n');
+    location.href=`mailto:hello@theregulars.gr?subject=${encodeURIComponent('New project · '+name.value)}&body=${encodeURIComponent(body)}`;
+  });
+
+  /* ── go ──────────────────────────────────── */
+  fromHash();
+  pickGround();
+})();
+
+</script>
