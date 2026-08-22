@@ -16,6 +16,15 @@ assets/js/main.js       πλοήγηση, γλώσσα, θέμα, διάγραμ
 python3 -m http.server 8000     # → http://localhost:8000
 ```
 
+## Εκδόσεις
+
+| # | Όνομα | Πού | Preview |
+|---|-------|-----|---------|
+| **1** | ember / the field | `versions/1/` (παγωμένο, git tag `v1`) | [link](https://claude.ai/code/artifact/350591da-3eb1-4119-bea0-5573762e844f) |
+
+Η ενεργή έκδοση ζει πάντα στο root (`index.html` + `assets/`). Κάθε φορά που κλειδώνει
+μια εκδοχή, αντιγράφεται σε `versions/<n>/` με δικό της `NOTES.md` και git tag.
+
 ---
 
 ## Πώς η ταυτότητα απαντά στο brief

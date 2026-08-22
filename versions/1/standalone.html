@@ -1,0 +1,1569 @@
+<meta charset="utf-8">
+<title>THE REGULARS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&family=Literata:ital,opsz,wght@1,7..72,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   THE REGULARS — brand stylesheet
+   warm + serious · daily presence · no nostalgia
+   ═══════════════════════════════════════════════ */
+
+/* ── tokens ─────────────────────────────────── */
+:root{
+  --ember:#FF6A3D;
+  --gold:#FFC46B;
+  --lilac:#A08BFF;
+
+  --bg:#0B0A09;
+  --bg-2:#121010;
+  --fg:#F5EFE6;
+  --fg-soft:rgb(245 239 230 / .66);
+  --fg-faint:rgb(245 239 230 / .40);
+  --line:rgb(245 239 230 / .13);
+  --panel:rgb(245 239 230 / .035);
+  --panel-2:rgb(245 239 230 / .06);
+  --shadow:0 24px 60px -30px rgb(0 0 0 / .9);
+  --veil-1:rgb(11 10 9 / .05);
+  --veil-2:rgb(11 10 9 / .78);
+  --field-op:.82;
+  --grain-op:.05;
+
+  --sans:"Inter","Helvetica Neue",Arial,sans-serif;
+  --disp:"Inter Tight","Inter","Helvetica Neue",Arial,sans-serif;
+  --serif:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --wrap:1180px;
+  --pad:clamp(20px,5vw,64px);
+  --r:18px;
+  --ease:cubic-bezier(.22,.68,.24,1);
+}
+:root[data-theme="light"]{
+  --bg:#F4EEE4;
+  --bg-2:#EDE5D8;
+  --fg:#14110F;
+  --fg-soft:rgb(20 17 15 / .70);
+  --fg-faint:rgb(20 17 15 / .45);
+  --line:rgb(20 17 15 / .14);
+  --panel:rgb(255 255 255 / .55);
+  --panel-2:rgb(255 255 255 / .78);
+  --shadow:0 24px 50px -34px rgb(60 40 20 / .45);
+  --veil-1:rgb(244 238 228 / .25);
+  --veil-2:rgb(244 238 228 / .86);
+  --field-op:.85;
+  --grain-op:.035;
+  --ember:#E24E1B;
+}
+
+/* ── base ───────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--fg);
+  font:400 clamp(15.5px,1.05vw,17px)/1.62 var(--sans);
+  letter-spacing:-.011em;
+  overflow-x:hidden;
+  transition:background .5s var(--ease),color .5s var(--ease);
+}
+img,svg{max-width:100%}
+h1,h2,h3{font-family:var(--disp);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin:0}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--ember);color:#0B0A09}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:6px}
+
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
+.skip{position:fixed;left:-999px;top:10px;z-index:99;background:var(--ember);color:#0B0A09;padding:10px 16px;border-radius:10px}
+.skip:focus{left:10px}
+
+/* ── background layers ──────────────────────── */
+#field{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:var(--field-op);transition:opacity .6s var(--ease)}
+.veil{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 75% at 50% 8%, transparent 0%, var(--veil-1) 42%, var(--veil-2) 100%),
+    linear-gradient(180deg, transparent 80%, var(--bg) 100%);
+}
+.grain{
+  position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:var(--grain-op);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 7s steps(6) infinite;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}
+  60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,1%)}100%{transform:translate(0,0)}
+}
+.cursor-glow{
+  position:fixed;top:0;left:0;width:340px;height:340px;margin:-170px 0 0 -170px;z-index:3;
+  pointer-events:none;opacity:0;transition:opacity .4s var(--ease);
+  background:radial-gradient(circle, rgb(255 106 61 / .16), transparent 62%);
+  will-change:transform;
+}
+main,.nav,.foot{position:relative;z-index:4}
+
+/* ── nav ────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:40;backdrop-filter:blur(14px);
+  background:color-mix(in srgb, var(--bg) 62%, transparent);
+  border-bottom:1px solid transparent;transition:border-color .4s var(--ease),background .4s var(--ease)}
+.nav.is-stuck{border-bottom-color:var(--line)}
+.nav__bar{max-width:var(--wrap);margin-inline:auto;padding:14px var(--pad);display:flex;align-items:center;gap:24px}
+.brand{display:inline-flex;align-items:center;gap:10px;flex:none}
+.brand__type{font-family:var(--disp);font-weight:800;font-size:15px;letter-spacing:.02em}
+.brand__mark{display:inline-flex;align-items:flex-end;gap:3px;height:16px}
+.brand__mark i{width:3px;background:var(--ember);border-radius:2px;display:block;animation:eq 1.9s var(--ease) infinite}
+.brand__mark i:nth-child(1){height:7px;animation-delay:0s}
+.brand__mark i:nth-child(2){height:14px;background:var(--gold);animation-delay:.25s}
+.brand__mark i:nth-child(3){height:10px;animation-delay:.5s}
+@keyframes eq{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+.brand__mark i{transform-origin:bottom}
+
+.nav__links{display:flex;gap:26px;margin-inline:auto;font-size:14px;color:var(--fg-soft)}
+.nav__links a{position:relative;padding:4px 0;transition:color .3s}
+.nav__links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--ember);transition:right .35s var(--ease)}
+.nav__links a:hover{color:var(--fg)}
+.nav__links a:hover::after,.nav__links a.is-active::after{right:0}
+.nav__links a.is-active{color:var(--fg)}
+
+.nav__tools{display:flex;align-items:center;gap:8px;flex:none}
+.chip{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);background:transparent;
+  border-radius:10px;font:500 11px/1 var(--mono);cursor:pointer;transition:.3s var(--ease)}
+.chip:hover{border-color:var(--ember);color:var(--ember);transform:translateY(-1px)}
+.theme-ico{width:13px;height:13px;border-radius:50%;background:currentColor;
+  box-shadow:inset -4px -2px 0 0 var(--bg);transition:.4s var(--ease)}
+:root[data-theme="light"] .theme-ico{box-shadow:inset 0 0 0 1px currentColor;background:transparent}
+.burger{display:none;width:34px;height:34px;border:1px solid var(--line);background:transparent;border-radius:10px;cursor:pointer;position:relative}
+.burger i{position:absolute;left:9px;right:9px;height:1.5px;background:currentColor;transition:.3s var(--ease)}
+.burger i:nth-child(1){top:13px}.burger i:nth-child(2){bottom:13px}
+.burger[aria-expanded="true"] i:nth-child(1){top:16px;transform:rotate(45deg)}
+.burger[aria-expanded="true"] i:nth-child(2){bottom:16.5px;transform:rotate(-45deg)}
+.nav__progress{height:1.5px;background:transparent}
+.nav__progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),var(--gold))}
+
+/* ── buttons ────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;
+  font:600 14.5px/1 var(--sans);letter-spacing:-.01em;border:1px solid var(--line);cursor:pointer;
+  transition:transform .35s var(--ease),background .3s,color .3s,border-color .3s;will-change:transform}
+.btn--sm{padding:9px 16px;font-size:13.5px}
+.btn--primary{background:var(--ember);border-color:var(--ember);color:#160B06}
+.btn--primary:hover{background:var(--gold);border-color:var(--gold)}
+.btn--ghost:hover{border-color:var(--fg);background:var(--panel-2)}
+.nav__tools .btn{background:var(--ember);border-color:var(--ember);color:#160B06}
+.nav__tools .btn:hover{background:var(--gold);border-color:var(--gold)}
+
+/* ── type helpers ───────────────────────────── */
+.tag{font:500 11.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ember)}
+.eyebrow{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-faint)}
+.lede{font-size:clamp(17px,1.55vw,20.5px);line-height:1.55;color:var(--fg-soft);max-width:56ch}
+
+/* ── hero ───────────────────────────────────── */
+.hero{min-height:100svh;display:flex;align-items:center;padding:120px 0 90px;position:relative}
+.hero__grid{display:grid;gap:22px;max-width:min(var(--wrap),1000px)}
+.hero__h1{font-size:clamp(52px,11.5vw,148px);font-weight:800;letter-spacing:-.05em;display:grid;margin:2px 0 6px}
+.hero__h1 .line{display:block}
+.hero__h1 .accent{color:var(--ember);position:relative;width:max-content;max-width:100%}
+.hero__h1 .accent::after{content:"";position:absolute;left:0;bottom:.1em;height:2px;width:100%;
+  background:linear-gradient(90deg,var(--ember),transparent);transform:scaleX(0);transform-origin:left;
+  animation:swipe 1.4s .7s var(--ease) forwards}
+@keyframes swipe{to{transform:scaleX(1)}}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+
+.define{margin:34px 0 0;padding:18px 22px;border-left:2px solid var(--ember);background:var(--panel);
+  border-radius:0 var(--r) var(--r) 0;max-width:60ch;backdrop-filter:blur(6px)}
+.define__word{font:400 14px/1 var(--mono);color:var(--fg-faint);margin-bottom:8px}
+.define__word span{color:var(--fg);font-weight:500}
+.define__word em{font-family:var(--serif);font-size:14px}
+.define p{font-family:var(--serif);font-size:clamp(16px,1.5vw,19px);line-height:1.5}
+
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:grid;justify-items:center;gap:8px;
+  font:400 10.5px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--fg-faint)}
+.scroll-hint i{width:1px;height:40px;background:linear-gradient(var(--ember),transparent);animation:drop 2.2s var(--ease) infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}
+  51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ── marquee ────────────────────────────────── */
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:14px 0;background:color-mix(in srgb,var(--bg) 55%,transparent)}
+.marquee__track{display:flex;gap:26px;align-items:center;width:max-content;animation:slide 44s linear infinite;
+  font:500 12.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--fg-soft);white-space:nowrap}
+.marquee__track b{color:var(--ember)}
+.marquee:hover .marquee__track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ── sections ───────────────────────────────── */
+.section{padding:clamp(84px,11vw,150px) 0;position:relative}
+.s-head{display:grid;gap:16px;max-width:64ch;margin-bottom:clamp(40px,5vw,66px)}
+.s-head h2{font-size:clamp(31px,5.2vw,60px)}
+.s-head__sub{color:var(--fg-soft);font-size:clamp(16px,1.3vw,18px);max-width:54ch}
+
+.duo{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(14px,2vw,26px)}
+.card{padding:clamp(24px,3vw,38px);border:1px solid var(--line);border-radius:var(--r);background:var(--panel);
+  backdrop-filter:blur(8px);display:grid;gap:12px;align-content:start;transition:transform .5s var(--ease),border-color .4s,background .4s}
+.card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--ember) 55%,transparent);background:var(--panel-2)}
+.card__no{font:400 12px/1 var(--mono);color:var(--ember);letter-spacing:.1em}
+.card h3{font-size:clamp(20px,2.2vw,27px)}
+.card p{color:var(--fg-soft)}
+.card--person h3{color:var(--fg)}
+
+.enemy{margin-top:clamp(24px,3vw,36px);padding:clamp(24px,3vw,38px);border:1px solid var(--line);border-radius:var(--r);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--ember) 7%,transparent),transparent)}
+.enemy ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:16px}
+.enemy li{display:grid;gap:4px;padding-left:22px;position:relative;color:var(--fg-soft);max-width:70ch}
+.enemy li::before{content:"×";position:absolute;left:0;top:-1px;color:var(--ember);font-family:var(--mono);font-size:17px}
+.enemy strong{color:var(--fg);font-weight:600;font-family:var(--disp);letter-spacing:-.02em;font-size:17.5px}
+
+/* ── loop diagram ───────────────────────────── */
+.loop{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.loop__viz svg{width:100%;height:auto;overflow:visible}
+.loop__ring{fill:none;stroke:var(--line);stroke-width:1.5}
+.loop__flow{fill:none;stroke:url(#lg);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:26 916;
+  animation:orbit 6s linear infinite;filter:drop-shadow(0 0 8px color-mix(in srgb,var(--ember) 60%,transparent))}
+@keyframes orbit{to{stroke-dashoffset:-942}}
+.loop__center{font-family:var(--disp);font-weight:800;font-size:34px;fill:var(--fg);letter-spacing:-.04em}
+.loop__center--sm{font:400 11px/1 var(--mono);fill:var(--fg-faint);letter-spacing:.06em}
+.loop__node{cursor:pointer}
+.loop__node circle{fill:var(--bg-2);stroke:var(--line);stroke-width:1.5;transition:.35s var(--ease)}
+.loop__node text{font:500 11px/1 var(--mono);fill:var(--fg-faint);transition:.35s var(--ease)}
+.loop__node.is-on circle{fill:var(--ember);stroke:var(--ember);r:11}
+.loop__node.is-on text{fill:var(--fg)}
+.loop__list{list-style:none;margin:0;padding:0;display:grid;gap:2px;counter-reset:l}
+.loop__list li{padding:16px 18px;border-radius:14px;border:1px solid transparent;cursor:pointer;
+  display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;transition:.35s var(--ease)}
+.loop__list li:hover{background:var(--panel)}
+.loop__list li.is-on{background:var(--panel-2);border-color:color-mix(in srgb,var(--ember) 40%,transparent)}
+.loop__list b{font:500 11px/1.4 var(--mono);color:var(--ember)}
+.loop__list h3{font-size:18px;grid-column:2}
+.loop__list p{grid-column:2;color:var(--fg-soft);font-size:15px;max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .45s var(--ease),opacity .35s,margin .45s var(--ease)}
+.loop__list li.is-on p{max-height:120px;opacity:1;margin-top:6px}
+
+/* ── accordion ──────────────────────────────── */
+.acc{border-top:1px solid var(--line)}
+.acc__item{border-bottom:1px solid var(--line)}
+.acc__head{width:100%;display:grid;grid-template-columns:auto 1fr auto auto;gap:18px;align-items:center;
+  padding:clamp(20px,2.6vw,30px) 4px;background:transparent;border:0;cursor:pointer;text-align:left;transition:.4s var(--ease)}
+.acc__head:hover{padding-left:12px}
+.acc__no{font:400 12px/1 var(--mono);color:var(--ember)}
+.acc__title{font-family:var(--disp);font-weight:700;letter-spacing:-.035em;font-size:clamp(21px,3.4vw,38px)}
+.acc__weight{font:400 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);
+  border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+.acc__ico{width:16px;height:16px;position:relative;flex:none}
+.acc__ico::before,.acc__ico::after{content:"";position:absolute;inset:50% 0 auto 0;height:1.5px;background:var(--fg);transition:.4s var(--ease)}
+.acc__ico::after{transform:rotate(90deg)}
+.acc__item.is-open .acc__ico::after{transform:rotate(0)}
+.acc__item.is-open .acc__no,.acc__item.is-open .acc__title{color:var(--ember)}
+.acc__body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.acc__item.is-open .acc__body{grid-template-rows:1fr}
+.acc__body>div{overflow:hidden}
+.acc__body p{color:var(--fg-soft);max-width:66ch;padding-bottom:14px}
+.pills{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;padding:0}
+.pills li{font:400 12px/1 var(--mono);padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg-soft)}
+
+/* ── calculator ─────────────────────────────── */
+.section--math{background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--bg-2) 70%,transparent),transparent)}
+.calc{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(22px,3vw,44px);
+  padding:clamp(22px,3vw,38px);border:1px solid var(--line);border-radius:calc(var(--r) + 6px);
+  background:var(--panel);backdrop-filter:blur(10px);box-shadow:var(--shadow)}
+.calc__inputs{display:grid;gap:22px;align-content:start}
+.rng{display:grid;gap:10px}
+.rng__lab{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.rng__lab b{font-weight:500;font-size:14px;color:var(--fg-soft)}
+.rng__lab output{font:500 15px/1 var(--mono);color:var(--fg)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;cursor:grab}
+input[type=range]:active{cursor:grabbing}
+input[type=range]::-webkit-slider-runnable-track{height:3px;border-radius:3px;
+  background:linear-gradient(90deg,var(--ember) var(--p,0%),var(--line) var(--p,0%))}
+input[type=range]::-moz-range-track{height:3px;border-radius:3px;background:var(--line)}
+input[type=range]::-moz-range-progress{height:3px;border-radius:3px;background:var(--ember)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--fg);margin-top:-7.5px;border:3px solid var(--bg);box-shadow:0 0 0 1px var(--ember);transition:transform .2s}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--fg);
+  border:3px solid var(--bg);box-shadow:0 0 0 1px var(--ember)}
+input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
+.calc__hint{font-size:13.5px;color:var(--fg-faint);font-family:var(--serif);line-height:1.5}
+
+.calc__out{display:grid;gap:20px;align-content:start}
+.calc__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{padding:16px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--bg) 40%,transparent);display:grid;gap:8px}
+.stat__lab{font:400 10.5px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-faint)}
+.stat__val{font-family:var(--disp);font-weight:700;letter-spacing:-.04em;font-size:clamp(22px,3vw,32px);font-variant-numeric:tabular-nums}
+.stat--hero{background:linear-gradient(160deg,color-mix(in srgb,var(--ember) 16%,transparent),transparent);
+  border-color:color-mix(in srgb,var(--ember) 45%,transparent)}
+.is-neg{color:var(--ember)}
+.is-pos{color:var(--gold)}
+:root[data-theme="light"] .is-pos{color:#B07A16}
+
+.bars{display:flex;align-items:flex-end;gap:8px;height:170px;padding-top:10px;border-bottom:1px dashed var(--line);position:relative}
+.bars::after{content:"";position:absolute;left:0;right:0;top:var(--zero,50%);height:1px;background:var(--line)}
+.bar{flex:1;position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-start}
+.bar__fill{position:absolute;left:0;right:0;border-radius:5px;min-height:2px;
+  transition:top .6s var(--ease),height .6s var(--ease),background .4s,border-color .4s}
+.bar--ghost .bar__fill{background:transparent!important;border:1px dashed var(--line)}
+.bar__n{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font:400 10px/1 var(--mono);color:var(--fg-faint)}
+.calc__note{font-size:14.5px;color:var(--fg-soft);margin-top:14px;min-height:3em}
+.calc__note b{color:var(--fg);font-weight:600}
+
+/* ── steps ──────────────────────────────────── */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,24px);counter-reset:s}
+.step{display:grid;gap:10px;align-content:start;padding-top:22px;border-top:1px solid var(--line);position:relative}
+.step::before{content:"";position:absolute;top:-1px;left:0;width:0;height:1px;background:var(--ember);transition:width 1s var(--ease) .1s}
+.step.in::before{width:100%}
+.step__no{font:400 12px/1 var(--mono);color:var(--ember);letter-spacing:.1em}
+.step h3{font-size:20px}
+.step p{color:var(--fg-soft);font-size:15px}
+
+.nots{margin-top:clamp(36px,5vw,64px);padding:clamp(24px,3vw,34px);border:1px dashed var(--line);border-radius:var(--r)}
+.nots ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.nots li{font-size:14.5px;color:var(--fg-soft);border:1px solid var(--line);border-radius:999px;padding:9px 15px;
+  transition:.3s var(--ease)}
+.nots li:hover{color:var(--fg);border-color:var(--ember);text-decoration:line-through;text-decoration-color:var(--ember)}
+
+/* ── quote + faq ────────────────────────────── */
+.quote{margin:clamp(34px,5vw,60px) 0 0;padding:0}
+.quote p{font-family:var(--serif);font-size:clamp(22px,3.6vw,40px);line-height:1.28;letter-spacing:-.02em;max-width:20ch}
+.faq{margin-top:clamp(40px,5vw,66px);border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;
+  font-family:var(--disp);font-weight:600;letter-spacing:-.025em;font-size:clamp(17px,2vw,21px);transition:.3s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);color:var(--ember);
+  font-family:var(--mono);font-size:19px;transition:transform .35s var(--ease)}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(135deg)}
+.faq summary:hover{color:var(--ember)}
+.faq p{padding:0 0 22px;color:var(--fg-soft);max-width:70ch;animation:fade .45s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(-6px)}}
+
+/* ── contact ────────────────────────────────── */
+.section--contact{padding-bottom:clamp(70px,9vw,120px)}
+.cta{padding:clamp(28px,4vw,56px);border:1px solid var(--line);border-radius:calc(var(--r) + 8px);
+  background:var(--panel);backdrop-filter:blur(12px);display:grid;gap:16px;box-shadow:var(--shadow)}
+.cta h2{font-size:clamp(32px,6vw,68px)}
+.form{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
+.f{position:relative}
+.f--full{grid-column:1/-1}
+.f input,.f select,.f textarea{width:100%;background:color-mix(in srgb,var(--bg) 45%,transparent);border:1px solid var(--line);
+  border-radius:12px;padding:22px 14px 10px;transition:.3s var(--ease);resize:vertical}
+.f textarea{min-height:96px}
+.f label{position:absolute;left:14px;top:15px;font-size:15px;color:var(--fg-faint);pointer-events:none;transition:.25s var(--ease)}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--ember);outline:none;background:var(--panel-2)}
+.f input:focus+label,.f input:not(:placeholder-shown)+label,
+.f textarea:focus+label,.f textarea:not(:placeholder-shown)+label,
+.f--sel label{top:7px;font-size:10.5px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ember)}
+.f--sel select{appearance:none;cursor:pointer}
+.f--sel::after{content:"▾";position:absolute;right:16px;bottom:12px;color:var(--fg-faint);pointer-events:none}
+.form .btn{grid-column:1/-1;justify-self:start}
+.form__msg{grid-column:1/-1;font-size:14px;color:var(--gold);min-height:1.4em}
+.form .f.is-bad input,.form .f.is-bad textarea{border-color:var(--ember)}
+.direct{margin-top:10px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-family:var(--mono);font-size:13.5px;color:var(--fg-faint)}
+.direct a{color:var(--fg);border-bottom:1px solid var(--line);transition:.3s}
+.direct a:hover{color:var(--ember);border-color:var(--ember)}
+
+/* ── footer ─────────────────────────────────── */
+.foot{border-top:1px solid var(--line);padding:34px 0;background:var(--bg)}
+.foot__grid{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between;
+  font-size:13.5px;color:var(--fg-faint)}
+.foot__sig{font-family:var(--serif)}
+
+/* keeps body copy readable where the field drifts behind it */
+:root[data-theme="dark"] .lede,
+:root[data-theme="dark"] .s-head__sub,
+:root[data-theme="dark"] .step p,
+:root[data-theme="dark"] .nots li,
+:root[data-theme="dark"] .enemy li,
+:root[data-theme="dark"] .acc__body p{text-shadow:0 0 16px var(--bg),0 0 6px var(--bg)}
+
+/* ── reveal ─────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ── responsive ─────────────────────────────── */
+@media (max-width:1000px){
+  .loop{grid-template-columns:1fr}
+  .loop__viz{max-width:380px;margin-inline:auto}
+  .calc{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:760px){
+  .nav__links{position:fixed;inset:64px 0 auto;flex-direction:column;gap:0;padding:8px var(--pad) 22px;
+    background:color-mix(in srgb,var(--bg) 96%,transparent);border-bottom:1px solid var(--line);
+    backdrop-filter:blur(18px);transform:translateY(-120%);transition:transform .5s var(--ease);margin:0;font-size:19px}
+  .nav.is-open .nav__links{transform:none}
+  .nav__links a{padding:14px 0;border-bottom:1px solid var(--line);font-family:var(--disp);font-weight:600;letter-spacing:-.03em}
+  .burger{display:block}
+  .nav__tools .btn{display:none}
+  .duo,.steps{grid-template-columns:1fr}
+  .calc__stats{grid-template-columns:1fr;gap:8px}
+  .stat{display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .form{grid-template-columns:1fr}
+  .acc__head{grid-template-columns:auto 1fr auto;gap:12px}
+  .acc__weight{display:none}
+  .hero{padding-top:104px}
+  .bars{height:130px}
+  .cursor-glow{display:none}
+  .foot__grid{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:420px){
+  .define{padding:16px 18px}
+  .eyebrow{font-size:10.5px;letter-spacing:.1em}
+  .bars{gap:5px}
+}
+
+/* ── motion off ─────────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none}
+  .grain{display:none}
+}
+
+</style>
+<!-- ═══ scroll-driven sci-fi field ═══ -->
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<a class="skip" href="#main" data-en="Skip to content">Στο περιεχόμενο</a>
+
+<!-- ═══ nav ═══ -->
+<header class="nav" id="nav">
+  <div class="nav__bar">
+    <a class="brand" href="#top" aria-label="THE REGULARS">
+      <span class="brand__mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand__type">THE&nbsp;REGULARS</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Κύρια πλοήγηση">
+      <a href="#system" data-en="The system">Το σύστημα</a>
+      <a href="#services" data-en="What we do">Τι κάνουμε</a>
+      <a href="#math" data-en="The math">Τα μαθηματικά</a>
+      <a href="#process" data-en="How we work">Πώς δουλεύουμε</a>
+      <a href="#us" data-en="Us">Εμείς</a>
+    </nav>
+
+    <div class="nav__tools">
+      <button class="chip" id="lang" type="button" aria-label="Language / Γλώσσα"><span>EN</span></button>
+      <button class="chip" id="theme" type="button" aria-label="Theme"><span class="theme-ico" aria-hidden="true"></span></button>
+      <a class="btn btn--sm" href="#contact" data-en="Let’s talk">Ας μιλήσουμε</a>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </div>
+  <div class="nav__progress"><span id="progress"></span></div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ═══ hero ═══ -->
+<section class="hero" data-scene="0">
+  <div class="wrap hero__grid">
+    <p class="eyebrow reveal" data-en="Independent digital agency · Athens · est. 2026">Ανεξάρτητο digital agency · Αθήνα · από το 2026</p>
+
+    <h1 class="hero__h1">
+      <span class="line reveal" data-en="We make">Φτιάχνουμε</span>
+      <span class="line reveal accent" data-en="regulars.">θαμώνες.</span>
+    </h1>
+
+    <p class="lede reveal" data-en="Performance advertising and websites, built as one system. We don’t chase the first sale — we build the second, the third and the tenth.">
+      Performance advertising και websites, σαν ένα σύστημα. Δεν κυνηγάμε την πρώτη πώληση — χτίζουμε τη δεύτερη, την τρίτη και τη δέκατη.
+    </p>
+
+    <div class="hero__cta reveal">
+      <a class="btn btn--primary magnet" href="#contact" data-en="Let’s talk">Ας μιλήσουμε</a>
+      <a class="btn btn--ghost magnet" href="#math" data-en="See the math">Δες τα μαθηματικά</a>
+    </div>
+
+    <figure class="define reveal">
+      <figcaption class="define__word"><span>regular</span> <em data-en="/ˈrɛɡjʊlə/ noun">ο θαμώνας, ουσ.</em></figcaption>
+      <p data-en="The one who walks in, gets called by name, and never has to look at the menu.">
+        Αυτός που μπαίνει, τον ξέρουν με το όνομά του και δεν χρειάζεται να κοιτάξει μενού.
+      </p>
+    </figure>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span data-en="scroll">σκρολάρετε</span><i></i>
+  </div>
+</section>
+
+<!-- ═══ marquee ═══ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span data-en="Relationship, not transaction">Σχέση, όχι συναλλαγή</span><b>●</b>
+    <span data-en="Repeat rate beats first-order ROAS">Repeat rate πάνω από ROAS πρώτης αγοράς</span><b>●</b>
+    <span data-en="Reports you can actually read">Reports που διαβάζονται</span><b>●</b>
+    <span data-en="Ads and site are one thing">Τα ads και το site είναι ένα πράγμα</span><b>●</b>
+    <span data-en="No promises we can’t hold up">Καμία υπόσχεση χωρίς στήριξη</span><b>●</b>
+    <span data-en="Relationship, not transaction">Σχέση, όχι συναλλαγή</span><b>●</b>
+    <span data-en="Repeat rate beats first-order ROAS">Repeat rate πάνω από ROAS πρώτης αγοράς</span><b>●</b>
+    <span data-en="Reports you can actually read">Reports που διαβάζονται</span><b>●</b>
+    <span data-en="Ads and site are one thing">Τα ads και το site είναι ένα πράγμα</span><b>●</b>
+    <span data-en="No promises we can’t hold up">Καμία υπόσχεση χωρίς στήριξη</span><b>●</b>
+  </div>
+</div>
+
+<!-- ═══ two directions ═══ -->
+<section class="section" id="name" data-scene="1">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="01 — The name">01 — Το όνομα</p>
+      <h2 data-en="It works in two directions. On purpose.">Δουλεύει προς δύο κατευθύνσεις. Επίτηδες.</h2>
+    </header>
+
+    <div class="duo">
+      <article class="card reveal">
+        <p class="card__no">I.</p>
+        <h3 data-en="What we are to you">Τι είμαστε για εσάς</h3>
+        <p data-en="Not an external vendor that shows up for the monthly review. A daily presence — people who know your business from the inside, who know that August is dead and that your supplier is late again.">
+          Όχι εξωτερικός προμηθευτής που εμφανίζεται στο μηνιαίο review. Καθημερινή παρουσία — άνθρωποι που ξέρουν τη δουλειά σας από μέσα, που ξέρουν ότι ο Αύγουστος είναι νεκρός και ότι ο προμηθευτής άργησε πάλι.
+        </p>
+      </article>
+
+      <article class="card reveal">
+        <p class="card__no">II.</p>
+        <h3 data-en="What we build for you">Τι φτιάχνουμε για εσάς</h3>
+        <p data-en="Regulars. The first buyer almost always costs you money — the profit lives in the second and third purchase. An agency called The Regulars is telling you what it measures.">
+          Θαμώνες. Ο πρώτος αγοραστής σχεδόν πάντα βγαίνει ζημιά — τα χρήματα είναι στη δεύτερη και την τρίτη αγορά. Ένα agency που λέγεται The Regulars σας λέει από την αρχή τι μετράει.
+        </p>
+      </article>
+    </div>
+
+    <div class="enemy reveal">
+      <p class="tag" data-en="What we’re against">Ο εχθρός</p>
+      <ul>
+        <li>
+          <strong data-en="Overselling.">Η υπερπώληση.</strong>
+          <span data-en="Promises with nothing behind them. Reports built to impress instead of inform. Clients who never understood what they were paying for.">Υποσχέσεις χωρίς στήριξη. Reports φτιαγμένα να εντυπωσιάζουν αντί να ενημερώνουν. Πελάτες που δεν καταλάβαιναν τι πλήρωναν.</span>
+        </li>
+        <li>
+          <strong data-en="Acquisition at any cost.">Το acquisition πάση θυσία.</strong>
+          <span data-en="Agencies that show you first-purchase ROAS and stay very quiet about the fact that the customer never came back.">Agencies που δείχνουν ROAS πρώτης αγοράς και αποσιωπούν ότι ο πελάτης δεν ξαναγύρισε ποτέ.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ system ═══ -->
+<section class="section" id="system" data-scene="2">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="02 — The system">02 — Το σύστημα</p>
+      <h2 data-en="360, with performance and the website at the centre.">360, με επίκεντρο performance και website.</h2>
+      <p class="s-head__sub" data-en="Not a service menu. The ads and the site are one machine — everything else exists to keep it running. Tap a step.">
+        Δεν είναι μενού υπηρεσιών. Τα ads και το site είναι μία μηχανή — τα υπόλοιπα υπάρχουν για να τη στηρίζουν. Πατήστε ένα βήμα.
+      </p>
+    </header>
+
+    <div class="loop reveal">
+      <div class="loop__viz">
+        <svg viewBox="0 0 420 420" role="img" aria-label="Loop diagram">
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="var(--ember)"/><stop offset="1" stop-color="var(--gold)"/>
+            </linearGradient>
+          </defs>
+          <circle class="loop__ring" cx="210" cy="210" r="150"/>
+          <circle class="loop__flow" cx="210" cy="210" r="150"/>
+          <g class="loop__nodes"></g>
+          <text class="loop__center" x="210" y="205" text-anchor="middle">LTV</text>
+          <text class="loop__center loop__center--sm" x="210" y="232" text-anchor="middle" data-en="the loop that pays">ο κύκλος που πληρώνει</text>
+        </svg>
+      </div>
+      <ol class="loop__list" id="loopList"></ol>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ services ═══ -->
+<section class="section" id="services" data-scene="2">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="03 — What we do">03 — Τι κάνουμε</p>
+      <h2 data-en="Four things. In this order.">Τέσσερα πράγματα. Με αυτή τη σειρά.</h2>
+    </header>
+
+    <div class="acc" id="acc">
+      <article class="acc__item is-open reveal">
+        <button class="acc__head" type="button" aria-expanded="true">
+          <span class="acc__no">01</span>
+          <span class="acc__title" data-en="Performance advertising">Performance advertising</span>
+          <span class="acc__weight" data-en="core">πυρήνας</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__body"><div>
+          <p data-en="Meta, Google, retargeting, tracking, measurement. Campaigns built so that we can tell what worked — server-side tracking, clean events, and a number you can defend in front of your accountant.">
+            Meta, Google, retargeting, tracking, μέτρηση. Καμπάνιες στημένες έτσι ώστε να ξέρουμε τι δούλεψε — server-side tracking, καθαρά events και ένα νούμερο που αντέχει μπροστά στον λογιστή σας.
+          </p>
+          <ul class="pills">
+            <li>Meta Ads</li><li>Google Ads</li><li>Retargeting</li><li>GA4 / Server-side</li><li>Feed &amp; Shopping</li><li data-en="Incrementality">Incrementality</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="acc__item reveal">
+        <button class="acc__head" type="button" aria-expanded="false">
+          <span class="acc__no">02</span>
+          <span class="acc__title" data-en="Websites & e-shops">Websites &amp; e-shops</span>
+          <span class="acc__weight" data-en="core">πυρήνας</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__body"><div>
+          <p data-en="Design and development of the place the traffic lands. Fast, measurable, built to convert twice — once now and once when they come back.">
+            Σχεδιασμός και ανάπτυξη του σημείου όπου προσγειώνεται η επισκεψιμότητα. Γρήγορα, μετρήσιμα, φτιαγμένα να μετατρέπουν δύο φορές — μία τώρα και μία όταν επιστρέψουν.
+          </p>
+          <ul class="pills">
+            <li>Shopify</li><li>WooCommerce</li><li>Headless</li><li>UX / UI</li><li>CRO</li><li>Core Web Vitals</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="acc__item reveal">
+        <button class="acc__head" type="button" aria-expanded="false">
+          <span class="acc__no">03</span>
+          <span class="acc__title" data-en="Social media management">Social media management</span>
+          <span class="acc__weight" data-en="support">υποστήριξη</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__body"><div>
+          <p data-en="The voice between purchases. Content that keeps you in the room when nobody is ready to buy yet — and feeds the ads with what already works.">
+            Η φωνή ανάμεσα στις αγορές. Περιεχόμενο που σας κρατάει στο κάδρο όταν κανείς δεν είναι ακόμα έτοιμος να αγοράσει — και τροφοδοτεί τα ads με ό,τι ήδη δουλεύει.
+          </p>
+          <ul class="pills">
+            <li data-en="Content plan">Πλάνο περιεχομένου</li><li data-en="Copy">Κείμενα</li><li>Community</li><li data-en="Organic → paid">Organic → paid</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="acc__item reveal">
+        <button class="acc__head" type="button" aria-expanded="false">
+          <span class="acc__no">04</span>
+          <span class="acc__title" data-en="Design">Design</span>
+          <span class="acc__weight" data-en="support">υποστήριξη</span>
+          <span class="acc__ico" aria-hidden="true"></span>
+        </button>
+        <div class="acc__body"><div>
+          <p data-en="Everything the above needs to look like it belongs to the same company: creative for ads, product pages, email, packaging inserts.">
+            Ό,τι χρειάζονται τα παραπάνω για να μοιάζουν ότι ανήκουν στην ίδια εταιρεία: creative για ads, σελίδες προϊόντος, email, ένθετα συσκευασίας.
+          </p>
+          <ul class="pills">
+            <li>Ad creative</li><li data-en="Landing pages">Landing pages</li><li>Email</li><li data-en="Brand assets">Brand assets</li>
+          </ul>
+        </div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ math / LTV calculator ═══ -->
+<section class="section section--math" id="math" data-scene="3">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="04 — The math">04 — Τα μαθηματικά</p>
+      <h2 data-en="The first sale is the expensive one.">Η πρώτη πώληση είναι η ακριβή.</h2>
+      <p class="s-head__sub" data-en="Move the sliders with your own numbers. Most agencies show you the first bar. We work for the ones after it.">
+        Κουνήστε τα sliders με τα δικά σας νούμερα. Τα περισσότερα agencies σας δείχνουν την πρώτη μπάρα. Εμείς δουλεύουμε για τις επόμενες.
+      </p>
+    </header>
+
+    <div class="calc reveal">
+      <div class="calc__inputs">
+        <label class="rng">
+          <span class="rng__lab"><b data-en="Average order value">Μέση αξία παραγγελίας</b><output id="oAov">65 €</output></span>
+          <input type="range" id="aov" min="15" max="300" step="5" value="65">
+        </label>
+        <label class="rng">
+          <span class="rng__lab"><b data-en="Gross margin">Μεικτό περιθώριο</b><output id="oMar">45%</output></span>
+          <input type="range" id="mar" min="10" max="80" step="1" value="45">
+        </label>
+        <label class="rng">
+          <span class="rng__lab"><b data-en="Cost per new customer (CAC)">Κόστος νέου πελάτη (CAC)</b><output id="oCac">32 €</output></span>
+          <input type="range" id="cac" min="5" max="150" step="1" value="32">
+        </label>
+        <label class="rng">
+          <span class="rng__lab"><b data-en="Orders per customer / year">Παραγγελίες ανά πελάτη / έτος</b><output id="oOrd">1.0</output></span>
+          <input type="range" id="ord" min="1" max="6" step="0.1" value="1">
+        </label>
+        <p class="calc__hint" data-en="Drag “orders per customer” past 1. That gap is the whole business.">
+          Σύρετε τις «παραγγελίες ανά πελάτη» πάνω από το 1. Αυτή η διαφορά είναι όλη η δουλειά.
+        </p>
+      </div>
+
+      <div class="calc__out">
+        <div class="calc__stats">
+          <div class="stat">
+            <p class="stat__lab" data-en="Profit, first order">Κέρδος, 1η παραγγελία</p>
+            <p class="stat__val" id="vFirst">—</p>
+          </div>
+          <div class="stat stat--hero">
+            <p class="stat__lab" data-en="Profit, 12 months">Κέρδος, 12 μήνες</p>
+            <p class="stat__val" id="vYear">—</p>
+          </div>
+          <div class="stat">
+            <p class="stat__lab" data-en="Breaks even at order">Βγαίνει στα ίσια στην</p>
+            <p class="stat__val" id="vBreak">—</p>
+          </div>
+        </div>
+        <div class="bars" id="bars" aria-hidden="true"></div>
+        <p class="calc__note" id="calcNote"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ process ═══ -->
+<section class="section" id="process" data-scene="4">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="05 — How we work">05 — Πώς δουλεύουμε</p>
+      <h2 data-en="Boring on purpose.">Βαρετά, επίτηδες.</h2>
+    </header>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step__no">01</span>
+        <h3 data-en="We get inside">Μπαίνουμε μέσα</h3>
+        <p data-en="Two weeks of your data, your margins, your returns, your warehouse. If we don’t understand how you make money, we can’t spend your money.">
+          Δύο εβδομάδες με τα δεδομένα σας, τα περιθώριά σας, τις επιστροφές, την αποθήκη. Αν δεν καταλάβουμε πώς βγάζετε λεφτά, δεν μπορούμε να τα ξοδέψουμε.
+        </p>
+      </li>
+      <li class="step reveal">
+        <span class="step__no">02</span>
+        <h3 data-en="We fix the measurement">Φτιάχνουμε τη μέτρηση</h3>
+        <p data-en="Tracking, events, attribution, a dashboard with the four numbers that matter. Before a single euro goes into ads.">
+          Tracking, events, attribution, ένα dashboard με τα τέσσερα νούμερα που μετράνε. Πριν μπει ένα ευρώ σε ads.
+        </p>
+      </li>
+      <li class="step reveal">
+        <span class="step__no">03</span>
+        <h3 data-en="We run and we learn">Τρέχουμε και μαθαίνουμε</h3>
+        <p data-en="Weekly, not monthly. You get a short call and a report in plain language — what we tried, what worked, what we killed and why.">
+          Εβδομαδιαία, όχι μηνιαία. Παίρνετε ένα σύντομο call και ένα report σε καθημερινή γλώσσα — τι δοκιμάσαμε, τι δούλεψε, τι κόψαμε και γιατί.
+        </p>
+      </li>
+      <li class="step reveal">
+        <span class="step__no">04</span>
+        <h3 data-en="We build the return">Χτίζουμε την επιστροφή</h3>
+        <p data-en="Second-purchase flows, retargeting that isn’t stalking, site changes for people who already know you. This is where the margin is.">
+          Flows δεύτερης αγοράς, retargeting που δεν είναι παρακολούθηση, αλλαγές στο site για ανθρώπους που σας ξέρουν ήδη. Εδώ είναι το περιθώριο.
+        </p>
+      </li>
+    </ol>
+
+    <div class="nots reveal">
+      <p class="tag" data-en="Things we don’t do">Τι δεν κάνουμε</p>
+      <ul>
+        <li data-en="Reports designed to impress you">Reports φτιαγμένα να σας εντυπωσιάσουν</li>
+        <li data-en="12-month lock-in for a service that has to prove itself monthly">Δεσμεύσεις 12 μηνών για δουλειά που κρίνεται κάθε μήνα</li>
+        <li data-en="ROAS numbers with the returns quietly left out">Νούμερα ROAS με τις επιστροφές διακριτικά εκτός</li>
+        <li data-en="Twenty clients per person">Είκοσι πελάτες ανά άτομο</li>
+        <li data-en="Words like “synergy”, unless we’re joking">Λέξεις όπως «συνέργεια», εκτός αν αστειευόμαστε</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ us ═══ -->
+<section class="section" id="us" data-scene="4">
+  <div class="wrap">
+    <header class="s-head reveal">
+      <p class="tag" data-en="06 — Us">06 — Εμείς</p>
+      <h2 data-en="Two people. Both of them on your account.">Δύο άνθρωποι. Και οι δύο στον λογαριασμό σας.</h2>
+    </header>
+
+    <div class="duo">
+      <!-- Όνομα ιδρυτή #1 μπαίνει στο <h3> -->
+      <article class="card card--person reveal">
+        <p class="card__no">01</p>
+        <h3 data-en="Performance & data">Performance &amp; δεδομένα</h3>
+        <p data-en="Came out of an agency and left because of exactly what’s written above. Spends the day inside ad accounts and spreadsheets, and will tell you when spending more is the wrong move.">
+          Ήρθε από agency και έφυγε ακριβώς για ό,τι γράφεται πιο πάνω. Περνάει τη μέρα μέσα σε ad accounts και spreadsheets, και θα σας πει πότε το «βάλε παραπάνω budget» είναι λάθος κίνηση.
+        </p>
+      </article>
+      <article class="card card--person reveal">
+        <p class="card__no">02</p>
+        <h3 data-en="Web & product">Web &amp; product</h3>
+        <p data-en="Designs and builds the thing the traffic lands on. Believes half of what people call a “creative problem” is a load-time problem.">
+          Σχεδιάζει και φτιάχνει αυτό στο οποίο προσγειώνεται η επισκεψιμότητα. Πιστεύει ότι το μισό από αυτά που λέμε «πρόβλημα creative» είναι πρόβλημα ταχύτητας.
+        </p>
+      </article>
+    </div>
+
+    <blockquote class="quote reveal">
+      <p data-en="“We’d rather have ten clients who stay than fifty who tried us.”">«Προτιμάμε δέκα πελάτες που μένουν από πενήντα που μας δοκίμασαν.»</p>
+    </blockquote>
+
+    <div class="faq reveal">
+      <details>
+        <summary data-en="How much does it cost?">Πόσο κοστίζει;</summary>
+        <p data-en="Monthly retainer based on scope, plus a one-off for the website when there is one. We give you the number in the first call — no “it depends” for three weeks.">Μηνιαίο retainer ανάλογα με το scope, συν εφάπαξ για το website όταν υπάρχει. Το νούμερο σας το λέμε στο πρώτο call — όχι «εξαρτάται» για τρεις εβδομάδες.</p>
+      </details>
+      <details>
+        <summary data-en="Do you sign long contracts?">Υπογράφετε μακροχρόνια συμβόλαια;</summary>
+        <p data-en="Three months to set things up properly, monthly after that. If we’re good, you’ll stay because you want to.">Τρεις μήνες για να στηθεί σωστά, μηνιαία μετά. Αν είμαστε καλοί, θα μείνετε επειδή το θέλετε.</p>
+      </details>
+      <details>
+        <summary data-en="We already have an agency. Why change?">Έχουμε ήδη agency. Γιατί να αλλάξουμε;</summary>
+        <p data-en="Ask them what your repeat rate is and how it moved this quarter. If the answer comes fast and with numbers, stay where you are.">Ρωτήστε τους πόσο είναι το repeat rate σας και πώς κινήθηκε αυτό το τρίμηνο. Αν η απάντηση έρθει γρήγορα και με νούμερα, μείνετε εκεί που είστε.</p>
+      </details>
+      <details>
+        <summary data-en="Are you too small for us?">Είστε πολύ μικροί για εμάς;</summary>
+        <p data-en="We’re two, and that’s the point: you talk to the people doing the work. We say no to accounts we can’t serve properly — that’s the honest version of scale.">Είμαστε δύο, και αυτό είναι το ζητούμενο: μιλάτε με τους ανθρώπους που κάνουν τη δουλειά. Λέμε όχι σε λογαριασμούς που δεν μπορούμε να εξυπηρετήσουμε σωστά — αυτή είναι η ειλικρινής εκδοχή της κλίμακας.</p>
+      </details>
+      <details>
+        <summary data-en="Do you work with businesses that have a physical store?">Δουλεύετε με επιχειρήσεις με φυσικό κατάστημα;</summary>
+        <p data-en="Yes — often the best case. You already have regulars offline; we take that behaviour online instead of inventing it from scratch.">Ναι — συχνά είναι η καλύτερη περίπτωση. Έχετε ήδη θαμώνες εκτός διαδικτύου· παίρνουμε αυτή τη συμπεριφορά online αντί να την εφεύρουμε από την αρχή.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ contact ═══ -->
+<section class="section section--contact" id="contact" data-scene="4">
+  <div class="wrap">
+    <div class="cta reveal">
+      <p class="tag" data-en="07 — Let’s talk">07 — Ας μιλήσουμε</p>
+      <h2 data-en="Tell us what you sell.">Πείτε μας τι πουλάτε.</h2>
+      <p class="s-head__sub" data-en="Thirty minutes, no deck. We’ll tell you straight whether we’re the right people for it.">
+        Τριάντα λεπτά, χωρίς παρουσίαση. Θα σας πούμε ευθέως αν είμαστε οι σωστοί άνθρωποι.
+      </p>
+
+      <form class="form" id="form" novalidate>
+        <div class="f">
+          <input id="fName" name="name" required autocomplete="name" placeholder=" ">
+          <label for="fName" data-en="Your name">Το όνομά σας</label>
+        </div>
+        <div class="f">
+          <input id="fMail" name="email" type="email" required autocomplete="email" placeholder=" ">
+          <label for="fMail" data-en="Email">Email</label>
+        </div>
+        <div class="f">
+          <input id="fSite" name="site" placeholder=" ">
+          <label for="fSite" data-en="Website (if there is one)">Website (αν υπάρχει)</label>
+        </div>
+        <div class="f f--sel">
+          <select id="fBud" name="budget">
+            <option value="&lt;1.5k" data-en="Monthly ad budget: under €1.5k">Μηνιαίο budget ads: έως 1.5k €</option>
+            <option value="1.5-5k" selected>1.5k – 5k €</option>
+            <option value="5-15k">5k – 15k €</option>
+            <option value="15k+">15k € +</option>
+            <option value="website" data-en="Website only">Μόνο website</option>
+          </select>
+          <label for="fBud" data-en="Budget">Budget</label>
+        </div>
+        <div class="f f--full">
+          <textarea id="fMsg" name="message" rows="3" placeholder=" "></textarea>
+          <label for="fMsg" data-en="What are you selling, and what’s stuck?">Τι πουλάτε και τι έχει κολλήσει;</label>
+        </div>
+        <button class="btn btn--primary magnet" type="submit" data-en="Send it">Στείλτε το</button>
+        <p class="form__msg" id="formMsg" role="status"></p>
+      </form>
+
+      <p class="direct">
+        <a href="mailto:hello@theregulars.gr">hello@theregulars.gr</a>
+        <span aria-hidden="true">·</span>
+        <a href="tel:+302100000000">+30 210 000 0000</a>
+        <span aria-hidden="true">·</span>
+        <span data-en="Athens, Greece">Αθήνα</span>
+      </p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <span class="brand brand--sm"><span class="brand__mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand__type">THE&nbsp;REGULARS</span></span>
+    <p data-en="© 2026 The Regulars — independent digital agency, Athens.">© 2026 The Regulars — ανεξάρτητο digital agency, Αθήνα.</p>
+    <p class="foot__sig" data-en="Built to be read, not to impress.">Φτιαγμένο για να διαβάζεται, όχι να εντυπωσιάζει.</p>
+  </div>
+</footer>
+<script>
+/* ═══════════════════════════════════════════════════════════
+   THE REGULARS — “the field”
+   A scroll-driven particle system that behaves like a machine
+   thinking out loud: it idles as a sphere, speaks in a
+   waveform, orbits, locks into a lattice, then spirals home.
+   Scroll position picks the state. Scroll speed is its voice.
+   ═══════════════════════════════════════════════════════════ */
+(() => {
+  const cvs = document.getElementById('field');
+  if (!cvs) return;
+  const ctx = cvs.getContext('2d', { alpha: true });
+  const TAU = Math.PI * 2;
+  const GOLD_ANGLE = 2.39996323;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+
+  let w = 0, h = 0, dpr = 1, S = 0, cx = 0, cy = 0;
+  let parts = [], N = 0, sprites = [], light = false;
+  let t = 0, raf = 0, last = 0, running = true;
+
+  /* scroll state */
+  let scrollY = window.scrollY, prevScroll = scrollY;
+  let progress = 0, progTarget = 0;
+  let energy = 0, energyTarget = 0;
+  let ripples = [];
+  let mx = 0, my = 0, mtx = 0, mty = 0;
+
+  /* ── palette ──────────────────────────────── */
+  const hex2rgb = (s) => {
+    s = (s || '').trim();
+    if (s.startsWith('#')) {
+      if (s.length === 4) s = '#' + [...s.slice(1)].map(c => c + c).join('');
+      return [parseInt(s.slice(1, 3), 16), parseInt(s.slice(3, 5), 16), parseInt(s.slice(5, 7), 16)];
+    }
+    const m = s.match(/[\d.]+/g);
+    return m ? m.slice(0, 3).map(Number) : [255, 106, 61];
+  };
+  let COLORS = [];
+  function readPalette() {
+    const cs = getComputedStyle(document.documentElement);
+    light = document.documentElement.dataset.theme === 'light';
+    COLORS = [
+      hex2rgb(cs.getPropertyValue('--ember')),
+      hex2rgb(cs.getPropertyValue('--gold')),
+      hex2rgb(cs.getPropertyValue('--lilac'))
+    ];
+    buildSprites();
+  }
+
+  /* pre-rendered glow sprites — far cheaper than per-dot gradients */
+  function buildSprites() {
+    const R = 32;
+    sprites = COLORS.map(([r, g, b]) => {
+      const c = document.createElement('canvas');
+      c.width = c.height = R * 2;
+      const x = c.getContext('2d');
+      const grd = x.createRadialGradient(R, R, 0, R, R, R);
+      if (light) {
+        grd.addColorStop(0, `rgba(${r},${g},${b},1)`);
+        grd.addColorStop(.42, `rgba(${r},${g},${b},.55)`);
+        grd.addColorStop(.8, `rgba(${r},${g},${b},.10)`);
+        grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+      } else {
+        grd.addColorStop(0, `rgba(255,255,255,.95)`);
+        grd.addColorStop(.18, `rgba(${r},${g},${b},.85)`);
+        grd.addColorStop(.55, `rgba(${r},${g},${b},.22)`);
+        grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+      }
+      x.fillStyle = grd;
+      x.fillRect(0, 0, R * 2, R * 2);
+      return c;
+    });
+  }
+
+  /* ── sizing ───────────────────────────────── */
+  function resize() {
+    w = window.innerWidth;
+    h = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cvs.width = Math.round(w * dpr);
+    cvs.height = Math.round(h * dpr);
+    cvs.style.width = w + 'px';
+    cvs.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    S = Math.min(w, h);
+    cx = w * 0.5;
+    cy = h * 0.5;
+    const target = Math.round((w * h) / (w < 760 ? 5200 : 2500));
+    N = Math.max(180, Math.min(w < 760 ? 380 : 900, target));
+    build();
+  }
+
+  function build() {
+    parts = new Array(N);
+    for (let i = 0; i < N; i++) {
+      const r = Math.random();
+      parts[i] = {
+        x: cx + (Math.random() - .5) * w,
+        y: cy + (Math.random() - .5) * h,
+        z: 0, tx: cx, ty: cy, tz: 0,
+        s: 0.55 + Math.random() * 0.75,
+        seed: Math.random() * TAU,
+        c: r < .70 ? 0 : r < .92 ? 1 : 2
+      };
+    }
+  }
+
+  /* ── scenes ───────────────────────────────── */
+  /* every scene writes into p.tx / p.ty / p.tz (canvas px + depth −1..1) */
+
+  function sceneOrb(p, i, out) {
+    const k = (i + .5) / N;
+    const phi = Math.acos(1 - 2 * k);
+    const th = GOLD_ANGLE * i;
+    let X = Math.sin(phi) * Math.cos(th);
+    let Y = Math.cos(phi);
+    let Z = Math.sin(phi) * Math.sin(th);
+    const a = t * .16, ca = Math.cos(a), sa = Math.sin(a);
+    let x2 = X * ca + Z * sa, z2 = -X * sa + Z * ca;
+    const b = Math.sin(t * .21) * .38, cb = Math.cos(b), sb = Math.sin(b);
+    let y2 = Y * cb - z2 * sb; z2 = Y * sb + z2 * cb;
+    const R = S * (.31 + .014 * Math.sin(t * 1.4 + phi * 4) + energy * .05);
+    const ox = w > 1040 ? cx + w * .17 : cx;   /* keep the sphere clear of the headline */
+    out.x = ox + x2 * R;
+    out.y = cy + y2 * R;
+    out.z = z2;
+  }
+
+  function sceneWave(p, i, out) {
+    const band = i % 3;
+    const u = ((i / 3 | 0) / (N / 3)) * 2 - 1;
+    const env = Math.exp(-u * u * 1.5);
+    const amp = S * (.055 + energy * .085) * env;
+    out.x = cx + u * w * .44;
+    out.y = cy
+      + amp * (Math.sin(u * 6.5 - t * 2.0 + band * 1.6) + .45 * Math.sin(u * 15 + t * 3.3 + p.seed * .2))
+      + (band - 1) * S * .05 * env;
+    out.z = .55 * Math.sin(u * 3 + t * .8 + band);
+  }
+
+  function sceneLattice(p, i, out) {
+    const cols = Math.max(4, Math.round(Math.sqrt(N * (w / h))));
+    const rows = Math.ceil(N / cols);
+    const gx = i % cols, gy = (i / cols) | 0;
+    const fx = cols > 1 ? gx / (cols - 1) - .5 : 0;
+    const fy = rows > 1 ? gy / (rows - 1) - .5 : 0;
+    const br = 1 + energy * .06;
+    out.x = cx + fx * w * .80 * br + Math.sin(t * .7 + gy * .8) * S * .012;
+    out.y = cy + fy * h * .62 * br + Math.cos(t * .6 + gx * .7) * S * .012;
+    out.z = .8 * Math.sin(gx * .55 + gy * .45 + t * .6);
+  }
+
+  function sceneRing(p, i, out) {
+    const k = i % 3;
+    const dir = k === 1 ? -1 : 1;
+    const ang = (i / N) * TAU * 5 + t * (.28 + k * .13) * dir + p.seed * .04;
+    const rad = S * (.17 + .085 * k) * (1 + energy * .06);
+    const X = Math.cos(ang) * rad;
+    const Zc = Math.sin(ang) * rad;
+    out.x = cx + X;
+    out.y = cy + Zc * .40 + Math.sin(t * .9 + k * 2) * S * .012;
+    out.z = Math.sin(ang);
+  }
+
+  function sceneSpiral(p, i, out) {
+    const u = ((i / N) + t * .045) % 1;
+    const ang = i * GOLD_ANGLE + u * 6.2 + t * .35;
+    const rad = S * .44 * (1 - u) * (.55 + .45 * Math.sin(p.seed + i));
+    out.x = cx + Math.cos(ang) * rad;
+    out.y = cy + Math.sin(ang) * rad * .72;
+    out.z = 1 - 2 * u;
+  }
+
+  const SCENES = [sceneOrb, sceneWave, sceneLattice, sceneRing, sceneSpiral];
+  const smooth = (x) => x * x * (3 - 2 * x);
+  const A = { x: 0, y: 0, z: 0 }, B = { x: 0, y: 0, z: 0 };
+
+  /* ── loop ─────────────────────────────────── */
+  function step(now) {
+    raf = requestAnimationFrame(step);
+    if (!running) return;
+    const dt = Math.min(.05, (now - last) / 1000 || .016);
+    last = now;
+    t += dt;
+
+    /* scroll → progress + “voice” energy */
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    progTarget = Math.min(1, Math.max(0, window.scrollY / max));
+    progress += (progTarget - progress) * Math.min(1, dt * 6);
+    const dv = Math.abs(window.scrollY - prevScroll);
+    prevScroll = window.scrollY;
+    energyTarget = Math.min(1, dv / 46);
+    energy += (energyTarget - energy) * (energyTarget > energy ? .35 : .045);
+
+    if (energy > .55 && ripples.length < 5 && Math.random() < .1) ripples.push({ r: S * .1, a: .5 });
+
+    mx += (mtx - mx) * .06;
+    my += (mty - my) * .06;
+
+    /* scene blend */
+    const sp = progress * (SCENES.length - 1);
+    const i0 = Math.min(SCENES.length - 1, Math.floor(sp));
+    const i1 = Math.min(SCENES.length - 1, i0 + 1);
+    const bl = smooth(sp - i0);
+    const f0 = SCENES[i0], f1 = SCENES[i1];
+    const latticeWeight = (i0 === 2 ? 1 - bl : 0) + (i1 === 2 ? bl : 0);
+
+    ctx.clearRect(0, 0, w, h);
+    ctx.globalCompositeOperation = light ? 'source-over' : 'lighter';
+
+    /* ambient nebula */
+    drawAura();
+
+    const px = mx * (light ? 14 : 22), py = my * (light ? 14 : 22);
+    const baseAlpha = light ? .72 : .85;
+
+    for (let i = 0; i < N; i++) {
+      const p = parts[i];
+      f0(p, i, A);
+      if (bl > 0) { f1(p, i, B); } else { B.x = A.x; B.y = A.y; B.z = A.z; }
+      p.tx = A.x + (B.x - A.x) * bl;
+      p.ty = A.y + (B.y - A.y) * bl;
+      p.tz = A.z + (B.z - A.z) * bl;
+
+      const k = Math.min(1, dt * (2.6 + p.s));
+      p.x += (p.tx - p.x) * k;
+      p.y += (p.ty - p.y) * k;
+      p.z += (p.tz - p.z) * k;
+
+      const depth = (p.z + 1) * .5;                 /* 0 back → 1 front */
+      const size = (1.9 + depth * 3.8) * p.s * (1 + energy * .28);
+      const alpha = baseAlpha * (.30 + depth * .70);
+      const X = p.x + px * (.4 + depth), Y = p.y + py * (.4 + depth);
+
+      ctx.globalAlpha = alpha;
+      const sp2 = sprites[p.c];
+      ctx.drawImage(sp2, X - size, Y - size, size * 2, size * 2);
+    }
+
+    if (latticeWeight > .25) drawLinks(latticeWeight, px, py);
+    drawRipples(dt);
+    drawVoice(i0, i1, bl);
+
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  /* soft drifting light behind everything */
+  function drawAura() {
+    const blobs = [
+      { x: cx + Math.sin(t * .11) * w * .22, y: cy + Math.cos(t * .09) * h * .18, r: S * .55, c: COLORS[0] },
+      { x: cx - Math.cos(t * .07) * w * .26, y: cy - Math.sin(t * .12) * h * .2, r: S * .45, c: COLORS[1] }
+    ];
+    for (const b of blobs) {
+      const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+      const a = (light ? .10 : .11) + energy * .05;
+      g.addColorStop(0, `rgba(${b.c[0]},${b.c[1]},${b.c[2]},${a})`);
+      g.addColorStop(1, `rgba(${b.c[0]},${b.c[1]},${b.c[2]},0)`);
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = g;
+      ctx.fillRect(b.x - b.r, b.y - b.r, b.r * 2, b.r * 2);
+    }
+  }
+
+  /* lattice wiring — the “one system” state */
+  function drawLinks(weight, px, py) {
+    const cols = Math.max(4, Math.round(Math.sqrt(N * (w / h))));
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = `rgba(${COLORS[0][0]},${COLORS[0][1]},${COLORS[0][2]},${(light ? .16 : .3) * weight})`;
+    ctx.beginPath();
+    for (let i = 0; i < N - 1; i += 2) {
+      if ((i + 1) % cols === 0) continue;
+      const a = parts[i], b = parts[i + 1];
+      const dx = b.x - a.x, dy = b.y - a.y;
+      if (dx * dx + dy * dy > S * S * .02) continue;
+      ctx.moveTo(a.x + px, a.y + py);
+      ctx.lineTo(b.x + px, b.y + py);
+    }
+    ctx.stroke();
+  }
+
+  function drawRipples(dt) {
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const r = ripples[i];
+      r.r += S * .45 * dt;
+      r.a -= dt * .55;
+      if (r.a <= 0) { ripples.splice(i, 1); continue; }
+      ctx.beginPath();
+      ctx.arc(cx, cy, r.r, 0, TAU);
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = `rgba(${COLORS[1][0]},${COLORS[1][1]},${COLORS[1][2]},${r.a * (light ? .3 : .5)})`;
+      ctx.stroke();
+    }
+  }
+
+  /* the voice line: a thin stroked waveform that only shows up
+     while the field is in / near its “speaking” state          */
+  function drawVoice(i0, i1, bl) {
+    const near = (i0 === 1 ? 1 - bl : 0) + (i1 === 1 ? bl : 0);
+    if (near < .04) return;
+    const steps = Math.max(40, Math.round(w / 8));
+    ctx.beginPath();
+    for (let s = 0; s <= steps; s++) {
+      const u = (s / steps) * 2 - 1;
+      const env = Math.exp(-u * u * 1.5);
+      const amp = S * (.03 + energy * .1) * env * near;
+      const x = cx + u * w * .44;
+      const y = cy + amp * (Math.sin(u * 9 - t * 2.4) + .5 * Math.sin(u * 21 + t * 3.9));
+      s === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.lineWidth = 1.4;
+    ctx.strokeStyle = `rgba(${COLORS[0][0]},${COLORS[0][1]},${COLORS[0][2]},${(light ? .35 : .55) * near})`;
+    ctx.stroke();
+  }
+
+  /* ── static fallback for reduced motion ───── */
+  function drawStatic() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.globalCompositeOperation = light ? 'source-over' : 'lighter';
+    for (let i = 0; i < N; i++) {
+      const p = parts[i];
+      sceneOrb(p, i, A);
+      const depth = (A.z + 1) * .5;
+      const size = (1.6 + depth * 3.2) * p.s;
+      ctx.globalAlpha = (light ? .7 : .8) * (.3 + depth * .7);
+      ctx.drawImage(sprites[p.c], A.x - size, A.y - size, size * 2, size * 2);
+    }
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  /* ── wiring ───────────────────────────────── */
+  let rt;
+  function onResize() {
+    clearTimeout(rt);
+    rt = setTimeout(() => { resize(); if (reduced.matches) drawStatic(); }, 140);
+  }
+
+  window.addEventListener('resize', onResize, { passive: true });
+  window.addEventListener('orientationchange', onResize, { passive: true });
+  window.addEventListener('pointermove', (e) => {
+    mtx = (e.clientX / w) * 2 - 1;
+    mty = (e.clientY / h) * 2 - 1;
+  }, { passive: true });
+  document.addEventListener('visibilitychange', () => { running = !document.hidden; last = performance.now(); });
+
+  window.REGField = {
+    refresh() { readPalette(); if (reduced.matches) drawStatic(); },
+    get energy() { return energy; }
+  };
+
+  readPalette();
+  resize();
+  if (reduced.matches) {
+    drawStatic();
+  } else {
+    last = performance.now();
+    raf = requestAnimationFrame(step);
+  }
+})();
+
+</script>
+<script>
+/* ═══════════════════════════════════════════════
+   THE REGULARS — interface
+   ═══════════════════════════════════════════════ */
+(() => {
+  'use strict';
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(pointer: fine)').matches;
+
+  /* storage can throw in embedded / private contexts — never let it break the page */
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch { /* ignore */ } }
+  };
+
+  /* ── language ─────────────────────────────── */
+  let lang = store.get('reg-lang') || 'el';
+
+  function applyLang() {
+    $$('[data-en]').forEach(el => {
+      if (!el.dataset.el) el.dataset.el = el.textContent;
+      el.textContent = lang === 'en' ? el.dataset.en : el.dataset.el;
+    });
+    document.documentElement.lang = lang;
+    $('#lang span').textContent = lang === 'en' ? 'ΕΛ' : 'EN';
+    store.set('reg-lang', lang);
+    document.title = lang === 'en'
+      ? 'THE REGULARS — Performance & Websites, Athens'
+      : 'THE REGULARS — Performance & Websites, Αθήνα';
+    renderLoop();
+    calc();
+  }
+  const T = (el, en) => (lang === 'en' ? en : el);
+
+  $('#lang').addEventListener('click', () => {
+    lang = lang === 'en' ? 'el' : 'en';
+    applyLang();
+  });
+
+  /* ── theme ────────────────────────────────── */
+  const savedTheme = store.get('reg-theme');
+  if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+  $('#theme').addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = next;
+    store.set('reg-theme', next);
+    document.querySelector('meta[name=theme-color]')
+      ?.setAttribute('content', next === 'light' ? '#F4EEE4' : '#0B0A09');
+    window.REGField?.refresh();
+  });
+
+  /* ── nav ──────────────────────────────────── */
+  const nav = $('#nav'), burger = $('#burger'), bar = $('#progress');
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  $$('.nav__links a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+      bar.style.width = (y / max * 100).toFixed(2) + '%';
+      nav.classList.toggle('is-stuck', y > 12);
+      ticking = false;
+    });
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* active section */
+  const links = new Map($$('.nav__links a').map(a => [a.getAttribute('href').slice(1), a]));
+  const secObs = new IntersectionObserver(es => {
+    es.forEach(e => {
+      const a = links.get(e.target.id);
+      if (a && e.isIntersecting) {
+        links.forEach(l => l.classList.remove('is-active'));
+        a.classList.add('is-active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach((_, id) => { const s = document.getElementById(id); if (s) secObs.observe(s); });
+
+  /* ── reveal on scroll ─────────────────────── */
+  const revObs = new IntersectionObserver((es, o) => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const sibs = [...(e.target.parentElement?.children || [])].filter(n => n.classList.contains('reveal') || n.classList.contains('step'));
+      const idx = Math.max(0, sibs.indexOf(e.target));
+      e.target.style.transitionDelay = Math.min(idx * 90, 400) + 'ms';
+      e.target.classList.add('in');
+      o.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: .12 });
+  $$('.reveal, .step').forEach(el => revObs.observe(el));
+
+  /* ── cursor glow + magnetic buttons ───────── */
+  if (fine && !reduced) {
+    const glow = $('.cursor-glow');
+    addEventListener('pointermove', e => {
+      glow.style.opacity = '1';
+      glow.style.transform = `translate3d(${e.clientX}px,${e.clientY}px,0)`;
+    }, { passive: true });
+
+    $$('.magnet').forEach(btn => {
+      btn.addEventListener('pointermove', e => {
+        const r = btn.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width / 2);
+        const dy = e.clientY - (r.top + r.height / 2);
+        btn.style.transform = `translate(${dx * .16}px, ${dy * .22}px)`;
+      });
+      btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
+    });
+  }
+
+  /* ── loop diagram ─────────────────────────── */
+  const LOOP = [
+    { el: 'Η διαφήμιση', en: 'The ad',
+      pel: 'Ένα ad που δείχνει σε ποιον αξίζει να δείξει — και όχι σε όλους όσους μπορεί.',
+      pen: 'An ad shown to the people worth showing it to — not to everyone it could reach.' },
+    { el: 'Το site', en: 'The site',
+      pel: 'Εκεί προσγειώνεται το κλικ. Αν αργεί ή μπερδεύει, το budget των ads πληρώνει το λάθος.',
+      pen: 'Where the click lands. If it is slow or confusing, the ad budget pays for that mistake.' },
+    { el: 'Η πρώτη αγορά', en: 'First purchase',
+      pel: 'Το πιο ακριβό ευρώ τζίρου που θα βγάλετε ποτέ. Συχνά είναι ζημιά — και είναι εντάξει.',
+      pen: 'The most expensive revenue you will ever book. It often loses money — and that is fine.' },
+    { el: 'Τα δεδομένα', en: 'The data',
+      pel: 'Τι αγόρασε, πότε, με τι περιθώριο, τι επέστρεψε. Εδώ σταματούν οι εικασίες.',
+      pen: 'What they bought, when, at what margin, what came back. This is where guessing stops.' },
+    { el: 'Η επιστροφή', en: 'The return',
+      pel: 'Email, retargeting, περιεχόμενο. Όχι για να τους κυνηγήσουμε — για να τους θυμίσουμε.',
+      pen: 'Email, retargeting, content. Not to chase them — to remind them.' },
+    { el: 'Ο θαμώνας', en: 'The regular',
+      pel: 'Αγοράζει ξανά χωρίς να πληρώσετε δεύτερη φορά για να τον βρείτε. Εδώ είναι το κέρδος.',
+      pen: 'Buys again without you paying a second time to find them. This is where the profit is.' }
+  ];
+  const loopList = $('#loopList'), loopNodes = $('.loop__nodes');
+  let loopActive = 0;
+
+  function renderLoop() {
+    if (!loopList) return;
+    loopList.innerHTML = LOOP.map((n, i) => `
+      <li data-i="${i}" class="${i === loopActive ? 'is-on' : ''}">
+        <b>0${i + 1}</b><h3>${T(n.el, n.en)}</h3><p>${T(n.pel, n.pen)}</p>
+      </li>`).join('');
+
+    loopNodes.innerHTML = LOOP.map((n, i) => {
+      const a = -Math.PI / 2 + (i / LOOP.length) * Math.PI * 2;
+      const x = 210 + Math.cos(a) * 150, y = 210 + Math.sin(a) * 150;
+      const lx = 210 + Math.cos(a) * 183, ly = 210 + Math.sin(a) * 183;
+      const anchor = Math.abs(Math.cos(a)) < .3 ? 'middle' : (Math.cos(a) > 0 ? 'start' : 'end');
+      return `<g class="loop__node ${i === loopActive ? 'is-on' : ''}" data-i="${i}">
+        <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7"></circle>
+        <text x="${lx.toFixed(1)}" y="${(ly + 4).toFixed(1)}" text-anchor="${anchor}">${T(n.el, n.en)}</text>
+      </g>`;
+    }).join('');
+  }
+
+  function setLoop(i) {
+    loopActive = i;
+    $$('#loopList li').forEach(li => li.classList.toggle('is-on', +li.dataset.i === i));
+    $$('.loop__node').forEach(g => g.classList.toggle('is-on', +g.dataset.i === i));
+  }
+  document.addEventListener('click', e => {
+    const hit = e.target.closest('#loopList li, .loop__node');
+    if (hit) setLoop(+hit.dataset.i);
+  });
+
+  /* ── services accordion ───────────────────── */
+  $$('.acc__head').forEach(head => {
+    head.addEventListener('click', () => {
+      const item = head.parentElement;
+      const open = item.classList.contains('is-open');
+      $$('.acc__item').forEach(x => {
+        x.classList.remove('is-open');
+        x.querySelector('.acc__head').setAttribute('aria-expanded', 'false');
+      });
+      if (!open) {
+        item.classList.add('is-open');
+        head.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── LTV calculator ───────────────────────── */
+  const ids = ['aov', 'mar', 'cac', 'ord'];
+  const el = Object.fromEntries(ids.map(i => [i, $('#' + i)]));
+  const bars = $('#bars');
+  const money = v => new Intl.NumberFormat(lang === 'en' ? 'en-IE' : 'el-GR',
+    { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(v);
+
+  function tween(node, to, fmt) {
+    const from = Number(node.dataset.v || 0);
+    node.dataset.v = to;
+    if (reduced) { node.textContent = fmt(to); return; }
+    const t0 = performance.now(), d = 420;
+    (function run(now) {
+      const k = Math.min(1, (now - t0) / d);
+      const e = 1 - Math.pow(1 - k, 3);
+      node.textContent = fmt(from + (to - from) * e);
+      if (k < 1) requestAnimationFrame(run);
+    })(t0);
+  }
+
+  function calc() {
+    if (!el.aov) return;
+    const aov = +el.aov.value, mar = +el.mar.value, cac = +el.cac.value, ord = +el.ord.value;
+    ids.forEach(i => {
+      const r = el[i];
+      r.style.setProperty('--p', ((r.value - r.min) / (r.max - r.min) * 100) + '%');
+    });
+    $('#oAov').textContent = money(aov);
+    $('#oMar').textContent = mar + '%';
+    $('#oCac').textContent = money(cac);
+    $('#oOrd').textContent = ord.toFixed(1);
+
+    const unit = aov * mar / 100;
+    const first = unit - cac;
+    const year = unit * ord - cac;
+    const be = Math.max(1, Math.ceil(cac / Math.max(unit, .01)));
+
+    const vFirst = $('#vFirst'), vYear = $('#vYear'), vBreak = $('#vBreak');
+    tween(vFirst, first, money);
+    tween(vYear, year, money);
+    vFirst.className = 'stat__val ' + (first < 0 ? 'is-neg' : 'is-pos');
+    vYear.className = 'stat__val ' + (year < 0 ? 'is-neg' : 'is-pos');
+    vBreak.textContent = be > 12
+      ? T('12+', '12+')
+      : T(`${be}η`, be + (be === 1 ? 'st' : be === 2 ? 'nd' : be === 3 ? 'rd' : 'th'));
+    vBreak.className = 'stat__val ' + (be <= Math.round(ord) ? 'is-pos' : 'is-neg');
+
+    /* cumulative profit per order */
+    const n = 6;
+    const vals = Array.from({ length: n }, (_, k) => unit * (k + 1) - cac);
+    const max = Math.max(...vals, 1), min = Math.min(...vals, -1);
+    const range = max - min || 1;
+    const zero = (max / range) * 100;
+    bars.style.setProperty('--zero', zero.toFixed(2) + '%');
+    if (bars.children.length !== n) {
+      bars.innerHTML = Array.from({ length: n }, (_, k) =>
+        `<div class="bar"><span class="bar__fill"></span><span class="bar__n">${k + 1}</span></div>`).join('');
+    }
+    vals.forEach((v, k) => {
+      const fill = bars.children[k].firstElementChild;
+      const top = ((max - v) / range) * 100;
+      const reach = (k + 1) <= Math.round(ord + .0001);
+      if (v >= 0) { fill.style.top = top + '%'; fill.style.height = (zero - top) + '%'; }
+      else { fill.style.top = zero + '%'; fill.style.height = (top - zero) + '%'; }
+      fill.style.background = v < 0
+        ? 'color-mix(in srgb, var(--ember) ' + (reach ? 85 : 30) + '%, transparent)'
+        : 'color-mix(in srgb, var(--gold) ' + (reach ? 90 : 28) + '%, transparent)';
+      bars.children[k].classList.toggle('bar--ghost', !reach);
+      bars.children[k].style.opacity = reach ? '1' : '.7';
+    });
+
+    const note = $('#calcNote');
+    if (first >= 0) {
+      note.innerHTML = T(
+        `Σπάνιο και καλό: βγαίνετε κερδοφόροι από την <b>πρώτη</b> παραγγελία. Κάθε επόμενη είναι σχεδόν καθαρό περιθώριο — εκεί δουλεύουμε.`,
+        `Rare and good: you are profitable on the <b>first</b> order. Everything after it is close to pure margin — that is where we work.`);
+    } else if (year < 0) {
+      note.innerHTML = T(
+        `Με ${ord.toFixed(1)} παραγγελίες τον χρόνο, ο πελάτης <b>δεν προλαβαίνει</b> να αποσβέσει τα ${money(cac)} που κόστισε. Χρειάζεστε ${be} παραγγελίες. Αυτή είναι η διαφορά ανάμεσα στο «καλό ROAS» και στο να βγάζετε λεφτά.`,
+        `At ${ord.toFixed(1)} orders a year, the customer <b>never pays back</b> the ${money(cac)} they cost. You need ${be}. That gap is the difference between “good ROAS” and actually making money.`);
+    } else {
+      note.innerHTML = T(
+        `Η πρώτη παραγγελία σάς αφήνει ${money(first)}. Στα ίσια βγαίνετε στην <b>${be}η</b>. Σε 12 μήνες: <b>${money(year)}</b> ανά πελάτη — και αυτό είναι το νούμερο που κυνηγάμε, όχι το πρώτο.`,
+        `The first order leaves you ${money(first)}. You break even on order <b>${be}</b>. Over 12 months: <b>${money(year)}</b> per customer — that is the number we chase, not the first one.`);
+    }
+  }
+  ids.forEach(i => el[i]?.addEventListener('input', calc));
+
+  /* ── form ─────────────────────────────────── */
+  const form = $('#form');
+  form?.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = $('#fName'), mail = $('#fMail'), msg = $('#fMsg');
+    let bad = false;
+    [[name, v => v.trim().length > 1], [mail, v => /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(v.trim())]]
+      .forEach(([f, ok]) => {
+        const good = ok(f.value);
+        f.parentElement.classList.toggle('is-bad', !good);
+        if (!good) bad = true;
+      });
+    const out = $('#formMsg');
+    if (bad) {
+      out.style.color = 'var(--ember)';
+      out.textContent = T('Λείπει το όνομα ή το email — τα χρειαζόμαστε για να απαντήσουμε.',
+        'Name or email is missing — we need those to answer.');
+      return;
+    }
+    const body = [
+      `${T('Όνομα', 'Name')}: ${name.value}`,
+      `Email: ${mail.value}`,
+      `Website: ${$('#fSite').value || '—'}`,
+      `Budget: ${$('#fBud').value}`,
+      '',
+      msg.value || '—'
+    ].join('\n');
+    out.style.color = 'var(--gold)';
+    out.textContent = T('Ανοίγει το email σας. Απαντάμε εντός μίας εργάσιμης.',
+      'Opening your email client. We reply within one working day.');
+    window.location.href = `mailto:hello@theregulars.gr?subject=${encodeURIComponent(
+      T('Νέο project — ', 'New project — ') + name.value)}&body=${encodeURIComponent(body)}`;
+  });
+
+  /* ── go ───────────────────────────────────── */
+  applyLang();
+  setLoop(0);
+
+  /* rotate the loop gently until someone touches it */
+  if (!reduced) {
+    let auto = setInterval(() => setLoop((loopActive + 1) % LOOP.length), 4200);
+    $('#system')?.addEventListener('pointerdown', () => clearInterval(auto), { once: true });
+  }
+})();
+
+</script>
