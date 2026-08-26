@@ -22,8 +22,7 @@ versions/<n>/           παγωμένα αντίγραφα κάθε εκδοχ�
 |---|-------|-----|---------|
 | 1 | ember / the field | `versions/1/` | [link](https://claude.ai/code/artifact/350591da-3eb1-4119-bea0-5573762e844f) |
 | 2 | the dot matrix | `versions/2/` | [link](https://claude.ai/code/artifact/77b39031-2088-4113-a9da-3578901d361b) |
-| 3 | the signal | `versions/3/` | [link](https://claude.ai/code/artifact/0db45aa3-8896-48fb-859d-c82b8fa33202) |
-| **4** | **σοβαρό προφίλ** | `versions/4/` + **root (ενεργή)** | [link](https://claude.ai/code/artifact/dd3600e2-b64c-4984-adc4-c8d933ea2c65) |
+| **3** | **layout της 1, χρώματα της 2** | `versions/3/` + **root (ενεργή)** | [link](https://claude.ai/code/artifact/0db45aa3-8896-48fb-859d-c82b8fa33202) |
 
 Η ενεργή έκδοση ζει πάντα στο root. Όταν κλειδώνει μια εκδοχή, αντιγράφεται σε
 `versions/<n>/` με δικό της `NOTES.md`. Η **1** ήταν πρόταση ταυτότητας πάνω στο αρχικό
@@ -31,11 +30,13 @@ brand brief· η **2** υλοποίησε το επίσημο brand package· η
 
 ---
 
-## Έκδοση 4 — τι είναι
+## Έκδοση 3 — τι είναι
 
-Αναθεώρηση της 3 σε τρία μέτωπα.
+Το layout της **1** με την παλέτα και το σήμα της **2**, χωρίς το section των μαθηματικών,
+σε εταιρικό τόνο, με σελίδα ανά επιλογή μενού και τους δύο διακόπτες της 1 (ΕΛ/EN,
+φωτεινό/σκοτεινό).
 
-**Τυπογραφία, πίσω στις γραμματοσειρές της 1.** Inter Tight στους τίτλους, Inter στο σώμα
+**Τυπογραφία, οι γραμματοσειρές της 1.** Inter Tight στους τίτλους, Inter στο σώμα
 κειμένου, Literata italic στον ορισμό και τα παραθέματα, IBM Plex Mono στις ετικέτες και
 τους αριθμούς. Το σώμα κειμένου έφυγε από monospace.
 
@@ -55,7 +56,7 @@ brand brief· η **2** υλοποίησε το επίσημο brand package· η
 
 Σελίδες: `#/` · `#/system` · `#/services` · `#/engagements` · `#/process` · `#/company` ·
 `#/contact`. Παραμένουν οι διακόπτες EL/EN και φωτεινού/σκοτεινού. Παλέτα και σήμα από το
-brand package. Πλήρεις σημειώσεις: `versions/4/NOTES.md`.
+brand package. Πλήρεις σημειώσεις: `versions/3/NOTES.md`.
 
 ### Πριν πάει live
 

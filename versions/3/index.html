@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>The Regulars · Μετράμε ποιος επιστρέφει</title>
-<meta name="description" content="Performance, web και social για brands που ζουν από την επανάληψη. Μετράμε ποιος επιστρέφει, και το λέμε σε απλά νούμερα.">
+<title>The Regulars · Performance, websites και social</title>
+<meta name="description" content="Ανεξάρτητο agency στην Αθήνα. Performance advertising και ανάπτυξη website ως ενιαίο σύστημα, με μέτρηση που διαχωρίζει τον νέο από τον επαναλαμβανόμενο πελάτη.">
 <meta name="theme-color" content="#12131C">
 <meta property="og:title" content="The Regulars">
-<meta property="og:description" content="Μετράμε ποιος επιστρέφει, και το λέμε σε απλά νούμερα.">
+<meta property="og:description" content="Performance advertising και websites ως ενιαίο σύστημα, με μέτρηση επαναληπτικότητας.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%231924e6'/><g transform='translate(23.4,16.4)' fill='%23f6fbfd'><rect width='11.2' height='11.2' rx='3.4'/><rect x='14' width='11.2' height='11.2' rx='3.4'/><rect x='28' width='11.2' height='11.2' rx='3.4'/><rect y='14' width='11.2' height='11.2' rx='3.4'/><rect x='42' y='14' width='11.2' height='11.2' rx='3.4'/><rect y='28' width='11.2' height='11.2' rx='3.4'/><rect x='14' y='28' width='11.2' height='11.2' rx='3.4'/><rect x='28' y='28' width='11.2' height='11.2' rx='3.4'/><rect y='42' width='11.2' height='11.2' rx='3.4'/><rect x='28' y='42' width='11.2' height='11.2' rx='3.4'/><rect y='56' width='11.2' height='11.2' rx='3.4'/><rect x='42' y='56' width='11.2' height='11.2' rx='3.4' fill='%23d5fa33'/></g></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&family=Literata:ital,opsz,wght@1,7..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
@@ -30,7 +30,7 @@
   </defs>
 </svg>
 
-<canvas id="signal" aria-hidden="true"></canvas>
+<canvas id="backdrop" aria-hidden="true"></canvas>
 <a class="skip" href="#main" data-en="Skip to content">Στο περιεχόμενο</a>
 
 <header class="nav" id="nav">
@@ -45,16 +45,16 @@
 
     <nav class="nav__links" aria-label="Κύρια πλοήγηση">
       <a href="#/system" data-en="The system">Το σύστημα</a>
-      <a href="#/services" data-en="What we do">Τι κάνουμε</a>
-      <a href="#/work" data-en="Work">Η δουλειά</a>
-      <a href="#/process" data-en="How we work">Πώς δουλεύουμε</a>
-      <a href="#/about" data-en="Us">Εμείς</a>
+      <a href="#/services" data-en="Services">Υπηρεσίες</a>
+      <a href="#/engagements" data-en="Engagements">Συνεργασία</a>
+      <a href="#/process" data-en="Process">Διαδικασία</a>
+      <a href="#/company" data-en="Company">Εταιρεία</a>
     </nav>
 
     <div class="nav__end">
       <button class="chip" id="lang" type="button" aria-label="Language"><span>EN</span></button>
       <button class="chip" id="theme" type="button" aria-label="Theme"><span class="theme-ico" aria-hidden="true"></span></button>
-      <a class="btn btn--pri btn--sm" href="#/contact" data-en="Let’s talk">Ας μιλήσουμε</a>
+      <a class="btn btn--pri btn--sm" href="#/contact" data-en="Contact">Επικοινωνία</a>
       <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
     </div>
   </div>
@@ -76,23 +76,23 @@
     </div>
 
     <div class="wrap hero__grid">
-      <p class="eyebrow rv" data-en="Performance · Web · Social · Athens">Performance · Web · Social · Αθήνα</p>
+      <p class="eyebrow rv" data-en="Performance advertising · Websites · Social">Performance advertising · Websites · Social</p>
       <h1 class="rv">
         <span data-en="We measure who">Μετράμε ποιος</span><br>
         <span data-en="comes back">επιστρέφει</span><span class="dot">.</span>
       </h1>
-      <p class="lede rv" data-en="Anyone can buy a first sale. We build the second, and the third. Then we show it in plain numbers, not a flattering chart.">
-        Την πρώτη πώληση την αγοράζει ο καθένας. Εμείς χτίζουμε τη δεύτερη και την τρίτη. Και μετά το δείχνουμε σε απλά νούμερα, όχι σε κολακευτικό γράφημα.
+      <p class="lede rv" data-en="We plan and run paid media and the website as a single system, with measurement that separates new from returning customers in every report.">
+        Σχεδιάζουμε και τρέχουμε την αγορά μέσων και το website ως ενιαίο σύστημα, με μέτρηση που διαχωρίζει τον νέο από τον επαναλαμβανόμενο πελάτη σε κάθε αναφορά.
       </p>
       <div class="row rv">
-        <a class="btn btn--pri" href="#/contact" data-en="Start a conversation">Ας μιλήσουμε</a>
-        <a class="btn btn--ghost" href="#/system" data-en="See the system">Δες το σύστημα</a>
+        <a class="btn btn--pri" href="#/contact" data-en="Contact us">Επικοινωνία</a>
+        <a class="btn btn--ghost" href="#/system" data-en="The system">Το σύστημα</a>
       </div>
 
       <figure class="define rv">
         <figcaption class="define__word"><span>regular</span> <em data-en="/ˈrɛɡjʊlə/ noun">ο θαμώνας, ουσ.</em></figcaption>
-        <p data-en="The one who walks in, gets called by name, and never has to look at the menu.">
-          Αυτός που μπαίνει, τον ξέρουν με το όνομά του και δεν χρειάζεται να κοιτάξει μενού.
+        <p data-en="The customer who returns without a second acquisition cost. It is the metric the whole engagement is organised around.">
+          Ο πελάτης που επιστρέφει χωρίς δεύτερο κόστος απόκτησης. Είναι ο δείκτης γύρω από τον οποίο οργανώνεται η συνεργασία.
         </p>
       </figure>
     </div>
@@ -100,68 +100,30 @@
     <div class="hero__scroll" aria-hidden="true"><span data-en="scroll">σκρολάρετε</span><i></i></div>
   </section>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <span data-en="Retention over reach">Επανάληψη πάνω από εμβέλεια</span><b>●</b>
-      <span data-en="Plain numbers">Απλά νούμερα</span><b>●</b>
-      <span data-en="We never oversell">Ποτέ υπερπώληση</span><b>●</b>
-      <span data-en="The long game">Το μακρύ παιχνίδι</span><b>●</b>
-      <span data-en="Retention over reach">Επανάληψη πάνω από εμβέλεια</span><b>●</b>
-      <span data-en="Plain numbers">Απλά νούμερα</span><b>●</b>
-      <span data-en="We never oversell">Ποτέ υπερπώληση</span><b>●</b>
-      <span data-en="The long game">Το μακρύ παιχνίδι</span><b>●</b>
-    </div>
-  </div>
-
-  <section class="sect" data-ground="base">
-    <div class="wrap">
-      <div class="proof">
-        <div class="stat rv"><p class="stat__n" data-count="41" data-suffix="%">41%</p><p class="stat__l" data-en="of client revenue, returning">του τζίρου των πελατών μας, επαναλαμβανόμενο</p></div>
-        <div class="stat rv"><p class="stat__n" data-count="3.1" data-suffix="&times;">3.1&times;</p><p class="stat__l" data-en="average LTV : CAC">μέσο LTV : CAC</p></div>
-        <div class="stat rv"><p class="stat__n" data-count="6" data-suffix=" mo">6 mo</p><p class="stat__l" data-en="the horizon we measure to">ο ορίζοντας που μετράμε</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sect" data-ground="raise" id="name">
+  <section class="sect" data-ground="raise">
     <header class="wrap s-head rv">
-      <p class="tag" data-en="01 — The name">01 — Το όνομα</p>
-      <h2 data-en="It works in two directions. On purpose.">Δουλεύει προς δύο κατευθύνσεις. Επίτηδες.</h2>
+      <p class="tag" data-en="Services">Υπηρεσίες</p>
+      <h2 data-en="Three services under one measurement model">Τρεις υπηρεσίες, ένα μοντέλο μέτρησης</h2>
+      <p class="sub" data-en="Media buying, the site the traffic lands on, and the channel that keeps the brand present between purchases.">Η αγορά μέσων, το site στο οποίο προσγειώνεται η επισκεψιμότητα, και το κανάλι που κρατάει το brand παρόν ανάμεσα στις αγορές.</p>
     </header>
-    <div class="wrap duo">
-      <article class="card rv">
-        <p class="card__no">I.</p>
-        <h3 data-en="What we are to you">Τι είμαστε για εσάς</h3>
-        <p data-en="Not an external vendor that shows up for the monthly review. A daily presence: people who know your business from the inside, who know that August is dead and that your supplier is late again.">
-          Όχι εξωτερικός προμηθευτής που εμφανίζεται στο μηνιαίο review. Καθημερινή παρουσία: άνθρωποι που ξέρουν τη δουλειά σας από μέσα, που ξέρουν ότι ο Αύγουστος είναι νεκρός και ότι ο προμηθευτής άργησε πάλι.
-        </p>
-      </article>
-      <article class="card rv">
-        <p class="card__no">II.</p>
-        <h3 data-en="What we build for you">Τι φτιάχνουμε για εσάς</h3>
-        <p data-en="Regulars. The first buyer almost always costs you money. The profit lives in the second and the third purchase, so that is what we report on.">
-          Θαμώνες. Ο πρώτος αγοραστής σχεδόν πάντα βγαίνει ζημιά. Τα χρήματα είναι στη δεύτερη και την τρίτη αγορά, και αυτό είναι που σας δείχνουμε.
-        </p>
-      </article>
-    </div>
     <div class="wrap">
-      <div class="enemy rv">
-        <p class="tag" data-en="What we are against">Ο εχθρός</p>
-        <ul>
-          <li><strong data-en="Overselling.">Η υπερπώληση.</strong>
-            <span data-en="Promises with nothing behind them. Reports built to impress instead of inform. Clients who never understood what they were paying for.">Υποσχέσεις χωρίς στήριξη. Reports φτιαγμένα να εντυπωσιάζουν αντί να ενημερώνουν. Πελάτες που δεν καταλάβαιναν τι πλήρωναν.</span></li>
-          <li><strong data-en="Acquisition at any cost.">Το acquisition πάση θυσία.</strong>
-            <span data-en="Agencies that show you first-purchase ROAS and stay very quiet about the fact that the customer never came back.">Agencies που δείχνουν ROAS πρώτης αγοράς και αποσιωπούν ότι ο πελάτης δεν ξαναγύρισε ποτέ.</span></li>
-        </ul>
+      <div class="cards">
+        <article class="card rv"><p class="card__no">01</p><h3>Performance advertising</h3>
+          <p data-en="Meta and Google, planned against repeat purchase. Account structure, server-side tracking, feed and audience management.">Meta και Google, σχεδιασμένα με κριτήριο την επαναληπτική αγορά. Δομή λογαριασμού, server-side tracking, διαχείριση feed και κοινών.</p></article>
+        <article class="card rv"><p class="card__no">02</p><h3>Websites &amp; e-shops</h3>
+          <p data-en="Design and development on Shopify, WooCommerce or headless. Speed, checkout, product pages and the reorder path.">Σχεδιασμός και ανάπτυξη σε Shopify, WooCommerce ή headless. Ταχύτητα, checkout, σελίδες προϊόντος και η διαδρομή επαναπαραγγελίας.</p></article>
+        <article class="card rv"><p class="card__no">03</p><h3>Social media</h3>
+          <p data-en="Content and community for the period between orders, feeding the paid accounts with what already performs.">Περιεχόμενο και community για το διάστημα ανάμεσα στις παραγγελίες, που τροφοδοτεί τους paid λογαριασμούς με ό,τι ήδη αποδίδει.</p></article>
       </div>
+      <a class="more rv" href="#/services" data-en="Full scope per service →">Αναλυτικό scope ανά υπηρεσία →</a>
     </div>
   </section>
 
   <section class="sect" data-ground="base">
     <header class="wrap s-head rv">
-      <p class="tag" data-en="02 — The system">02 — Το σύστημα</p>
-      <h2 data-en="Ads and site are one machine.">Τα ads και το site είναι μία μηχανή.</h2>
-      <p class="sub" data-en="Everything else exists to keep it running. The whole loop lives on its own page.">Τα υπόλοιπα υπάρχουν για να τη στηρίζουν. Όλος ο κύκλος έχει δική του σελίδα.</p>
+      <p class="tag" data-en="The system">Το σύστημα</p>
+      <h2 data-en="Media and site work as one machine">Η αγορά μέσων και το site λειτουργούν ως μία μηχανή</h2>
+      <p class="sub" data-en="Six stages, one loop. Every stage is measured, and each one is judged by what it does to the next.">Έξι στάδια, ένας κύκλος. Κάθε στάδιο μετριέται και κρίνεται από το τι κάνει στο επόμενο.</p>
     </header>
     <div class="wrap">
       <div class="loop loop--teaser rv">
@@ -171,68 +133,66 @@
             <circle class="loop__flow" cx="210" cy="210" r="150"/>
             <g class="loop__nodes"></g>
             <text class="loop__center" x="210" y="205" text-anchor="middle">LTV</text>
-            <text class="loop__center loop__center--sm" x="210" y="232" text-anchor="middle" data-en="the loop that pays">ο κύκλος που πληρώνει</text>
+            <text class="loop__center loop__center--sm" x="210" y="232" text-anchor="middle" data-en="lifetime value">αξία διάρκειας ζωής</text>
           </svg>
         </div>
         <ol class="loop__list" id="loopList"></ol>
       </div>
-      <a class="more rv" href="#/system" data-en="The whole system →">Ολόκληρο το σύστημα →</a>
+      <a class="more rv" href="#/system" data-en="How we measure it →">Πώς το μετράμε →</a>
     </div>
   </section>
 
   <section class="sect" data-ground="raise">
     <header class="wrap s-head rv">
-      <p class="tag" data-en="03 — What we do">03 — Τι κάνουμε</p>
-      <h2 data-en="Three services, one job.">Τρεις υπηρεσίες, μία δουλειά.</h2>
+      <p class="tag" data-en="Method">Η μέθοδος</p>
+      <h2 data-en="Four operating principles">Τέσσερις αρχές λειτουργίας</h2>
     </header>
     <div class="wrap">
-      <div class="cards">
-        <article class="card card--svc rv"><p class="card__no">01</p><h3>Performance</h3>
-          <p data-en="Paid media bought against repeat purchase, not first-click applause.">Paid media αγορασμένο με κριτήριο την επαναληπτική αγορά, όχι το χειροκρότημα του πρώτου κλικ.</p></article>
-        <article class="card card--svc rv"><p class="card__no">02</p><h3>Web</h3>
-          <p data-en="Sites and shops that make the second order easy, and measurable from day one.">Sites και e-shops που κάνουν τη δεύτερη παραγγελία εύκολη, και μετρήσιμα από την πρώτη μέρα.</p></article>
-        <article class="card card--svc rv"><p class="card__no">03</p><h3>Social</h3>
-          <p data-en="The channel that keeps you in the room between orders.">Το κανάλι που σας κρατάει στο κάδρο ανάμεσα στις παραγγελίες.</p></article>
+      <div class="rules">
+        <div class="rule rv"><h3 data-en="Measurement before spend">Μέτρηση πριν από τη δαπάνη</h3>
+          <p data-en="Tracking, events and attribution are installed and verified before the account is activated, so every report stands on the same data.">Tracking, events και attribution εγκαθίστανται και επαληθεύονται πριν ενεργοποιηθεί ο λογαριασμός, ώστε κάθε αναφορά να πατάει στα ίδια δεδομένα.</p></div>
+        <div class="rule rv"><h3 data-en="Cohorts, not isolated campaigns">Cohorts, όχι μεμονωμένες καμπάνιες</h3>
+          <p data-en="Customer groups are followed over time. Campaign performance is read against what those groups do next.">Οι ομάδες πελατών παρακολουθούνται στον χρόνο. Η απόδοση των καμπανιών διαβάζεται σε σχέση με το τι κάνουν αυτές οι ομάδες στη συνέχεια.</p></div>
+        <div class="rule rv"><h3 data-en="One system, two touchpoints">Ένα σύστημα, δύο σημεία επαφής</h3>
+          <p data-en="Media and site share objectives. A change on one side is evaluated by its effect on the other.">Μέσα και site μοιράζονται στόχους. Μια αλλαγή στη μία πλευρά αποτιμάται από την επίδρασή της στην άλλη.</p></div>
+        <div class="rule rule--ink rv"><h3 data-en="Fixed indicators">Σταθεροί δείκτες<span class="dot">.</span></h3>
+          <p data-en="The same indicators, in the same order, every month, with a note whenever the methodology itself changes.">Οι ίδιοι δείκτες, με την ίδια σειρά, κάθε μήνα, με σημείωση όποτε αλλάζει η ίδια η μεθοδολογία.</p></div>
       </div>
-      <a class="more rv" href="#/services" data-en="What each one includes →">Τι περιλαμβάνει η καθεμία →</a>
     </div>
   </section>
 
   <section class="sect" data-ground="base">
     <header class="wrap s-head rv">
-      <p class="tag" data-en="04 — Work">04 — Η δουλειά</p>
-      <h2 data-en="Small list, on purpose.">Μικρή λίστα, επίτηδες.</h2>
+      <p class="tag" data-en="Engagements">Συνεργασία</p>
+      <h2 data-en="Three ways to work with us">Τρεις τρόποι συνεργασίας</h2>
     </header>
     <div class="wrap">
       <div class="tiles">
-        <a class="tile tile--blue rv" href="#/work">
-          <span class="tile__k" data-en="Case study">Case study</span>
-          <span class="tile__h">Yum Tales Supply</span>
-          <span class="tile__m" data-en="Food supply · 12 months">Τρόφιμα · 12 μήνες</span>
-          <span class="tile__n">44%<i data-en="returning revenue">επαναλαμβανόμενος τζίρος</i></span>
+        <a class="tile tile--blue rv" href="#/engagements">
+          <span class="tile__k" data-en="Monthly">Μηνιαία</span>
+          <span class="tile__h" data-en="Performance retainer">Retainer performance</span>
+          <span class="tile__m" data-en="Media planning and buying, measurement, monthly reporting and a weekly working call.">Σχεδιασμός και αγορά μέσων, μέτρηση, μηνιαία αναφορά και εβδομαδιαίο call εργασίας.</span>
         </a>
         <div class="tile tile--ink rv">
-          <span class="tile__k" data-en="In progress">Σε εξέλιξη</span>
-          <span class="tile__h" data-en="Household brand, Athens">Brand οικιακών, Αθήνα</span>
-          <span class="tile__m" data-en="Web rebuild and measurement">Ανακατασκευή site και μέτρηση</span>
-          <span class="tile__n">Q3<i data-en="first report due">πρώτο report</i></span>
+          <span class="tile__k" data-en="Project">Έργο</span>
+          <span class="tile__h" data-en="Website or e-shop">Website ή e-shop</span>
+          <span class="tile__m" data-en="Design, development and launch, with measurement wired in before go-live.">Σχεδιασμός, ανάπτυξη και launch, με τη μέτρηση στημένη πριν βγει live.</span>
         </div>
         <div class="tile rv">
-          <span class="tile__k" data-en="Under wraps">Υπό NDA</span>
-          <span class="tile__h" data-en="DTC skincare">DTC skincare</span>
-          <span class="tile__m" data-en="Performance, from month one">Performance, από τον πρώτο μήνα</span>
-          <span class="tile__n">NDA<i data-en="we will publish it when there is something real to publish">θα το δημοσιεύσουμε όταν υπάρχει κάτι πραγματικό</i></span>
+          <span class="tile__k" data-en="One-off">Εφάπαξ</span>
+          <span class="tile__h" data-en="Measurement audit">Audit μέτρησης</span>
+          <span class="tile__m" data-en="Review of tracking, attribution and reporting, delivered as a written plan of corrections.">Έλεγχος tracking, attribution και αναφορών, με παραδοτέο γραπτό πλάνο διορθώσεων.</span>
         </div>
       </div>
-      <a class="more rv" href="#/work" data-en="The case study →">Το case study →</a>
+      <a class="more rv" href="#/engagements" data-en="Scope, deliverables, requirements →">Scope, παραδοτέα, προϋποθέσεις →</a>
     </div>
   </section>
 
   <section class="cta" data-ground="blue">
     <div class="wrap cta__in">
-      <h2 class="rv" data-en="We would rather tell you the boring truth.">Προτιμάμε να σας πούμε τη βαρετή αλήθεια<span class="dot">.</span></h2>
-      <p class="sub rv" data-en="Thirty minutes, no deck. If we are not the right people for it, we will say so.">Τριάντα λεπτά, χωρίς παρουσίαση. Αν δεν είμαστε οι σωστοί άνθρωποι, θα σας το πούμε.</p>
-      <a class="btn btn--on-blue rv" href="#/contact" data-en="Start a conversation">Ας μιλήσουμε</a>
+      <h2 class="rv" data-en="Send us the brief.">Στείλτε μας το πλαίσιο του έργου<span class="dot">.</span></h2>
+      <p class="sub rv" data-en="We reply with an approach, a timeline and a cost estimate.">Απαντάμε με προσέγγιση, χρονοδιάγραμμα και εκτίμηση κόστους.</p>
+      <a class="btn btn--on-blue rv" href="#/contact" data-en="Contact">Επικοινωνία</a>
     </div>
   </section>
 </div>
@@ -242,9 +202,9 @@
   <section class="page-head" data-ground="base">
     <div class="wrap">
       <p class="tag rv" data-en="The system">Το σύστημα</p>
-      <h1 class="rv" data-en="360, with performance and the website at the centre.">360, με επίκεντρο performance και website<span class="dot">.</span></h1>
-      <p class="lede rv" data-en="Not a service menu. The ads and the site are one machine, and everything else exists to keep it running. Tap a step.">
-        Δεν είναι μενού υπηρεσιών. Τα ads και το site είναι μία μηχανή, και τα υπόλοιπα υπάρχουν για να τη στηρίζουν. Πατήστε ένα βήμα.
+      <h1 class="rv" data-en="Media, site and measurement as one operation.">Μέσα, site και μέτρηση ως μία λειτουργία<span class="dot">.</span></h1>
+      <p class="lede rv" data-en="The loop below is how an account is run. Each stage has an owner, a measurement and a decision it feeds.">
+        Ο κύκλος παρακάτω είναι ο τρόπος με τον οποίο τρέχει ένας λογαριασμός. Κάθε στάδιο έχει υπεύθυνο, μέτρηση και μια απόφαση που τροφοδοτεί.
       </p>
     </div>
   </section>
@@ -258,7 +218,7 @@
             <circle class="loop__flow" cx="210" cy="210" r="150"/>
             <g class="loop__nodes"></g>
             <text class="loop__center" x="210" y="205" text-anchor="middle">LTV</text>
-            <text class="loop__center loop__center--sm" x="210" y="232" text-anchor="middle" data-en="the loop that pays">ο κύκλος που πληρώνει</text>
+            <text class="loop__center loop__center--sm" x="210" y="232" text-anchor="middle" data-en="lifetime value">αξία διάρκειας ζωής</text>
           </svg>
         </div>
         <ol class="loop__list" id="loopList2"></ol>
@@ -268,24 +228,28 @@
 
   <section class="sect" data-ground="base">
     <header class="wrap s-head rv">
-      <p class="tag" data-en="Measurement">Η μέτρηση</p>
-      <h2 data-en="The four numbers you get every month">Τα τέσσερα νούμερα που παίρνετε κάθε μήνα</h2>
-      <p class="sub" data-en="Same four, same order, whether they flatter us or not.">Τα ίδια τέσσερα, με την ίδια σειρά, είτε μας κολακεύουν είτε όχι.</p>
+      <p class="tag" data-en="Reporting">Η αναφορά</p>
+      <h2 data-en="The four indicators in every monthly report">Οι τέσσερις δείκτες κάθε μηνιαίας αναφοράς</h2>
+      <p class="sub" data-en="Defined at the start of the engagement, calculated the same way every month, with the method documented.">Ορίζονται στην αρχή της συνεργασίας, υπολογίζονται με τον ίδιο τρόπο κάθε μήνα, με τη μέθοδο τεκμηριωμένη.</p>
     </header>
     <div class="wrap">
       <ol class="nums">
-        <li class="rv"><span>01</span><h3 data-en="New customers">Νέοι πελάτες</h3><p data-en="How many people bought for the first time, and what each one cost.">Πόσοι αγόρασαν πρώτη φορά και πόσο κόστισε ο καθένας.</p></li>
-        <li class="rv"><span>02</span><h3 data-en="Returning revenue">Επαναλαμβανόμενος τζίρος</h3><p data-en="What share of the month came from people who already knew you.">Τι ποσοστό του μήνα ήρθε από ανθρώπους που σας ήξεραν ήδη.</p></li>
-        <li class="rv"><span>03</span><h3 data-en="Repeat-order rate">Ρυθμός επανάληψης</h3><p data-en="How many buyers came back inside the window, not ever.">Πόσοι αγοραστές επέστρεψαν μέσα στο παράθυρο, όχι «κάποτε».</p></li>
-        <li class="rv"><span>04</span><h3 data-en="Contribution after ad spend">Περιθώριο μετά τα ads</h3><p data-en="What is left when the media, the discounts and the returns come out.">Τι μένει όταν αφαιρεθούν media, εκπτώσεις και επιστροφές.</p></li>
+        <li class="rv"><span>01</span><h3 data-en="New customers and their cost">Νέοι πελάτες και το κόστος τους</h3>
+          <p data-en="First-time buyers in the period and the media cost attributed to acquiring them.">Όσοι αγόρασαν πρώτη φορά στην περίοδο και το διαφημιστικό κόστος που αποδίδεται στην απόκτησή τους.</p></li>
+        <li class="rv"><span>02</span><h3 data-en="Returning revenue share">Μερίδιο επαναλαμβανόμενου τζίρου</h3>
+          <p data-en="What proportion of revenue came from customers who had already bought before the period.">Τι ποσοστό του τζίρου προήλθε από πελάτες που είχαν ήδη αγοράσει πριν από την περίοδο.</p></li>
+        <li class="rv"><span>03</span><h3 data-en="Repeat-order rate">Ρυθμός επανάληψης</h3>
+          <p data-en="The share of a cohort that ordered again inside a defined window, not at any point in the future.">Το ποσοστό ενός cohort που παρήγγειλε ξανά μέσα σε ορισμένο παράθυρο, όχι «κάποια στιγμή».</p></li>
+        <li class="rv"><span>04</span><h3 data-en="Contribution after media">Περιθώριο μετά τα μέσα</h3>
+          <p data-en="Gross margin less media, discounts and returns, so the result can be read next to the P&amp;L.">Μεικτό περιθώριο μείον μέσα, εκπτώσεις και επιστροφές, ώστε το αποτέλεσμα να διαβάζεται δίπλα στο P&amp;L.</p></li>
       </ol>
     </div>
   </section>
 
   <section class="cta" data-ground="blue">
     <div class="wrap cta__in">
-      <h2 class="rv" data-en="Want this running on your account?">Θέλετε να τρέχει στον λογαριασμό σας<span class="dot">;</span></h2>
-      <a class="btn btn--on-blue rv" href="#/contact" data-en="Start a conversation">Ας μιλήσουμε</a>
+      <h2 class="rv" data-en="Ask for the reporting template.">Ζητήστε το υπόδειγμα αναφοράς<span class="dot">.</span></h2>
+      <a class="btn btn--on-blue rv" href="#/contact" data-en="Contact">Επικοινωνία</a>
     </div>
   </section>
 </div>
@@ -294,10 +258,10 @@
 <div class="route" data-route="services" hidden>
   <section class="page-head" data-ground="base">
     <div class="wrap">
-      <p class="tag rv" data-en="What we do">Τι κάνουμε</p>
-      <h1 class="rv" data-en="Three services, one measurement model.">Τρεις υπηρεσίες, μία μέτρηση<span class="dot">.</span></h1>
-      <p class="lede rv" data-en="They share one measurement model, so nothing can hide behind a good-looking channel.">
-        Μοιράζονται ένα μοντέλο μέτρησης, ώστε τίποτα να μην κρύβεται πίσω από ένα κανάλι που δείχνει ωραίο.
+      <p class="tag rv" data-en="Services">Υπηρεσίες</p>
+      <h1 class="rv" data-en="Scope, and how each service is reported.">Scope, και πώς αναφέρεται κάθε υπηρεσία<span class="dot">.</span></h1>
+      <p class="lede rv" data-en="The three services share one measurement model, so performance cannot be attributed to a channel that simply reports itself well.">
+        Οι τρεις υπηρεσίες μοιράζονται ένα μοντέλο μέτρησης, ώστε η απόδοση να μην αποδίδεται σε ένα κανάλι επειδή απλώς αναφέρει καλά τον εαυτό του.
       </p>
     </div>
   </section>
@@ -307,74 +271,58 @@
       <div class="acc" id="acc">
         <article class="acc__item is-open rv">
           <button class="acc__head" type="button" aria-expanded="true">
-            <span class="acc__no">01</span><span class="acc__title">Performance</span>
-            <span class="acc__weight" data-en="core">πυρήνας</span><span class="acc__ico" aria-hidden="true"></span>
+            <span class="acc__no">01</span><span class="acc__title">Performance advertising</span><span class="acc__ico" aria-hidden="true"></span>
           </button>
           <div class="acc__body"><div>
-            <p data-en="Meta and Google, bought against repeat purchase. We split new from returning revenue at the account level, so a good month cannot hide behind a discount. Creative is tested in small, boring increments.">
-              Meta και Google, αγορασμένα με κριτήριο την επαναληπτική αγορά. Διαχωρίζουμε νέο από επαναλαμβανόμενο τζίρο μέσα στον λογαριασμό, ώστε ένας καλός μήνας να μην κρύβεται πίσω από μια έκπτωση. Το creative δοκιμάζεται σε μικρά, βαρετά βήματα.
+            <p data-en="Account structure, budget allocation and creative testing on Meta and Google, planned against repeat purchase rather than first-click volume. Server-side tracking, product feed management, audience architecture and incrementality checks where the account size allows.">
+              Δομή λογαριασμού, κατανομή budget και δοκιμές creative σε Meta και Google, σχεδιασμένα με κριτήριο την επαναληπτική αγορά και όχι τον όγκο του πρώτου κλικ. Server-side tracking, διαχείριση product feed, αρχιτεκτονική κοινών και έλεγχοι incrementality όπου το μέγεθος του λογαριασμού το επιτρέπει.
             </p>
-            <p class="how"><b data-en="How we report it">Πώς το αναφέρουμε</b>
-              <span data-en="New customers, cost per new customer, returning revenue share, contribution after ad spend.">Νέοι πελάτες, κόστος ανά νέο πελάτη, μερίδιο επαναλαμβανόμενου τζίρου, περιθώριο μετά τα ads.</span></p>
-            <ul class="pills"><li>Meta Ads</li><li>Google Ads</li><li>Retargeting</li><li>GA4 / Server-side</li><li>Feed &amp; Shopping</li></ul>
+            <p class="how"><b data-en="Reported as">Αναφέρεται ως</b>
+              <span data-en="New customers, cost per new customer, returning revenue share, contribution after media.">Νέοι πελάτες, κόστος ανά νέο πελάτη, μερίδιο επαναλαμβανόμενου τζίρου, περιθώριο μετά τα μέσα.</span></p>
+            <ul class="pills"><li>Meta Ads</li><li>Google Ads</li><li>Shopping &amp; Feed</li><li>GA4 / Server-side</li><li>Retargeting</li></ul>
           </div></div>
         </article>
 
         <article class="acc__item rv">
           <button class="acc__head" type="button" aria-expanded="false">
-            <span class="acc__no">02</span><span class="acc__title">Web</span>
-            <span class="acc__weight" data-en="core">πυρήνας</span><span class="acc__ico" aria-hidden="true"></span>
+            <span class="acc__no">02</span><span class="acc__title">Websites &amp; e-shops</span><span class="acc__ico" aria-hidden="true"></span>
           </button>
           <div class="acc__body"><div>
-            <p data-en="Sites and shops in Shopify or headless, built so the second order takes two taps. Speed, clarity, and a checkout that does not lose people. Measurement is wired in before launch, not after.">
-              Sites και e-shops σε Shopify ή headless, φτιαγμένα ώστε η δεύτερη παραγγελία να θέλει δύο κλικ. Ταχύτητα, καθαρότητα και ένα checkout που δεν χάνει κόσμο. Η μέτρηση μπαίνει πριν το launch, όχι μετά.
+            <p data-en="Design and development on Shopify, WooCommerce or a headless stack. Information architecture, product and category templates, checkout, performance budget and the reorder path for existing customers. Analytics and event tracking are specified and tested before launch.">
+              Σχεδιασμός και ανάπτυξη σε Shopify, WooCommerce ή headless. Αρχιτεκτονική πληροφορίας, πρότυπα προϊόντος και κατηγορίας, checkout, performance budget και η διαδρομή επαναπαραγγελίας για υπάρχοντες πελάτες. Analytics και event tracking προδιαγράφονται και ελέγχονται πριν το launch.
             </p>
-            <p class="how"><b data-en="How we report it">Πώς το αναφέρουμε</b>
-              <span data-en="Conversion by customer type, reorder rate, real-device speed, and what changed since the last release.">Μετατροπή ανά τύπο πελάτη, ρυθμός επαναπαραγγελίας, ταχύτητα σε πραγματικές συσκευές, τι άλλαξε από την τελευταία έκδοση.</span></p>
-            <ul class="pills"><li>Shopify</li><li>Headless</li><li>UX / UI</li><li>CRO</li><li>Core Web Vitals</li></ul>
+            <p class="how"><b data-en="Reported as">Αναφέρεται ως</b>
+              <span data-en="Conversion by customer type, reorder rate, field speed data, and the release log.">Μετατροπή ανά τύπο πελάτη, ρυθμός επαναπαραγγελίας, δεδομένα ταχύτητας πεδίου και το ιστορικό εκδόσεων.</span></p>
+            <ul class="pills"><li>Shopify</li><li>WooCommerce</li><li>Headless</li><li>UX / UI</li><li>CRO</li><li>Core Web Vitals</li></ul>
           </div></div>
         </article>
 
         <article class="acc__item rv">
           <button class="acc__head" type="button" aria-expanded="false">
-            <span class="acc__no">03</span><span class="acc__title">Social</span>
-            <span class="acc__weight" data-en="support">υποστήριξη</span><span class="acc__ico" aria-hidden="true"></span>
+            <span class="acc__no">03</span><span class="acc__title">Social media</span><span class="acc__ico" aria-hidden="true"></span>
           </button>
           <div class="acc__body"><div>
-            <p data-en="The channel between orders. Content your existing customers recognise, in a voice that sounds like the business rather than a trend. What performs organically becomes paid, not the other way round.">
-              Το κανάλι ανάμεσα στις παραγγελίες. Περιεχόμενο που οι υπάρχοντες πελάτες σας αναγνωρίζουν, σε μια φωνή που μοιάζει με την επιχείρηση και όχι με trend. Ό,τι δουλεύει οργανικά γίνεται paid, όχι το αντίστροφο.
+            <p data-en="Content planning and production for the period between orders, community management, and the handover of organic material that performs into the paid accounts. Calendar, formats and approval flow agreed monthly.">
+              Πλάνο και παραγωγή περιεχομένου για το διάστημα ανάμεσα στις παραγγελίες, διαχείριση community, και μεταφορά του οργανικού υλικού που αποδίδει στους paid λογαριασμούς. Ημερολόγιο, formats και ροή εγκρίσεων συμφωνούνται μηνιαία.
             </p>
-            <p class="how"><b data-en="How we report it">Πώς το αναφέρουμε</b>
-              <span data-en="Reach we paid for versus reach we earned, saves and replies, and returning revenue that arrived through the channel.">Εμβέλεια που πληρώσαμε έναντι εμβέλειας που κερδίσαμε, saves και απαντήσεις, και πόσος επαναλαμβανόμενος τζίρος ήρθε από το κανάλι.</span></p>
-            <ul class="pills"><li data-en="Content plan">Πλάνο περιεχομένου</li><li data-en="Copy">Κείμενα</li><li>Community</li><li data-en="Organic to paid">Organic σε paid</li></ul>
+            <p class="how"><b data-en="Reported as">Αναφέρεται ως</b>
+              <span data-en="Paid versus earned reach, saves and replies, and returning revenue attributed to the channel.">Paid έναντι earned εμβέλειας, saves και απαντήσεις, και επαναλαμβανόμενος τζίρος που αποδίδεται στο κανάλι.</span></p>
+            <ul class="pills"><li data-en="Content plan">Πλάνο περιεχομένου</li><li data-en="Production">Παραγωγή</li><li>Community</li><li data-en="Organic to paid">Organic σε paid</li></ul>
           </div></div>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="sect" data-ground="base">
-    <div class="wrap">
-      <div class="panel rv">
-        <h2 data-en="What a month looks like">Πώς μοιάζει ένας μήνας</h2>
-        <ol class="steps steps--3">
-          <li><span data-en="Week 1">Εβδομάδα 1</span><p data-en="A short call, a one-page report, and the number we got wrong last month.">Ένα σύντομο call, ένα report μιας σελίδας, και το νούμερο που πέσαμε έξω τον προηγούμενο μήνα.</p></li>
-          <li><span data-en="Weeks 2 & 3">Εβδομάδες 2 &amp; 3</span><p data-en="The work. Tests run small, changes ship, nothing is announced before it is measured.">Η δουλειά. Τα tests τρέχουν μικρά, οι αλλαγές βγαίνουν, τίποτα δεν ανακοινώνεται πριν μετρηθεί.</p></li>
-          <li><span data-en="Week 4">Εβδομάδα 4</span><p data-en="Cohorts close. We write the plain-numbers page, including what we would hold or cut.">Κλείνουν τα cohorts. Γράφουμε τη σελίδα με τα απλά νούμερα, μαζί με το τι θα κρατούσαμε ή θα κόβαμε.</p></li>
-        </ol>
       </div>
     </div>
   </section>
 </div>
 
-<!-- ═══════════════ WORK ═══════════════ -->
-<div class="route" data-route="work" hidden>
+<!-- ═══════════════ ENGAGEMENTS ═══════════════ -->
+<div class="route" data-route="engagements" hidden>
   <section class="page-head" data-ground="base">
     <div class="wrap">
-      <p class="tag rv" data-en="Work">Η δουλειά</p>
-      <h1 class="rv" data-en="Three clients. One of them we can name.">Τρεις πελάτες. Τον έναν μπορούμε να τον πούμε<span class="dot">.</span></h1>
-      <p class="lede rv" data-en="We take on few accounts because the work is monthly, hands on, and measured to six months. This page will grow slowly. That is the point.">
-        Παίρνουμε λίγους λογαριασμούς επειδή η δουλειά είναι μηνιαία, με τα χέρια μέσα, και μετριέται σε ορίζοντα έξι μηνών. Αυτή η σελίδα θα μεγαλώνει αργά. Αυτό είναι το ζητούμενο.
+      <p class="tag rv" data-en="Engagements">Συνεργασία</p>
+      <h1 class="rv" data-en="Scope, deliverables and what we need from you.">Scope, παραδοτέα και τι χρειαζόμαστε από εσάς<span class="dot">.</span></h1>
+      <p class="lede rv" data-en="Three engagement types. The first two can run together; the audit is also available on its own.">
+        Τρεις τύποι συνεργασίας. Οι δύο πρώτοι μπορούν να τρέχουν παράλληλα· το audit διατίθεται και αυτόνομα.
       </p>
     </div>
   </section>
@@ -383,65 +331,44 @@
     <div class="wrap">
       <div class="tiles">
         <div class="tile tile--blue rv">
-          <span class="tile__k" data-en="Case study">Case study</span>
-          <span class="tile__h">Yum Tales Supply</span>
-          <span class="tile__m" data-en="Food supply · Athens · 12 months">Τρόφιμα · Αθήνα · 12 μήνες</span>
-          <span class="tile__n">44%<i data-en="returning revenue">επαναλαμβανόμενος τζίρος</i></span>
+          <span class="tile__k" data-en="Monthly">Μηνιαία</span>
+          <span class="tile__h" data-en="Performance retainer">Retainer performance</span>
+          <span class="tile__m" data-en="Media planning and buying, creative testing, measurement upkeep, a weekly working call and a monthly report.">Σχεδιασμός και αγορά μέσων, δοκιμές creative, συντήρηση μέτρησης, εβδομαδιαίο call εργασίας και μηνιαία αναφορά.</span>
         </div>
         <div class="tile tile--ink rv">
-          <span class="tile__k" data-en="In progress">Σε εξέλιξη</span>
-          <span class="tile__h" data-en="Household brand, Athens">Brand οικιακών, Αθήνα</span>
-          <span class="tile__m" data-en="Web rebuild and measurement">Ανακατασκευή site και μέτρηση</span>
-          <span class="tile__n">Q3<i data-en="first report due">πρώτο report</i></span>
+          <span class="tile__k" data-en="Project">Έργο</span>
+          <span class="tile__h" data-en="Website or e-shop">Website ή e-shop</span>
+          <span class="tile__m" data-en="Discovery, design, development, migration and launch, with analytics specified and tested before go-live.">Discovery, σχεδιασμός, ανάπτυξη, μεταφορά και launch, με τα analytics προδιαγεγραμμένα και ελεγμένα πριν βγει live.</span>
         </div>
         <div class="tile rv">
-          <span class="tile__k" data-en="Under wraps">Υπό NDA</span>
-          <span class="tile__h" data-en="DTC skincare">DTC skincare</span>
-          <span class="tile__m" data-en="Performance, from month one">Performance, από τον πρώτο μήνα</span>
-          <span class="tile__n">NDA<i data-en="we will publish it when there is something real to publish">θα το δημοσιεύσουμε όταν υπάρχει κάτι πραγματικό</i></span>
+          <span class="tile__k" data-en="One-off">Εφάπαξ</span>
+          <span class="tile__h" data-en="Measurement audit">Audit μέτρησης</span>
+          <span class="tile__m" data-en="Review of tracking, attribution, feed and reporting, delivered as a written plan of corrections with priorities.">Έλεγχος tracking, attribution, feed και αναφορών, με παραδοτέο γραπτό πλάνο διορθώσεων με προτεραιότητες.</span>
         </div>
       </div>
-      <p class="note rv" data-en="No logo wall. A logo is not a result.">Χωρίς τοίχο από λογότυπα. Ένα λογότυπο δεν είναι αποτέλεσμα.</p>
     </div>
   </section>
 
   <section class="sect" data-ground="base">
-    <header class="wrap s-head rv">
-      <p class="tag">Yum Tales Supply</p>
-      <h2 data-en="Twelve months of unglamorous work">Δώδεκα μήνες δουλειάς χωρίς γκλάμουρ</h2>
-    </header>
-    <div class="wrap case">
-      <div class="case__col">
-        <article class="rv"><p class="tag" data-en="The problem">Το πρόβλημα</p>
-          <p data-en="Sales looked healthy and the ad account looked healthy. The customer file did not. Four in five buyers never came back, and every good month needed a discount to make it good.">
-            Οι πωλήσεις έδειχναν υγιείς και ο λογαριασμός διαφήμισης έδειχνε υγιής. Το πελατολόγιο όχι. Τέσσερις στους πέντε αγοραστές δεν ξαναγύρισαν, και κάθε καλός μήνας χρειαζόταν έκπτωση για να γίνει καλός.</p></article>
-        <article class="rv"><p class="tag" data-en="What we did">Τι κάναμε</p>
-          <p data-en="Rebuilt measurement around cohorts instead of campaigns. Cut the two campaigns that bought one-time discount hunters. Rewrote the post-purchase flow around reorder timing, and rebuilt three product pages so a returning customer could reorder in two taps.">
-            Ξαναστήσαμε τη μέτρηση γύρω από cohorts αντί για καμπάνιες. Κόψαμε τις δύο καμπάνιες που αγόραζαν κυνηγούς έκπτωσης μιας φοράς. Ξαναγράψαμε το post-purchase flow γύρω από τον χρόνο επαναπαραγγελίας και ξαναφτιάξαμε τρεις σελίδες προϊόντος ώστε ένας πελάτης που επιστρέφει να παραγγέλνει με δύο κλικ.</p></article>
-        <article class="rv"><p class="tag" data-en="What we did not do">Τι δεν κάναμε</p>
-          <p data-en="We did not raise the budget for seven months. Twice we recommended spending less. The monthly report said so in one line, at the top.">
-            Δεν ανεβάσαμε budget για επτά μήνες. Δύο φορές προτείναμε να ξοδέψουν λιγότερα. Το μηνιαίο report το έλεγε σε μία γραμμή, στην κορυφή.</p></article>
+    <div class="wrap two-col">
+      <div>
+        <p class="tag rv" data-en="What we deliver">Τι παραδίδουμε</p>
+        <ul class="list rv">
+          <li data-en="A measurement specification: events, parameters, attribution windows and the definition of every indicator.">Προδιαγραφή μέτρησης: events, παράμετροι, παράθυρα attribution και ο ορισμός κάθε δείκτη.</li>
+          <li data-en="A monthly report of fixed indicators, with the method noted whenever it changes.">Μηνιαία αναφορά σταθερών δεικτών, με σημείωση της μεθόδου όποτε αλλάζει.</li>
+          <li data-en="A weekly working call with a written summary of decisions.">Εβδομαδιαίο call εργασίας με γραπτή σύνοψη αποφάσεων.</li>
+          <li data-en="Documentation of accounts, integrations and access, kept in your own systems.">Τεκμηρίωση λογαριασμών, ενσωματώσεων και προσβάσεων, μέσα στα δικά σας συστήματα.</li>
+        </ul>
       </div>
-      <div class="case__side">
-        <div class="kpis rv">
-          <div class="kpi"><p class="kpi__n" data-count="44" data-suffix="%">44%</p><p class="kpi__l" data-en="returning revenue">επαναλαμβανόμενος τζίρος</p></div>
-          <div class="kpi"><p class="kpi__n" data-count="31" data-suffix="%">31%</p><p class="kpi__l" data-en="repeat-order rate">ρυθμός επανάληψης</p></div>
-          <div class="kpi"><p class="kpi__n" data-count="3.4" data-suffix="&times;">3.4&times;</p><p class="kpi__l">LTV : CAC</p></div>
-        </div>
-        <div class="case__chart rv">
-          <p class="tag" data-en="Returning revenue, month by month">Επαναλαμβανόμενος τζίρος, μήνα με μήνα</p>
-          <div class="chart" id="caseChart" aria-hidden="true"></div>
-          <p class="note" data-en="Blue is what came back. The last bar is the month the base outgrew acquisition.">Το μπλε είναι ό,τι επέστρεψε. Η τελευταία μπάρα είναι ο μήνας που η βάση ξεπέρασε το acquisition.</p>
-        </div>
+      <div>
+        <p class="tag rv" data-en="What we need">Τι χρειαζόμαστε</p>
+        <ul class="list rv">
+          <li data-en="Administrator access to the advertising, analytics and commerce platforms.">Πρόσβαση διαχειριστή στις πλατφόρμες διαφήμισης, analytics και ηλεκτρονικού εμπορίου.</li>
+          <li data-en="Gross margin per product group, and the return rate if it is material.">Μεικτό περιθώριο ανά ομάδα προϊόντων και το ποσοστό επιστροφών εφόσον είναι σημαντικό.</li>
+          <li data-en="One decision maker on your side for approvals inside the working week.">Έναν υπεύθυνο απόφασης από την πλευρά σας για εγκρίσεις εντός της εβδομάδας.</li>
+          <li data-en="Stock visibility, so budget is not spent against products that cannot ship.">Ορατότητα αποθέματος, ώστε να μη δαπανάται budget σε προϊόντα που δεν μπορούν να αποσταλούν.</li>
+        </ul>
       </div>
-    </div>
-  </section>
-
-  <section class="cta" data-ground="blue">
-    <div class="wrap cta__in">
-      <h2 class="rv" data-en="Want the same, slowly?">Θέλετε το ίδιο, αργά<span class="dot">;</span></h2>
-      <p class="sub rv" data-en="It compounds. It also takes six months before it looks like anything.">Ανατοκίζεται. Θέλει όμως έξι μήνες πριν μοιάσει με κάτι.</p>
-      <a class="btn btn--on-blue rv" href="#/contact" data-en="Start a conversation">Ας μιλήσουμε</a>
     </div>
   </section>
 </div>
@@ -450,10 +377,10 @@
 <div class="route" data-route="process" hidden>
   <section class="page-head" data-ground="base">
     <div class="wrap">
-      <p class="tag rv" data-en="How we work">Πώς δουλεύουμε</p>
-      <h1 class="rv" data-en="Boring on purpose.">Βαρετά, επίτηδες<span class="dot">.</span></h1>
-      <p class="lede rv" data-en="Four steps, weekly rhythm, and a report written in the language you use in your own meetings.">
-        Τέσσερα βήματα, εβδομαδιαίος ρυθμός, και ένα report γραμμένο στη γλώσσα που μιλάτε στις δικές σας συσκέψεις.
+      <p class="tag rv" data-en="Process">Διαδικασία</p>
+      <h1 class="rv" data-en="Four phases, weekly rhythm.">Τέσσερις φάσεις, εβδομαδιαίος ρυθμός<span class="dot">.</span></h1>
+      <p class="lede rv" data-en="The first two phases are fixed. From the third onwards the cadence repeats monthly for as long as the engagement runs.">
+        Οι δύο πρώτες φάσεις είναι σταθερές. Από την τρίτη και μετά ο κύκλος επαναλαμβάνεται μηνιαία, όσο διαρκεί η συνεργασία.
       </p>
     </div>
   </section>
@@ -461,98 +388,75 @@
   <section class="sect" data-ground="raise">
     <div class="wrap">
       <ol class="steps">
-        <li class="step rv"><span class="step__no">01</span><h3 data-en="We get inside">Μπαίνουμε μέσα</h3>
-          <p data-en="Two weeks of your data, your margins, your returns, your warehouse. If we do not understand how you make money, we cannot spend your money.">Δύο εβδομάδες με τα δεδομένα σας, τα περιθώριά σας, τις επιστροφές, την αποθήκη. Αν δεν καταλάβουμε πώς βγάζετε λεφτά, δεν μπορούμε να τα ξοδέψουμε.</p></li>
-        <li class="step rv"><span class="step__no">02</span><h3 data-en="We fix the measurement">Φτιάχνουμε τη μέτρηση</h3>
-          <p data-en="Tracking, events, attribution, and the four numbers that matter. Before a single euro goes into ads.">Tracking, events, attribution και τα τέσσερα νούμερα που μετράνε. Πριν μπει ένα ευρώ σε ads.</p></li>
-        <li class="step rv"><span class="step__no">03</span><h3 data-en="We run and we learn">Τρέχουμε και μαθαίνουμε</h3>
-          <p data-en="Weekly, not monthly. A short call and a report in plain language: what we tried, what worked, what we killed and why.">Εβδομαδιαία, όχι μηνιαία. Ένα σύντομο call και ένα report σε καθημερινή γλώσσα: τι δοκιμάσαμε, τι δούλεψε, τι κόψαμε και γιατί.</p></li>
-        <li class="step rv"><span class="step__no">04</span><h3 data-en="We build the return">Χτίζουμε την επιστροφή</h3>
-          <p data-en="Second-purchase flows, retargeting that is not stalking, site changes for people who already know you. This is where the margin is.">Flows δεύτερης αγοράς, retargeting που δεν είναι παρακολούθηση, αλλαγές στο site για ανθρώπους που σας ξέρουν ήδη. Εδώ είναι το περιθώριο.</p></li>
+        <li class="step rv"><span class="step__no" data-en="Phase 01">Φάση 01</span><h3 data-en="Discovery">Χαρτογράφηση</h3>
+          <p data-en="Two weeks on the commercial picture: margins, product groups, returns, fulfilment and the existing customer file.">Δύο εβδομάδες στην εμπορική εικόνα: περιθώρια, ομάδες προϊόντων, επιστροφές, εκτέλεση παραγγελιών και το υπάρχον πελατολόγιο.</p></li>
+        <li class="step rv"><span class="step__no" data-en="Phase 02">Φάση 02</span><h3 data-en="Measurement">Μέτρηση</h3>
+          <p data-en="Tracking, events and attribution are specified, installed and verified against platform and back-office data.">Tracking, events και attribution προδιαγράφονται, εγκαθίστανται και επαληθεύονται απέναντι στα δεδομένα πλατφορμών και back office.</p></li>
+        <li class="step rv"><span class="step__no" data-en="Phase 03">Φάση 03</span><h3 data-en="Operation">Λειτουργία</h3>
+          <p data-en="Media and site changes ship in small increments, each with a stated expectation and a review date.">Οι αλλαγές σε μέσα και site βγαίνουν σε μικρά βήματα, καθεμία με δηλωμένη προσδοκία και ημερομηνία αξιολόγησης.</p></li>
+        <li class="step rv"><span class="step__no" data-en="Phase 04">Φάση 04</span><h3 data-en="Retention work">Επαναληπτικότητα</h3>
+          <p data-en="Second-purchase flows, lifecycle segments and site changes aimed at customers who already know the brand.">Flows δεύτερης αγοράς, τμήματα κύκλου ζωής και αλλαγές στο site που απευθύνονται σε πελάτες που ήδη γνωρίζουν το brand.</p></li>
       </ol>
 
-      <div class="nots rv">
-        <p class="tag" data-en="Things we do not do">Τι δεν κάνουμε</p>
-        <ul>
-          <li data-en="Reports designed to impress you">Reports φτιαγμένα να σας εντυπωσιάσουν</li>
-          <li data-en="12-month lock-in for work judged monthly">Δεσμεύσεις 12 μηνών για δουλειά που κρίνεται κάθε μήνα</li>
-          <li data-en="ROAS numbers with the returns quietly left out">Νούμερα ROAS με τις επιστροφές διακριτικά εκτός</li>
-          <li data-en="Twenty clients per person">Είκοσι πελάτες ανά άτομο</li>
-          <li data-en="Words like “synergy”, unless we are joking">Λέξεις όπως «συνέργεια», εκτός αν αστειευόμαστε</li>
-        </ul>
+      <div class="panel rv">
+        <h2 data-en="The monthly cycle">Ο μηνιαίος κύκλος</h2>
+        <ol class="steps steps--3">
+          <li><span data-en="Week 1">Εβδομάδα 1</span><p data-en="Report review, priorities for the month, and any correction to the measurement method.">Ανασκόπηση αναφοράς, προτεραιότητες του μήνα και τυχόν διόρθωση στη μέθοδο μέτρησης.</p></li>
+          <li><span data-en="Weeks 2 & 3">Εβδομάδες 2 &amp; 3</span><p data-en="Execution. Tests run in defined increments, changes ship, results are logged as they close.">Εκτέλεση. Τα tests τρέχουν σε ορισμένα βήματα, οι αλλαγές βγαίνουν, τα αποτελέσματα καταγράφονται καθώς κλείνουν.</p></li>
+          <li><span data-en="Week 4">Εβδομάδα 4</span><p data-en="Cohorts close, the report is produced, and next month's budget allocation is proposed.">Κλείνουν τα cohorts, παράγεται η αναφορά και προτείνεται η κατανομή budget του επόμενου μήνα.</p></li>
+        </ol>
       </div>
     </div>
   </section>
 </div>
 
-<!-- ═══════════════ ABOUT ═══════════════ -->
-<div class="route" data-route="about" hidden>
+<!-- ═══════════════ COMPANY ═══════════════ -->
+<div class="route" data-route="company" hidden>
   <section class="page-head" data-ground="base">
     <div class="wrap">
-      <p class="tag rv" data-en="Us">Εμείς</p>
-      <h1 class="rv" data-en="Anyone can buy a first sale.">Την πρώτη πώληση την αγοράζει ο καθένας<span class="dot">.</span></h1>
-      <p class="lede rv" data-en="The Regulars started with a frustration: an industry addicted to day-one numbers that flatter and fade. We do the unglamorous work that compounds, retention, repeat orders, the customers who come back on their own.">
-        Το The Regulars ξεκίνησε από μια ενόχληση: μια βιομηχανία εθισμένη σε νούμερα πρώτης μέρας που κολακεύουν και ξεθυμαίνουν. Εμείς κάνουμε τη δουλειά χωρίς γκλάμουρ που ανατοκίζεται: επανάληψη, δεύτερες παραγγελίες, πελάτες που γυρίζουν μόνοι τους.
+      <p class="tag rv" data-en="Company">Εταιρεία</p>
+      <h1 class="rv" data-en="An independent agency for brands that live on repeat business.">Ανεξάρτητο agency για brands που ζουν από την επανάληψη<span class="dot">.</span></h1>
+      <p class="lede rv" data-en="The Regulars was founded in Athens in 2026 by two partners, one from media buying and measurement, one from web and social. We work with a small number of accounts at a time because the engagement is monthly and operational.">
+        Το The Regulars ιδρύθηκε στην Αθήνα το 2026 από δύο εταίρους, έναν από την αγορά μέσων και τη μέτρηση και έναν από το web και το social. Δουλεύουμε με μικρό αριθμό λογαριασμών κάθε φορά, επειδή η συνεργασία είναι μηνιαία και λειτουργική.
       </p>
     </div>
   </section>
 
   <section class="sect" data-ground="raise">
     <header class="wrap s-head rv">
-      <p class="tag" data-en="What we believe">Τι πιστεύουμε</p>
-      <h2 data-en="Four house rules">Τέσσερις κανόνες του σπιτιού</h2>
-    </header>
-    <div class="wrap">
-      <div class="rules">
-        <div class="rule rv"><h3 data-en="Retention over reach">Επανάληψη πάνω από εμβέλεια</h3><p data-en="A returning customer beats a cheaper click. We optimise for the second order.">Ένας πελάτης που επιστρέφει αξίζει περισσότερο από ένα φθηνότερο κλικ. Βελτιστοποιούμε για τη δεύτερη παραγγελία.</p></div>
-        <div class="rule rv"><h3 data-en="Plain numbers">Απλά νούμερα</h3><p data-en="No vanity metrics, no flattering charts. If it does not move the business, we do not report it.">Χωρίς μετρικές επίδειξης, χωρίς κολακευτικά γραφήματα. Αν δεν κινεί την επιχείρηση, δεν το αναφέρουμε.</p></div>
-        <div class="rule rv"><h3 data-en="We never oversell">Ποτέ υπερπώληση</h3><p data-en="We would rather tell you the boring truth than sell you the exciting lie.">Προτιμάμε να σας πούμε τη βαρετή αλήθεια παρά να σας πουλήσουμε το συναρπαστικό ψέμα.</p></div>
-        <div class="rule rule--ink rv"><h3 data-en="The long game">Το μακρύ παιχνίδι<span class="dot">.</span></h3><p data-en="Brands that live on repeat business need partners who think past the quarter. We stay.">Τα brands που ζουν από την επανάληψη χρειάζονται συνεργάτες που σκέφτονται πέρα από το τρίμηνο. Μένουμε.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sect" data-ground="base">
-    <header class="wrap s-head rv">
-      <p class="tag" data-en="Founders">Οι ιδρυτές</p>
-      <h2 data-en="Two people. Both on your account.">Δύο άνθρωποι. Και οι δύο στον λογαριασμό σας.</h2>
+      <p class="tag" data-en="Partners">Οι εταίροι</p>
+      <h2 data-en="Two partners, both on the account">Δύο εταίροι, και οι δύο στον λογαριασμό</h2>
     </header>
     <div class="wrap">
       <div class="people">
-        <article class="person rv"><h3>Greg</h3><p class="person__r" data-en="Web & social">Web &amp; social</p>
-          <p data-en="Builds the site and runs the channel between orders. Believes half of what gets called a creative problem is a load-time problem.">Φτιάχνει το site και τρέχει το κανάλι ανάμεσα στις παραγγελίες. Πιστεύει ότι το μισό από αυτά που λέμε «πρόβλημα creative» είναι πρόβλημα ταχύτητας.</p></article>
-        <article class="person rv"><h3>Kostas</h3><p class="person__r">Performance</p>
-          <p data-en="Buys the media and keeps the measurement honest. Came out of a bigger agency and left over exactly the habits described above.">Αγοράζει τα media και κρατάει τη μέτρηση τίμια. Ήρθε από μεγαλύτερο agency και έφυγε ακριβώς για τις συνήθειες που περιγράφονται πιο πάνω.</p></article>
+        <article class="person rv"><h3>Greg</h3><p class="person__r" data-en="Web &amp; social">Web &amp; social</p>
+          <p data-en="Responsible for the site, from information architecture and templates to speed and the reorder path, and for the content operation between purchases.">Υπεύθυνος για το site, από την αρχιτεκτονική πληροφορίας και τα πρότυπα ως την ταχύτητα και τη διαδρομή επαναπαραγγελίας, και για τη λειτουργία περιεχομένου ανάμεσα στις αγορές.</p></article>
+        <article class="person rv"><h3>Kostas</h3><p class="person__r" data-en="Performance &amp; measurement">Performance &amp; μέτρηση</p>
+          <p data-en="Responsible for media planning and buying, the measurement specification, attribution and the monthly report.">Υπεύθυνος για τον σχεδιασμό και την αγορά μέσων, την προδιαγραφή μέτρησης, το attribution και τη μηνιαία αναφορά.</p></article>
       </div>
 
-      <blockquote class="quote rv"><p data-en="“We would rather have ten clients who stay than fifty who tried us.”">«Προτιμάμε δέκα πελάτες που μένουν από πενήντα που μας δοκίμασαν.»</p></blockquote>
-
-      <div class="voice rv">
-        <div class="voice__col">
-          <p class="tag tag--lime" data-en="We say">Λέμε</p>
-          <p class="say" data-en="“Here’s what came back this month, and what didn’t.”">«Να τι επέστρεψε αυτόν τον μήνα, και τι όχι.»</p>
-          <p class="say" data-en="“We’d hold that budget. Here’s why.”">«Αυτό το budget θα το κρατούσαμε. Να γιατί.»</p>
-          <p class="say" data-en="“Slower, but it compounds.”">«Πιο αργά, αλλά ανατοκίζεται.»</p>
-        </div>
-        <div class="voice__col">
-          <p class="tag tag--mute" data-en="We never say">Δεν λέμε ποτέ</p>
-          <p class="say say--no" data-en="“Let’s go viral and disrupt the space!”">«Πάμε viral να ανατρέψουμε την αγορά!»</p>
-          <p class="say say--no" data-en="“Guaranteed 10× overnight.”">«Εγγυημένο 10× μέσα σε μια νύχτα.»</p>
-          <p class="say say--no" data-en="“Synergistic growth-hacking ninjas.”">«Συνεργικοί growth-hacking ninjas.»</p>
-        </div>
+      <div class="sectors rv">
+        <p class="tag" data-en="Sectors">Κλάδοι</p>
+        <ul class="pills pills--lg">
+          <li data-en="E-commerce &amp; DTC">E-commerce &amp; DTC</li>
+          <li data-en="Food &amp; supply">Τρόφιμα &amp; εφοδιασμός</li>
+          <li data-en="Home &amp; furniture">Σπίτι &amp; έπιπλο</li>
+          <li data-en="Beauty &amp; personal care">Beauty &amp; προσωπική φροντίδα</li>
+          <li data-en="Retail with a physical store">Λιανική με φυσικό κατάστημα</li>
+        </ul>
       </div>
 
       <div class="faq rv">
-        <details><summary data-en="How much does it cost?">Πόσο κοστίζει;</summary>
-          <p data-en="A monthly retainer based on scope, plus a one-off for the website when there is one. You get the number in the first call, not after three weeks of “it depends”.">Μηνιαίο retainer ανάλογα με το scope, συν εφάπαξ για το website όταν υπάρχει. Το νούμερο το παίρνετε στο πρώτο call, όχι μετά από τρεις εβδομάδες «εξαρτάται».</p></details>
-        <details><summary data-en="Do you sign long contracts?">Υπογράφετε μακροχρόνια συμβόλαια;</summary>
-          <p data-en="Three months to set things up properly, monthly after that. If we are good, you will stay because you want to.">Τρεις μήνες για να στηθεί σωστά, μηνιαία μετά. Αν είμαστε καλοί, θα μείνετε επειδή το θέλετε.</p></details>
-        <details><summary data-en="We already have an agency. Why change?">Έχουμε ήδη agency. Γιατί να αλλάξουμε;</summary>
-          <p data-en="Ask them what your repeat rate is and how it moved this quarter. If the answer comes fast and with numbers, stay where you are.">Ρωτήστε τους πόσο είναι το repeat rate σας και πώς κινήθηκε αυτό το τρίμηνο. Αν η απάντηση έρθει γρήγορα και με νούμερα, μείνετε εκεί που είστε.</p></details>
-        <details><summary data-en="Are you too small for us?">Είστε πολύ μικροί για εμάς;</summary>
-          <p data-en="We are two, and that is the point: you talk to the people doing the work. We say no to accounts we cannot serve properly.">Είμαστε δύο, και αυτό είναι το ζητούμενο: μιλάτε με τους ανθρώπους που κάνουν τη δουλειά. Λέμε όχι σε λογαριασμούς που δεν μπορούμε να εξυπηρετήσουμε σωστά.</p></details>
-        <details><summary data-en="Do you work with businesses that have a physical store?">Δουλεύετε με επιχειρήσεις με φυσικό κατάστημα;</summary>
-          <p data-en="Yes, often the best case. You already have regulars offline; we take that behaviour online instead of inventing it from scratch.">Ναι, συχνά είναι η καλύτερη περίπτωση. Έχετε ήδη θαμώνες εκτός διαδικτύου· παίρνουμε αυτή τη συμπεριφορά online αντί να την εφεύρουμε από την αρχή.</p></details>
+        <details><summary data-en="What is the minimum engagement length?">Ποια είναι η ελάχιστη διάρκεια συνεργασίας;</summary>
+          <p data-en="Three months for installation and stabilisation of the measurement, monthly thereafter with thirty days' notice.">Τρεις μήνες για την εγκατάσταση και τη σταθεροποίηση της μέτρησης, μηνιαία στη συνέχεια με προειδοποίηση τριάντα ημερών.</p></details>
+        <details><summary data-en="Who owns the accounts and the data?">Ποιος έχει την ιδιοκτησία των λογαριασμών και των δεδομένων;</summary>
+          <p data-en="You do. We work inside your own advertising, analytics and commerce accounts, and access is documented and revocable at any time.">Εσείς. Δουλεύουμε μέσα στους δικούς σας λογαριασμούς διαφήμισης, analytics και ηλεκτρονικού εμπορίου, και οι προσβάσεις είναι τεκμηριωμένες και ανακλητές οποιαδήποτε στιγμή.</p></details>
+        <details><summary data-en="How do you charge?">Πώς τιμολογείτε;</summary>
+          <p data-en="A monthly retainer based on scope, and a fixed fee for website projects. Media spend is invoiced by the platforms directly to you.">Μηνιαίο retainer βάσει scope και σταθερή αμοιβή για έργα website. Η διαφημιστική δαπάνη τιμολογείται από τις πλατφόρμες απευθείας σε εσάς.</p></details>
+        <details><summary data-en="How long before results can be read?">Πότε μπορούν να διαβαστούν αποτελέσματα;</summary>
+          <p data-en="Acquisition metrics stabilise within the first two months. Retention indicators require a full purchase cycle, which in most categories means four to six months.">Οι δείκτες απόκτησης σταθεροποιούνται μέσα στους δύο πρώτους μήνες. Οι δείκτες επαναληπτικότητας απαιτούν έναν πλήρη κύκλο αγοράς, που στους περισσότερους κλάδους σημαίνει τέσσερις έως έξι μήνες.</p></details>
+        <details><summary data-en="Do you work with businesses that have a physical store?">Δουλεύετε με επιχειρήσεις που έχουν φυσικό κατάστημα;</summary>
+          <p data-en="Yes. Where offline purchase data can be connected to the online file, it is included in the same measurement model.">Ναι. Όπου τα δεδομένα αγορών εκτός διαδικτύου μπορούν να συνδεθούν με το online αρχείο, εντάσσονται στο ίδιο μοντέλο μέτρησης.</p></details>
       </div>
       <p class="note rv">Αθήνα · est. 2026</p>
     </div>
@@ -564,9 +468,9 @@
   <section class="page-head" data-ground="base">
     <div class="wrap">
       <p class="tag rv" data-en="Contact">Επικοινωνία</p>
-      <h1 class="rv" data-en="Tell us what you sell.">Πείτε μας τι πουλάτε<span class="dot">.</span></h1>
-      <p class="lede rv" data-en="Thirty minutes, no deck. Bring last month’s numbers if you have them. We will tell you plainly whether we are the right people for it.">
-        Τριάντα λεπτά, χωρίς παρουσίαση. Φέρτε τα νούμερα του προηγούμενου μήνα αν τα έχετε. Θα σας πούμε ευθέως αν είμαστε οι σωστοί άνθρωποι.
+      <h1 class="rv" data-en="Send us the brief.">Στείλτε μας το πλαίσιο του έργου<span class="dot">.</span></h1>
+      <p class="lede rv" data-en="Tell us what you sell, where you sell it and what is currently being measured. We reply with an approach, a timeline and a cost estimate.">
+        Πείτε μας τι πουλάτε, πού το πουλάτε και τι μετριέται αυτή τη στιγμή. Απαντάμε με προσέγγιση, χρονοδιάγραμμα και εκτίμηση κόστους.
       </p>
     </div>
   </section>
@@ -574,26 +478,34 @@
   <section class="sect" data-ground="raise">
     <div class="wrap contact">
       <form class="form rv" id="form" novalidate>
-        <label class="f"><span data-en="Your name">Το όνομά σας</span><input id="fName" name="name" autocomplete="name" required></label>
+        <label class="f"><span data-en="Name">Ονοματεπώνυμο</span><input id="fName" name="name" autocomplete="name" required></label>
+        <label class="f"><span data-en="Company">Εταιρεία</span><input id="fCompany" name="company" autocomplete="organization"></label>
         <label class="f"><span>Email</span><input id="fMail" name="email" type="email" autocomplete="email" required></label>
-        <label class="f"><span data-en="Website, if there is one">Website, αν υπάρχει</span><input id="fSite" name="site"></label>
-        <label class="f"><span data-en="Monthly ad budget">Μηνιαίο budget ads</span>
+        <label class="f"><span data-en="Website">Website</span><input id="fSite" name="site"></label>
+        <label class="f"><span data-en="Monthly media budget">Μηνιαία διαφημιστική δαπάνη</span>
           <select id="fBud" name="budget">
-            <option value="&lt;1.5k" data-en="under €1.5k">έως 1.5k €</option>
-            <option value="1.5-5k" selected>1.5k – 5k €</option>
-            <option value="5-15k">5k – 15k €</option>
-            <option value="15k+">15k € +</option>
-            <option value="website" data-en="website only">μόνο website</option>
+            <option value="&lt;1.5k" data-en="under €1,500">έως 1.500 €</option>
+            <option value="1.5-5k" selected>1.500 – 5.000 €</option>
+            <option value="5-15k">5.000 – 15.000 €</option>
+            <option value="15k+">15.000 € +</option>
+            <option value="website" data-en="website project only">μόνο έργο website</option>
           </select></label>
-        <label class="f f--full"><span data-en="What are you selling, and what is stuck?">Τι πουλάτε και τι έχει κολλήσει;</span><textarea id="fMsg" name="message" rows="4"></textarea></label>
-        <button class="btn btn--pri" type="submit" data-en="Send it">Στείλτε το</button>
+        <label class="f"><span data-en="Engagement">Τύπος συνεργασίας</span>
+          <select id="fType" name="type">
+            <option value="retainer" data-en="Performance retainer">Retainer performance</option>
+            <option value="website" data-en="Website or e-shop">Website ή e-shop</option>
+            <option value="audit" data-en="Measurement audit">Audit μέτρησης</option>
+            <option value="other" data-en="Not sure yet">Δεν έχει αποφασιστεί</option>
+          </select></label>
+        <label class="f f--full"><span data-en="The brief">Το πλαίσιο του έργου</span><textarea id="fMsg" name="message" rows="5"></textarea></label>
+        <button class="btn btn--pri" type="submit" data-en="Send">Αποστολή</button>
         <p class="form__msg" id="formMsg" role="status"></p>
       </form>
       <aside class="contact__side rv">
         <p class="tag" data-en="Direct">Απευθείας</p>
         <p class="contact__mail"><a href="mailto:hello@theregulars.gr">hello@theregulars.gr</a></p>
-        <p class="contact__meta" data-en="Athens, Greece. Monday to Friday, we answer within one working day.">Αθήνα. Δευτέρα με Παρασκευή, απαντάμε εντός μίας εργάσιμης.</p>
-        <p class="contact__meta contact__meta--sm" data-en="No newsletter, no drip sequence, no follow-up cadence. One reply from one of us.">Χωρίς newsletter, χωρίς αλληλουχία emails, χωρίς «ρυθμό επικοινωνίας». Μία απάντηση από έναν από εμάς.</p>
+        <p class="contact__meta" data-en="Athens, Greece. We reply within one working day.">Αθήνα. Απαντάμε εντός μίας εργάσιμης ημέρας.</p>
+        <p class="contact__meta contact__meta--sm" data-en="For a measurement audit, please include access details for the analytics and advertising accounts in your first message.">Για audit μέτρησης, περιλάβετε στο πρώτο μήνυμα στοιχεία πρόσβασης στους λογαριασμούς analytics και διαφήμισης.</p>
       </aside>
     </div>
   </section>
@@ -609,17 +521,17 @@
     </a>
     <nav class="foot__nav" aria-label="Footer">
       <a href="#/system" data-en="The system">Το σύστημα</a>
-      <a href="#/services" data-en="What we do">Τι κάνουμε</a>
-      <a href="#/work" data-en="Work">Η δουλειά</a>
-      <a href="#/process" data-en="How we work">Πώς δουλεύουμε</a>
-      <a href="#/about" data-en="Us">Εμείς</a>
+      <a href="#/services" data-en="Services">Υπηρεσίες</a>
+      <a href="#/engagements" data-en="Engagements">Συνεργασία</a>
+      <a href="#/process" data-en="Process">Διαδικασία</a>
+      <a href="#/company" data-en="Company">Εταιρεία</a>
       <a href="#/contact" data-en="Contact">Επικοινωνία</a>
     </nav>
     <p class="foot__meta">hello@theregulars.gr · <span data-en="Athens">Αθήνα</span> · est. 2026<br><span class="foot__line" data-en="We measure who comes back.">Μετράμε ποιος επιστρέφει.</span></p>
   </div>
 </footer>
 
-<script src="assets/js/signal.js" defer></script>
+<script src="assets/js/backdrop.js" defer></script>
 <script src="assets/js/app.js" defer></script>
 </body>
 </html>

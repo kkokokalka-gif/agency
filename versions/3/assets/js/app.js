@@ -84,47 +84,31 @@
       const sibs=[...(e.target.parentElement?.children||[])].filter(n=>n.classList.contains('rv'));
       e.target.style.transitionDelay=Math.min(Math.max(0,sibs.indexOf(e.target))*70,320)+'ms';
       e.target.classList.add('in');
-      if($$('[data-count]',e.target).length) countUp(e.target);
-      if($('#caseChart',e.target)||e.target.id==='caseChart') drawCase();
       o.unobserve(e.target);
     });
   },{rootMargin:'0px 0px -8% 0px',threshold:.12});
   function observeReveals(scope){ $$('.rv, .step',scope).forEach(el=>{ el.classList.remove('in'); revObs.observe(el); }); }
 
-  function countUp(scope){
-    $$('[data-count]',scope).forEach(n=>{
-      const to=parseFloat(n.dataset.count), suffix=n.dataset.suffix||'';
-      const dec=(n.dataset.count.split('.')[1]||'').length;
-      if(reduced){ n.innerHTML=to.toFixed(dec)+suffix; return; }
-      const t0=performance.now(), d=850;
-      (function run(now){
-        const k=Math.min(1,(now-t0)/d), e=1-Math.pow(1-k,3);
-        n.innerHTML=(to*e).toFixed(dec)+suffix;
-        if(k<1) requestAnimationFrame(run);
-      })(t0);
-    });
-  }
-
   /* ── the loop ─────────────────────────────── */
   const LOOP=[
-    {el:'Η διαφήμιση',en:'The ad',
-     pel:'Ένα ad που δείχνει σε ποιον αξίζει να δείξει, όχι σε όλους όσους μπορεί.',
-     pen:'An ad shown to the people worth showing it to, not to everyone it could reach.'},
-    {el:'Το site',en:'The site',
-     pel:'Εκεί προσγειώνεται το κλικ. Αν αργεί ή μπερδεύει, το budget των ads πληρώνει το λάθος.',
-     pen:'Where the click lands. If it is slow or confusing, the ad budget pays for that mistake.'},
-    {el:'Η πρώτη αγορά',en:'First purchase',
-     pel:'Το πιο ακριβό ευρώ τζίρου που θα βγάλετε ποτέ. Συχνά είναι ζημιά, και είναι εντάξει.',
-     pen:'The most expensive revenue you will ever book. It often loses money, and that is fine.'},
-    {el:'Τα δεδομένα',en:'The data',
-     pel:'Τι αγόρασε, πότε, με τι περιθώριο, τι επέστρεψε. Εδώ σταματούν οι εικασίες.',
-     pen:'What they bought, when, at what margin, what came back. This is where guessing stops.'},
-    {el:'Η επιστροφή',en:'The return',
-     pel:'Email, retargeting, περιεχόμενο. Όχι για να τους κυνηγήσουμε, για να τους θυμίσουμε.',
-     pen:'Email, retargeting, content. Not to chase them, to remind them.'},
-    {el:'Ο θαμώνας',en:'The regular',
-     pel:'Αγοράζει ξανά χωρίς να πληρώσετε δεύτερη φορά για να τον βρείτε. Εδώ είναι το κέρδος.',
-     pen:'Buys again without you paying a second time to find them. This is where the profit is.'}
+    {el:'Αγορά μέσων',en:'Media buying',
+     pel:'Κατανομή budget ανά κοινό και προϊόν, με κριτήριο την αναμενόμενη αξία του πελάτη και όχι μόνο το κόστος του κλικ.',
+     pen:'Budget allocation by audience and product, planned against expected customer value rather than click cost alone.'},
+    {el:'Προσγείωση',en:'Landing',
+     pel:'Η σελίδα που δέχεται την επισκεψιμότητα: ταχύτητα, σαφήνεια προσφοράς, διαδρομή προς το checkout.',
+     pen:'The page that receives the traffic: speed, clarity of offer, and the path to checkout.'},
+    {el:'Πρώτη αγορά',en:'First purchase',
+     pel:'Καταγράφεται με το κόστος απόκτησης και το περιθώριο της, όχι μόνο ως τζίρος.',
+     pen:'Recorded with its acquisition cost and its margin, not as revenue alone.'},
+    {el:'Δεδομένα',en:'Data',
+     pel:'Προϊόν, ημερομηνία, περιθώριο, επιστροφές. Το cohort του πελάτη ανοίγει εδώ.',
+     pen:'Product, date, margin, returns. The customer cohort opens here.'},
+    {el:'Επανενεργοποίηση',en:'Reactivation',
+     pel:'Email, retargeting και περιεχόμενο με βάση τον χρόνο επαναπαραγγελίας της κατηγορίας.',
+     pen:'Email, retargeting and content, timed to the category reorder interval.'},
+    {el:'Επαναλαμβανόμενη αγορά',en:'Repeat purchase',
+     pel:'Τζίρος χωρίς δεύτερο κόστος απόκτησης. Είναι ο δείκτης που κρίνει όλα τα προηγούμενα στάδια.',
+     pen:'Revenue without a second acquisition cost. It is the indicator that judges every stage before it.'}
   ];
   let loopActive=0;
 
@@ -167,22 +151,6 @@
     if(!open){ item.classList.add('is-open'); head.setAttribute('aria-expanded','true'); }
   });
 
-  /* ── case chart ───────────────────────────── */
-  const M=['J','F','M','A','M','J','J','A','S','O','N','D'];
-  const TOTAL=[62,66,70,74,78,84,88,90,92,95,98,104];
-  const SHARE=[.06,.09,.12,.16,.19,.23,.27,.30,.33,.36,.39,.41];
-  const RET=TOTAL.map((v,i)=>v*SHARE[i]);
-  let caseDrawn=false;
-  function drawCase(){
-    const el=$('#caseChart'); if(!el||caseDrawn) return; caseDrawn=true;
-    const max=Math.max(...RET);
-    el.innerHTML=RET.map((v,i)=>`<div class="cb${i===RET.length-1?' last':''}"><i></i><span>${M[i]}</span></div>`).join('');
-    requestAnimationFrame(()=>$$('.cb i',el).forEach((n,i)=>{
-      n.style.transitionDelay=(i*45)+'ms';
-      n.style.height=(RET[i]/max*100)+'%';
-    }));
-  }
-
   /* ── hero video ───────────────────────────── */
   const vid=$('#heroVideo');
   if(vid){
@@ -196,14 +164,13 @@
 
   /* ── router ───────────────────────────────── */
   const routes=$$('.route');
-  const SCENE={'':'auto',system:'0',services:'1',work:'2',process:'1',about:'0',contact:'3'};
   const TITLES={
-    '':['The Regulars · Μετράμε ποιος επιστρέφει','The Regulars · We measure who comes back'],
+    '':['The Regulars · Performance, websites και social','The Regulars · Performance, websites and social'],
     system:['Το σύστημα · The Regulars','The system · The Regulars'],
-    services:['Τι κάνουμε · The Regulars','What we do · The Regulars'],
-    work:['Η δουλειά · The Regulars','Work · The Regulars'],
-    process:['Πώς δουλεύουμε · The Regulars','How we work · The Regulars'],
-    about:['Εμείς · The Regulars','Us · The Regulars'],
+    services:['Υπηρεσίες · The Regulars','Services · The Regulars'],
+    engagements:['Συνεργασία · The Regulars','Engagements · The Regulars'],
+    process:['Διαδικασία · The Regulars','Process · The Regulars'],
+    company:['Εταιρεία · The Regulars','Company · The Regulars'],
     contact:['Επικοινωνία · The Regulars','Contact · The Regulars']
   };
   let current='';
@@ -213,11 +180,9 @@
     const target=routes.find(r=>r.dataset.route===name)||routes[0];
     current=target.dataset.route;
     routes.forEach(r=>{ r.hidden=r!==target; });
-    root.dataset.scene=SCENE[current]??'auto';
     $$('.nav__links a').forEach(a=>a.classList.toggle('is-on',a.getAttribute('href')==='#/'+current));
     nav.classList.remove('is-open'); burger.setAttribute('aria-expanded','false');
     scrollTo({top:0,behavior:'instant'});
-    caseDrawn=false;
     observeReveals(target);
     ground=''; pickGround();
     setTitle();
@@ -239,14 +204,21 @@
       .forEach(([f,ok])=>{ const good=ok(f.value); f.classList.toggle('is-bad',!good); if(!good) bad=true; });
     if(bad){
       out.style.color='#C3261A';
-      out.textContent=T('Χρειαζόμαστε όνομα και email για να απαντήσουμε.','We need a name and an email to reply.');
+      out.textContent=T('Συμπληρώστε ονοματεπώνυμο και email για να μπορέσουμε να απαντήσουμε.','Please add a name and an email so we can reply.');
       return;
     }
     out.style.color='';
-    out.textContent=T('Ανοίγει το email σας. Απαντάμε εντός μίας εργάσιμης.','Opening your email client. We reply within one working day.');
-    const body=[`${T('Όνομα','Name')}: ${name.value}`,`Email: ${mail.value}`,
-      `Website: ${$('#fSite').value||'-'}`,`Budget: ${$('#fBud').value}`,'',$('#fMsg').value||'-'].join('\n');
-    location.href=`mailto:hello@theregulars.gr?subject=${encodeURIComponent(T('Νέο project · ','New project · ')+name.value)}&body=${encodeURIComponent(body)}`;
+    out.textContent=T('Ανοίγει το πρόγραμμα email σας. Απαντάμε εντός μίας εργάσιμης ημέρας.','Opening your email client. We reply within one working day.');
+    const body=[
+      `${T('Ονοματεπώνυμο','Name')}: ${name.value}`,
+      `${T('Εταιρεία','Company')}: ${$('#fCompany').value||'-'}`,
+      `Email: ${mail.value}`,
+      `Website: ${$('#fSite').value||'-'}`,
+      `${T('Δαπάνη','Budget')}: ${$('#fBud').value}`,
+      `${T('Τύπος','Engagement')}: ${$('#fType').value}`,
+      '', $('#fMsg').value||'-'
+    ].join('\n');
+    location.href=`mailto:hello@theregulars.gr?subject=${encodeURIComponent(T('Αίτημα συνεργασίας · ','New enquiry · ')+($('#fCompany').value||name.value))}&body=${encodeURIComponent(body)}`;
   });
 
   /* ── go ───────────────────────────────────── */
